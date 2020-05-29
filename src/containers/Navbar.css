@@ -18,6 +18,12 @@
     align-items: center;
 }
 
+@media (max-width: 1060px) {
+    .mx-auto {
+        font-size: 110%;
+    }
+}
+
 .nav-text {
     padding-top: 8px;
     padding-bottom: 8px;

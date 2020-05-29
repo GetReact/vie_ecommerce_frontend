@@ -5,7 +5,7 @@ import logo from '../vigg.png';
 import './Navbar.css';
 
 const navbar = () => (
-    <Navbar fluid="true" collapseOnSelect expand="lg" fixed="top" className="navbar-color">
+    <Navbar fluid="true" collapseOnSelect fixed="top" className="navbar-color" expand='lg'>
         <Navbar.Brand>
             <a href="/">
                 <img alt="Vigg Icon" src={logo} className="navbar-brand"/>
