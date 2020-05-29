@@ -2,6 +2,10 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+.navbar-expand-lg {
+    padding-left: 2cm;
+    padding-right: 2cm;
+}
 
 .navbar-color {
     background-color: black;
@@ -14,13 +18,44 @@
 
 .mx-auto {
     font-family: 'Sarabun', sans-serif;
-    font-size: 130%;
+    font-size: 140%;
     align-items: center;
 }
 
-@media (max-width: 1060px) {
+
+@media (max-width: 1213px) {
+    .mx-auto {
+        font-size: 130%;
+    }
+}
+
+@media (max-width: 1178px) {
+    .mx-auto {
+        font-size: 120%;
+    }
+    .navbar-expand-lg {
+        padding-left: 1cm;
+        padding-right: 1cm;
+    }
+}
+
+@media (max-width: 1143px) {
+    .mx-auto {
+        font-size: 120%;
+    }
+    .navbar-expand-lg {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 1002px) {
     .mx-auto {
         font-size: 110%;
+    }
+    .navbar-expand-lg {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
 
