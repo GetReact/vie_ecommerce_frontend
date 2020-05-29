@@ -6,7 +6,9 @@ import Navbar from './containers/Navbar';
 function App() {
   return (
     <div className="App container">
-      <Navbar />
+      <header>
+        <Navbar />
+      </header>
     </div>
   );
 }
