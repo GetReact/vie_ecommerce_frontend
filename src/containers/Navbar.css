@@ -23,13 +23,13 @@
 }
 
 
-@media (max-width: 1213px) {
+@media (max-width: 1220px) {
     .mx-auto {
         font-size: 130%;
     }
 }
 
-@media (max-width: 1178px) {
+@media (max-width: 1180px) {
     .mx-auto {
         font-size: 120%;
     }
@@ -39,7 +39,7 @@
     }
 }
 
-@media (max-width: 1143px) {
+@media (max-width: 1150px) {
     .mx-auto {
         font-size: 120%;
     }
@@ -125,4 +125,14 @@
 .nav-icon.active {
     cursor: pointer;
     background-color: rgb(154, 145, 145);
+}
+
+.dropdown-menu.show{
+    border-radius: 0cm;
+}
+
+@media (max-width: 992px) {
+    .dropdown-menu.show{
+        min-width: 20rem;
+    }
 }
