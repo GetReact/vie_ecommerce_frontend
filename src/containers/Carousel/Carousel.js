@@ -1,9 +1,9 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import "./Carousel.css";
-import img1 from '../img/shoes-cover-1.jpg';
-import img2 from '../img/shoes-cover-2.jpg';
-import img3 from '../img/shoes-cover-3.jpg';
+import img1 from '../../img/shoes-cover-1.jpg';
+import img2 from '../../img/shoes-cover-2.jpg';
+import img3 from '../../img/shoes-cover-3.jpg';
 
 
 const carouselSlider = (props) => (
@@ -15,10 +15,10 @@ const carouselSlider = (props) => (
                 height="600px"
                 alt="First slide"
             />
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
                 <h3>First slide label</h3>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
         <Carousel.Item>
             <img
@@ -27,10 +27,10 @@ const carouselSlider = (props) => (
                 height="600px"
                 alt="Third slide"
             />
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
                 <h3>Second slide label</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
         <Carousel.Item>
             <img
@@ -39,10 +39,10 @@ const carouselSlider = (props) => (
                 height="600px"
                 alt="Third slide"
             />
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
                 <h3>Third slide label</h3>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
         </Carousel.Item>
     </Carousel>
 );

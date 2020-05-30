@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
-import logo from '../vigg.png';
+import logo from '../../vigg.png';
 import './Navbar.css';
 
 const navbar = () => (
