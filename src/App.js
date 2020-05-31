@@ -6,6 +6,7 @@ import Carousel from './containers/Carousel/Carousel';
 import ProductGrid from './containers/ProductGrid/ProductGrid';
 import NewReleases from './containers/OwlCarousel/NewReleases/NewReleases';
 import OurPartners from './containers/OwlCarousel/OurPartners/OurPartners';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <ProductGrid />
         <OurPartners />
       </section>
+      <Footer />
     </div>
   );
 }
