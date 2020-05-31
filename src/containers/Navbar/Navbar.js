@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import logo from '../../vigg.png';
 import './Navbar.css';
@@ -7,9 +8,9 @@ import './Navbar.css';
 const navbar = () => (
     <Navbar fluid="true" collapseOnSelect fixed="top" className="navbar-color" expand='lg'>
         <Navbar.Brand>
-            <a href="/">
+            <Link to="/">
                 <img alt="Vigg Icon" src={logo} className="navbar-brand"/>
-            </a>
+            </Link>
         </Navbar.Brand>
         <Navbar.Toggle>
             <svg className="bi bi-justify" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +20,7 @@ const navbar = () => (
         <Navbar.Collapse >
             <Nav className="mx-auto">
                 <NavItem className="nav-text">
-                    <a href="/about-us" style={{color: 'white', textDecoration: 'none'}}> ABOUT US </a>
+                    <Link to="/about-us" style={{color: 'white', textDecoration: 'none'}}> ABOUT US </Link>
                 </NavItem>
                 <NavDropdown title="BROWSE">
                     <LinkContainer to="/shop/male">
@@ -41,7 +42,7 @@ const navbar = () => (
                     </LinkContainer>
                 </NavDropdown>
                 <NavItem className="nav-text">
-                    <a href="/contact-us" style={{color: 'white', textDecoration: 'none'}}> CONTACT US </a>
+                    <Link to="/contact-us" style={{color: 'white', textDecoration: 'none'}}> CONTACT US </Link>
                 </NavItem>
             </Nav>
             <Nav className="nav-icons">
