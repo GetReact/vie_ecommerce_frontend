@@ -5,6 +5,7 @@ import Navbar from './containers/Navbar/Navbar';
 import Carousel from './containers/Carousel/Carousel';
 import ProductGrid from './containers/ProductGrid/ProductGrid';
 import NewReleases from './containers/OwlCarousel/NewReleases/NewReleases';
+import OurPartners from './containers/OwlCarousel/OurPartners/OurPartners';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <section>
         <NewReleases />
         <ProductGrid />
+        <OurPartners />
       </section>
     </div>
   );

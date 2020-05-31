@@ -8,16 +8,20 @@ import './ProductGrid.css';
 
 const Grid = (props) => (
     <div className="container"> 
-        <h3 className="style">BEST SELLERS</h3>
+        <h3 className="style">
+            <a href="/shop">
+                BEST SELLERS
+            </a>
+        </h3>
         <div className="row">
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img1}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img2}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img3}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img4}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img1}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img2}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img3}/></div>
-            <div className="col-9 col-md-6 col-lg-3 my-3"><Card img={img4}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img1}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img2}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img3}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img4}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img1}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img2}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img3}/></div>
+            <div className="col-lg-3 col-md-4 col-sm-6 col-9 my-3"><Card img={img4}/></div>
         </div>
     </div>
 );
