@@ -1,13 +1,13 @@
 import React from 'react';
 import './Footer.css';
-import logo from '../vigg.png';
+import logo from '../../vigg.png';
 import './Footer.css';
-import fb from '../img/fb-icon.png';
-import insta from '../img/insta-icon.png';
-import lkn from '../img/linkedin-icon.png';
+import fb from '../../img/fb-icon.png';
+import insta from '../../img/insta-icon.png';
+import lkn from '../../img/linkedin-icon.png';
 
 const Footer = (props) => (
-    <footer className="footer-distributed">
+    <div>
         <div className="footer-left">
             <h3>
                 <img alt="Vigg Icon" src={logo} width="250px"/>
@@ -57,7 +57,7 @@ const Footer = (props) => (
                 </a>
             </div>
         </div>
-    </footer>
+    </div> 
 );
 
 export default Footer;

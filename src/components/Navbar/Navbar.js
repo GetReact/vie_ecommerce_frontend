@@ -8,9 +8,9 @@ import './Navbar.css';
 const navbar = () => (
     <Navbar fluid="true" collapseOnSelect fixed="top" className="navbar-color" expand='lg'>
         <Navbar.Brand>
-            <Link to="/">
+            <a href="/">
                 <img alt="Vigg Icon" src={logo} className="navbar-brand"/>
-            </Link>
+            </a>
         </Navbar.Brand>
         <Navbar.Toggle>
             <svg className="bi bi-justify" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
