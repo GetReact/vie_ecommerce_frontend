@@ -11,9 +11,7 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <body>
         <Routes />
-      </body>
       <footer className="footer-distributed">
         <Footer />
       </footer>
