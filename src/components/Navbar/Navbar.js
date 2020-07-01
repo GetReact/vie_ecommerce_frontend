@@ -24,17 +24,9 @@ const NavBar = () => {
                     <NavItem className="nav-text">
                         <Link to="/about-us" style={{color: 'white', textDecoration: 'none'}}> ABOUT US </Link>
                     </NavItem>
-                    <NavDropdown title="BROWSE">
-                        <LinkContainer to="/shop/male">
-                            <NavDropdown.Item>Male</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/shop/female">
-                            <NavDropdown.Item>Female</NavDropdown.Item>
-                        </LinkContainer>
-                        <LinkContainer to="/shop/kid">
-                            <NavDropdown.Item>Kid</NavDropdown.Item>
-                        </LinkContainer>
-                    </NavDropdown>
+                    <NavItem className="nav-text">
+                        <Link to="/shop" style={{color: 'white', textDecoration: 'none'}}> SHOP </Link>
+                    </NavItem>
                     <NavDropdown title="SELL WITH US">
                         <LinkContainer to="/how-to-sell">
                             <NavDropdown.Item>How to sell</NavDropdown.Item>
@@ -43,6 +35,9 @@ const NavBar = () => {
                             <NavDropdown.Item>Sell now</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
+                    <NavItem className="nav-text">
+                        <Link to="/gallery" style={{color: 'white', textDecoration: 'none'}}> STYLE </Link>
+                    </NavItem>
                     <NavItem className="nav-text">
                         <Link to="/contact-us" style={{color: 'white', textDecoration: 'none'}}> CONTACT US </Link>
                     </NavItem>
@@ -85,7 +80,7 @@ const NavBar = () => {
                                 <NavDropdown.Item>Log In</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
-                    }           
+                    }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
