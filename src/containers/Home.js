@@ -9,8 +9,13 @@ const Home = (props) => (
         <main role="main">
             <Carousel />
         </main>
-        <section>
+        <section className="container">
             <NewReleases />
+            <h3 className="style">
+                <a href="/shop">
+                    BEST SELLERS
+                </a>
+            </h3>
             <ProductGrid />
             <OurPartners />
         </section>
@@ -18,4 +23,3 @@ const Home = (props) => (
 );
 
 export default Home;
-

@@ -13,9 +13,9 @@ const Footer = (props) => (
                 <img alt="Vigg Icon" src={logo} width="250px"/>
             </h3>
             <p className="footer-links">
-                <a href="/">Home</a>| 	
-                <a href="/about-us">About Us</a>| 
-                <a href="/contact-us">Contact Us</a>|
+                <a href="/">Home</a>{' '}
+                <a href="/about-us">About Us</a>{' '}
+                <a href="/contact-us">Contact Us</a>{' '}
                 <a href="/register">Register</a>
             </p>
             <p className="footer-company-name">@2020 Copyright: vigg-marketplace.com. All rights reserved.</p>
@@ -57,7 +57,7 @@ const Footer = (props) => (
                 </a>
             </div>
         </div>
-    </div> 
+    </div>
 );
 
 export default Footer;

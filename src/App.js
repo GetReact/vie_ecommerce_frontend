@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Navbar />
+          <Navbar />
       </header>
-        <Routes />
+          <Routes />
       <footer className="footer-distributed">
-        <Footer />
+          <Footer />
       </footer>
     </div>
   );

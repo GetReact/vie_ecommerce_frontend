@@ -97,7 +97,7 @@
 
 .navbar-light .navbar-nav .nav-link {
     color: white;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -115,7 +115,7 @@
 .navbar-light .navbar-nav .show>.nav-link {
     color: white;
     background-color: transparent
-} 
+}
 
 .dropdown-item:active,
 .dropdown-item.active {
@@ -153,4 +153,3 @@
         text-align: center;
     }
 }
-
