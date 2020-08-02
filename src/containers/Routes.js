@@ -6,6 +6,8 @@ import NotFound from './NotFound/NotFound';
 import ProductPage from './ProductPage/ProductPage';
 import SellPage from './SellPage/SellPage';
 import StandardPage from './HowToSellPage/Standard/ImageStandard';
+import HowToShipPage from './HowToSellPage/HowToShip';
+import HowToSell from './HowToSellPage/HowToSell';
 
 const Routes = (props) => (
     <Switch>
@@ -21,8 +23,26 @@ const Routes = (props) => (
         <Route exact path="/sell-now">
             <SellPage />
         </Route>
+        <Route exact path="/how-to-sell">
+            <HowToSell />
+        </Route>
         <Route exact path="/image-standards">
+            <img 
+                alt="background"
+                className="background" 
+                src="assets/images/how-to-sell/standard/standard-background.jpg"
+                style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
+            />
             <StandardPage />
+        </Route>
+        <Route exact path="/how-to-ship">
+            <img 
+                alt="background"
+                className ="background"
+                src="assets/images/how-to-sell/ship/backgroundship.jpg"
+                style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
+            />
+            <HowToShipPage />
         </Route>
         <Route>
             <NotFound />

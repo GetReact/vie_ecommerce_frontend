@@ -1,0 +1,26 @@
+.big-carousel .carousel-item img {
+    object-fit: cover;
+}
+
+.big-carousel .carousel-caption .how-to-sell {
+    padding-bottom: 10cm;
+    padding-right: 15cm;
+}
+
+.big-carousel .carousel-caption .how-to-sell h1 {
+    font-size: 350%;
+    margin-bottom: 1cm;
+    font-weight: 700;
+}
+
+.big-carousel .carousel-caption .steps {
+    padding-bottom: 13cm;
+    padding-left: 15cm;
+    text-align: right;
+}
+
+.big-carousel .carousel-caption .steps h1 {
+    font-size: 250%;
+    margin-bottom: 0.5cm;
+    font-weight: 600;
+}

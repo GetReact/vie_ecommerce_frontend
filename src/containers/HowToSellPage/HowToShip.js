@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './HowToShip.css';
-import { Row } from 'react-bootstrap';
 
 export default class HowToShip extends Component {
     render() {
@@ -28,7 +27,7 @@ export default class HowToShip extends Component {
             <div className="row mt-5 mb-3" style ={{paddingBottom:"7cm"}}>
                 <div className ="col-4 text-center justify-content-center titlebox2">
                    <h2 className ="mt-5" >
-                    Delivery
+                    DELIVERY
                    </h2>
                 </div>
                 <div className ="col-8 infobox2">

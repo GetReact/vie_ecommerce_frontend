@@ -7,10 +7,10 @@ export default class ImageStandard extends Component {
     render() {
         return (
             <Container className="image-standard">
-                <h1 className ="first-line text-center" style={{color:'black'}}>
+                <h1 className ="first-line text-center" style={{color:'white'}}>
                     MAKE SURE YOUR UPLOADS
                 </h1>
-                <h1 className ="text-center" style={{color:'gray'}}>
+                <h1 className ="text-center" style={{color:'yellow'}}>
                     INCLUDE THE FOLLOWING THINGS  
                 </h1>
                 <Row>
