@@ -5,6 +5,7 @@ import Register from './Register/Register';
 import NotFound from './NotFound/NotFound';
 import ProductPage from './ProductPage/ProductPage';
 import SellPage from './SellPage/SellPage';
+import StandardPage from './HowToSellPage/Standard/ImageStandard';
 
 const Routes = (props) => (
     <Switch>
@@ -19,6 +20,9 @@ const Routes = (props) => (
         </Route>
         <Route exact path="/sell-now">
             <SellPage />
+        </Route>
+        <Route exact path="/image-standards">
+            <StandardPage />
         </Route>
         <Route>
             <NotFound />
