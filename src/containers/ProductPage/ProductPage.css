@@ -4,14 +4,6 @@
 
 .productpage .products {
     padding-right: 2cm;
-    padding-left: none;
-}
-
-.productpage .search-bar {
-    margin-bottom: 1cm;
-    width: 27cm;
-    padding-left: 1cm;
-    justify-content: center;
 }
 
 .sidebar {
@@ -32,6 +24,7 @@
 
 .sidebar .accordion {
     font-family: 'Sarabun', sans-serif;
+    width: 120%;
 }
 
 .sidebar .accordion .card-header{
@@ -46,3 +39,4 @@
     padding-top: 30px;
     color: #3fb553;
 }
+

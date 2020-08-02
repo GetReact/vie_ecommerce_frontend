@@ -4,7 +4,7 @@ import { Slider } from '@material-ui/core';
 import './SizeBar.css';
 
 const SizeBar = () => {
-    const [value, setValue] = useState([0, 100]);
+    const [value, setValue] = useState([7, 10]);
     const [maxVal, setMaxVal] = useState(10000000)
     const [minVal, setMinVal] = useState(500000)
 
@@ -22,6 +22,8 @@ const SizeBar = () => {
                     <Slider
                         style={{width:"90%", left:'5%', right:'5%', color:'3fb558'}}
                         value={value}
+                        min={0}
+                        max={20}
                         onChange={handleChange}
                         valueLabelDisplay="auto"
                         aria-labelledby="range-slider"/>

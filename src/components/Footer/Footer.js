@@ -1,7 +1,6 @@
 import React from 'react';
 import './Footer.css';
 import logo from '../../vigg.png';
-import './Footer.css';
 import fb from '../../img/fb-icon.png';
 import insta from '../../img/insta-icon.png';
 import lkn from '../../img/linkedin-icon.png';
