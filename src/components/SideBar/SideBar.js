@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Accordion, Button } from 'react-bootstrap';
-import CatBar from '../../components/CatBar/CatBar';
-import SizeBar from '../../components/SizeBar/SizeBar';
-import PriceBar from '../../components/PriceBar/PriceBar';
-import ConditionBar from '../../components/ConditionBar/ConditionBar';
+import CatBar from './Accordion/CatBar/CatBar';
+import SizeBar from './Accordion/SizeBar/SizeBar';
+import PriceBar from './Accordion/PriceBar/PriceBar';
+import ConditionBar from './Accordion/ConditionBar/ConditionBar';
 
 const SideBar = () => {
     return (
