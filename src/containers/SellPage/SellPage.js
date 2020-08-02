@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Container, Row, Col, Form, Button, FormLabel } from 'react-bootstrap';
+import { Container, Col, Form, Button, FormLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './SellPage.css';
 

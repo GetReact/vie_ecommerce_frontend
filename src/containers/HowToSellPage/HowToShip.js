@@ -4,7 +4,7 @@ import './HowToShip.css';
 export default class HowToShip extends Component {
     render() {
         return (
-        <div className = "container ">
+        <div className = "container how-to-ship">
             <h1 className ="first-line text-center mt-5 " style={{color:'white', paddingTop: '2cm',fontSize: '300%',fontWeight: '700'}}>
                 How to ship
             </h1>

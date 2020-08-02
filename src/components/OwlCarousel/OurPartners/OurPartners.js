@@ -34,7 +34,7 @@ const OurPartners = (props) => (
             </div>
         </div>
         <h3 className="style">OUR VALUES</h3>
-        <div className="row">
+        <div className="row values">
             <div className="d-flex justify-content-center col-lg-4 col-md-4 col-sm-4 col-4 my-3"><img src={img1} alt="value" id="value" /></div>
             <div className="d-flex justify-content-center col-lg-4 col-md-4 col-sm-4 col-4 my-3"><img src={img2} alt="value" id="value" /></div>
             <div className="d-flex justify-content-center col-lg-4 col-md-4 col-sm-4 col-4 my-3"><img src={img3} alt="value" id="value" /></div>

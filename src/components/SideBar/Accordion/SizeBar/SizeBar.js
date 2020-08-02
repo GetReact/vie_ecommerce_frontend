@@ -5,8 +5,6 @@ import './SizeBar.css';
 
 const SizeBar = () => {
     const [value, setValue] = useState([7, 10]);
-    const [maxVal, setMaxVal] = useState(10000000)
-    const [minVal, setMinVal] = useState(500000)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

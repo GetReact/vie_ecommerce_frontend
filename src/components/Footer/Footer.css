@@ -4,11 +4,11 @@
 	width: 100%;
 	text-align: left;
 	font: bold 15px sans-serif;
-    padding-top: 30px;
-    padding-bottom: 60px;
+    padding-top: 50px;
+    padding-bottom: 130px;
     padding-left: 70px;
     padding-right: 70px;
-    margin-top: 80px;
+    /* margin-top: 80px; */
     justify-content: center;
 }
 

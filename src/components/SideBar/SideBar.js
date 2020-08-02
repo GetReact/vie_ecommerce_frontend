@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Accordion, Button } from 'react-bootstrap';
 import CatBar from './Accordion/CatBar/CatBar';
 import SizeBar from './Accordion/SizeBar/SizeBar';
