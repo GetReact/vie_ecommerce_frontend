@@ -22,11 +22,11 @@ const ProfilePage = (props) => {
                             <Form.Control placeholder="GotaKu" />
                         </Form.Group>
                         <Form.Group controlId="formBasicFullName">
-                            <Form.Label>FullName (Optional)</Form.Label>
+                            <Form.Label>Full Name (Optional)</Form.Label>
                             <Form.Control placeholder="Tim Huang" />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control type="email" placeholder="sample@gmail.com" />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">

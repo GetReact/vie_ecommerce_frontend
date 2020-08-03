@@ -3,6 +3,10 @@
     margin-bottom: 2cm;
 }
 
+.profile-page .row {
+    margin-right: none;
+}
+
 .profile-page .user-info {
     padding-left: 2cm;
     padding-right: 2cm;
