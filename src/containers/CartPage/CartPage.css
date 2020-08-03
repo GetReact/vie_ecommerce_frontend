@@ -1,0 +1,22 @@
+.cart-page {
+    padding-top: 5cm;
+    margin-bottom: 2cm;
+}
+
+.cart-page h1  {
+    font-family: 'Sarabun', sans-serif;
+    text-align: center;
+}
+
+.cart-page .row {
+    margin-bottom: 2cm;
+    margin-top: 1cm;
+}
+
+.cart-page .btn {
+    margin-right: 1cm;
+}
+
+.cart-page .btn:disabled {
+    cursor: no-drop;
+}

@@ -9,6 +9,7 @@ import StandardPage from './HowToSellPage/Standard/ImageStandard';
 import HowToShipPage from './HowToSellPage/HowToShip';
 import HowToSell from './HowToSellPage/HowToSell';
 import ProfilePage from './ProfilePage/ProfilePage';
+import CartPage from './CartPage/CartPage';
 
 const Routes = (props) => (
     <Switch>
@@ -47,6 +48,9 @@ const Routes = (props) => (
         </Route>
         <Route exact path="/profile">
             <ProfilePage/>
+        </Route>
+        <Route exact path="/cart">
+            <CartPage/>
         </Route>
         <Route>
             <NotFound />
