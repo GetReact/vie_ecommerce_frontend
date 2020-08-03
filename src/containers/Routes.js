@@ -8,6 +8,7 @@ import SellPage from './SellPage/SellPage';
 import StandardPage from './HowToSellPage/Standard/ImageStandard';
 import HowToShipPage from './HowToSellPage/HowToShip';
 import HowToSell from './HowToSellPage/HowToSell';
+import ProfilePage from './ProfilePage/ProfilePage';
 
 const Routes = (props) => (
     <Switch>
@@ -43,6 +44,9 @@ const Routes = (props) => (
                 style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
             />
             <HowToShipPage />
+        </Route>
+        <Route exact path="/profile">
+            <ProfilePage/>
         </Route>
         <Route>
             <NotFound />

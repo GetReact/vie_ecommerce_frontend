@@ -1,0 +1,13 @@
+.profile-page {
+    padding-top: 5cm;
+    margin-bottom: 2cm;
+}
+
+.profile-page .user-info {
+    padding-left: 2cm;
+    padding-right: 2cm;
+}
+
+.profile-page .user-info .form-group .form-label {
+    font-weight: 700;
+}
