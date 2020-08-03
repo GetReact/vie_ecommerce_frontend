@@ -8,13 +8,10 @@
 .owl-carousel .owl-stage-outer {
     align-items: center;
     justify-content: center;
-    /* margin-top: 16px !important;
-    margin-bottom: 16px !important; */
 }
 
 .owl-carousel .owl-nav button.owl-prev, .owl-carousel .owl-nav button.owl-next, .owl-carousel button.owl-dot {
-    padding-left: 0.5cm !important;
-    padding-right: 0.5cm !important;
+    padding: 0.5!important;
     background-color: transparent;
     border-color: transparent;
 }
@@ -34,6 +31,15 @@
 
 .cover {
     object-fit: cover;
+}
+
+.slick-arrow {
+    color: black!important;
+}
+
+.slick-arrow:hover {
+    color: rgb(169, 169, 169);
+    cursor: pointer;
 }
 
 

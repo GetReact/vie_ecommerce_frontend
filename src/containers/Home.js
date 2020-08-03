@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from '../components/Carousel/Carousel';
-import NewReleases from '../components/OwlCarousel/NewReleases/NewReleases';
-import ProductGrid from '../components/ProductGrid/ProductGrid';
-import OurPartners from '../components/OwlCarousel/OurPartners/OurPartners';
+import NewReleases from '../components/HomeCarousel/NewReleases';
+import BestSellers from '../components/HomeCarousel/BestSellers';
+import OurPartners from '../components/OurPartners/OurPartners';
 
 const Home = (props) => (
     <div>
@@ -11,12 +11,7 @@ const Home = (props) => (
         </main>
         <section className="container">
             <NewReleases />
-            <h3 className="style">
-                <a href="/shop">
-                    BEST SELLERS
-                </a>
-            </h3>
-            <ProductGrid />
+            <BestSellers />
             <OurPartners />
         </section>
     </div>

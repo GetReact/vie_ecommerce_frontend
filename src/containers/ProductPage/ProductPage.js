@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Pagination, InputGroup, FormControl, Button } from 'react-bootstrap';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import "./ProductPage.css";
@@ -14,7 +14,40 @@ const ProductPage = () => {
                 </div>
             </Col>
             <Col lg={8} className="products">
-                <ProductGrid/>
+                <Row>
+                    <InputGroup className="search-bar">
+                        <FormControl
+                            placeholder="Search"
+                            aria-label="Search"
+                            aria-describedby="basic-addon2"
+                        />
+                        <InputGroup.Append>
+                            <Button variant="outline-secondary">Search</Button>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </Row>
+                <Row>
+                    <ProductGrid/>
+                </Row>
+                <Row>
+                    <Pagination>
+                        <Pagination.First />
+                        <Pagination.Prev />
+                        <Pagination.Item>{1}</Pagination.Item>
+                        <Pagination.Ellipsis />
+
+                        <Pagination.Item>{10}</Pagination.Item>
+                        <Pagination.Item>{11}</Pagination.Item>
+                        <Pagination.Item active>{12}</Pagination.Item>
+                        <Pagination.Item>{13}</Pagination.Item>
+                        <Pagination.Item disabled>{14}</Pagination.Item>
+
+                        <Pagination.Ellipsis />
+                        <Pagination.Item>{20}</Pagination.Item>
+                        <Pagination.Next />
+                        <Pagination.Last />
+                    </Pagination>
+                </Row>
             </Col>
         </Row>
     );

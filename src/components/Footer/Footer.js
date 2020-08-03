@@ -1,9 +1,6 @@
 import React from 'react';
 import './Footer.css';
 import logo from '../../vigg.png';
-import fb from '../../img/fb-icon.png';
-import insta from '../../img/insta-icon.png';
-import lkn from '../../img/linkedin-icon.png';
 
 const Footer = (props) => (
     <div>
@@ -46,13 +43,13 @@ const Footer = (props) => (
         <div className="footer-right">
             <div className="social-media">
                 <a href="https://facebook.com">
-                    <img src={fb} alt="fb-logo" width="50em" height="50em" className="icon"/>
+                    <img src="assets/images/shoes-img/fb-icon.png" alt="fb-logo" width="50em" height="50em" className="icon"/>
                 </a>
                 <a href="https://instagram.com">
-                    <img src={insta} alt="insta-logo" width="50em" height="50em" className="icon"/>
+                    <img src='assets/images/shoes-img/insta-icon.png' alt="insta-logo" width="50em" height="50em" className="icon"/>
                 </a>
                 <a href="https://linkedin.com">
-                    <img src={lkn} alt="linkedin-logo" width="50em" height="50em" className="icon"/>
+                    <img src='assets/images/shoes-img/linkedin-icon.png' alt="linkedin-logo" width="50em" height="50em" className="icon"/>
                 </a>
             </div>
         </div>

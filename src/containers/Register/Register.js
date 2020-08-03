@@ -6,7 +6,7 @@ import {
 } from "react-bootstrap";
 import { useFormFields } from "../../libs/hooksLib";
 import "./Register.css";
-import fb from "../../img/fb-icon-black.png";
+// import fb from "../../img/fb-icon-black.png";
 
 const Register = ()  => {
     const [fields, handleFieldChange] = useFormFields({
@@ -43,7 +43,7 @@ const Register = ()  => {
                         href="/oauth/facebook"
                         bssize="large"
                     >
-                        <img src={fb} alt="fb-logo" width="50em" height="50em" className="icon"/>
+                        <img src="assets/images/shoes-img/fb-icon-black.png" alt="fb-logo" width="50em" height="50em" className="icon"/>
                         Register with Facebook
                     </Button>
                     <FormGroup controlId="email" bssize="large">

@@ -40,3 +40,12 @@
     color: #3fb553;
 }
 
+.products .pagination {
+    padding-top: 1cm;
+}
+
+.products .search-bar {
+    width: 80%;
+    padding-top: 1cm;
+    padding-bottom: 1cm;
+}

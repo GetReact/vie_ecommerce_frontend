@@ -5,13 +5,3 @@
 .grid .card {
     margin: 7px;
 }
-
-.grid .pagination {
-    padding-top: 1cm;
-}
-
-.grid .search-bar {
-    width: 80%;
-    padding-top: 1cm;
-    padding-bottom: 1cm;
-}
