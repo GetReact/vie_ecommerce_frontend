@@ -5,15 +5,11 @@ import BestSellers from '../components/HomeCarousel/BestSellers';
 import OurPartners from '../components/OurPartners/OurPartners';
 
 const Home = (props) => (
-    <div>
-        <main role="main">
-            <Carousel />
-        </main>
-        <section className="container">
-            <NewReleases />
-            <BestSellers />
-            <OurPartners />
-        </section>
+    <div role="main">
+        <Carousel />
+        <NewReleases />
+        <BestSellers />
+        <OurPartners />
     </div>
 );
 

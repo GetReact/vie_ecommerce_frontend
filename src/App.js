@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Container } from 'react-bootstrap';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
@@ -11,12 +11,14 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <body>
+      <main>
         <Routes />
-      </body>
-      <footer className="footer-distributed">
-        <Footer />
-      </footer>
+      </main>
+      <div className="footer-distributed">
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,3 @@
-main {
-    margin-top: 67.61px;
-}
-
 .style {
     margin-top: 1cm;
     font-size: 1cm;
@@ -32,7 +28,29 @@ main {
     object-fit: cover;
 }
 
-body {
+.App {
+    position: relative;
+    min-height: 100vh;
+}
+
+main {
+    margin-top: 67.61px;
     background-color: transparent!important;
+    /* margin-bottom: 5cm; */
+}
+
+.footer-distributed{
+    position: absolute;
+    /* bottom: 0; */
+    width: 100%;
+	justify-content: center;
+	background-color: black;
+	box-sizing: border-box;
+	text-align: left;
+	font: bold 15px sans-serif;
+	padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 30px;
+	padding-bottom: 70px;
 }
 
