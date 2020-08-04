@@ -1,11 +1,13 @@
 .cart-page {
-    padding-top: 5cm;
+    padding-top: 3cm;
     margin-bottom: 2cm;
+    font-family: 'Sarabun', sans-serif;
 }
 
 .cart-page h1  {
-    font-family: 'Sarabun', sans-serif;
     text-align: center;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .cart-page .row {
@@ -13,8 +15,17 @@
     margin-top: 1cm;
 }
 
+.cart-page .row .cart-table {
+    width: 110%;
+}
+
+.cart-page .row .table {
+    width: 80%;
+}
+
 .cart-page .btn {
     margin-right: 1cm;
+    font-weight: 700;
 }
 
 .cart-page .btn:disabled {
