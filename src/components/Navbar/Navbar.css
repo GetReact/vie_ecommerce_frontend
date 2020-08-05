@@ -16,15 +16,19 @@
     margin-right: 0;
 }
 
+.navbar-brand:hover {
+    cursor: pointer;
+}
+
 .mx-auto {
-    font-family: 'Sarabun', sans-serif;
+    font-family: 'Spartan', sans-serif;
     font-size: 140%;
     align-items: center;
     justify-content: center;
 }
 
 .nav-profile {
-    font-family: 'Sarabun', sans-serif;
+    font-family: 'Spartan', sans-serif;
     font-size: 140%;
 }
 

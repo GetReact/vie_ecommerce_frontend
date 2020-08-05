@@ -125,7 +125,7 @@ const SellPage = (props) => {
             />
             <Container style={{alignItems:'center'}}>
                 <Form>
-                    <h1 className="mb-5">Sell With Us</h1>
+                    <h1 className="mb-5">SELL WITH US</h1>
                     {formInfo}
                     <h2>IMAGES OF THE SHOES (*)</h2>
                     {formPics}

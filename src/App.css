@@ -36,7 +36,13 @@
 main {
     margin-top: 67.61px;
     background-color: transparent!important;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 500;
     /* margin-bottom: 5cm; */
+}
+
+footer {
+    font-family: 'Spartan', sans-serif;
 }
 
 .footer-distributed{

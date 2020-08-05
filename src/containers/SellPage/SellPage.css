@@ -6,9 +6,10 @@
 }
 
 .sell-page .container h1 {
+    font-family: 'Alegreya Sans', sans-serif;
     font-style: italic;
     font-weight: 700;
-    font-size: 400%;
+    font-size: 500%;
     text-align: center;
 }
 
