@@ -4,13 +4,13 @@ import { Slider } from '@material-ui/core';
 
 const PriceBar = () => {
     const [value, setValue] = useState([0, 100]);
-    const [maxVal, setMaxVal] = useState(10000000)
-    const [minVal, setMinVal] = useState(500000)
+    const [maxVal, setMaxVal] = useState(1000)
+    const [minVal, setMinVal] = useState(50)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        const min = newValue[0]/100*9500000+500000;
-        const max = newValue[1]/100*9500000+500000;
+        const min = newValue[0]/100*950+50;
+        const max = newValue[1]/100*950+50;
         setMaxVal(max);
         setMinVal(min);
     };
@@ -31,7 +31,7 @@ const PriceBar = () => {
             </Accordion.Collapse>
             <Accordion.Collapse eventKey="1">
                 <Card.Body style={{paddingLeft:"10%",}}>
-                    <h6>{minVal} VND &lt; $$$ &lt; {maxVal} VND</h6>
+                    <h6>${minVal} &lt; Current &lt; ${maxVal}</h6>
                 </Card.Body>
             </Accordion.Collapse>
         </Card>

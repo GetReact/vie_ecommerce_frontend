@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion, Card } from 'react-bootstrap';
 import { Slider } from '@material-ui/core';
-import './SizeBar.css';
+// import './SizeBar.css';
 
 const SizeBar = () => {
     const [value, setValue] = useState([7, 10]);

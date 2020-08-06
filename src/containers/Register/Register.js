@@ -10,6 +10,8 @@ import "./Register.css";
 
 const Register = ()  => {
     const [fields, handleFieldChange] = useFormFields({
+        fullname: "",
+        username: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -46,6 +48,27 @@ const Register = ()  => {
                         <img src="assets/images/shoes-img/fb-icon-black.png" alt="fb-logo" width="50em" height="50em" className="icon"/>
                         Register with Facebook
                     </Button>
+                    <h3 className="register_title">
+                        OR
+                    </h3>
+                    <FormGroup controlId="fullname" bssize="large">
+                    <h6>Full Name</h6>
+                    <FormControl
+                        className="register_form_box"
+                        autoFocus
+                        value={fields.fullname}
+                        onChange={handleFieldChange}
+                    />
+                    </FormGroup>
+                    <FormGroup controlId="username" bssize="large">
+                    <h6>User Name</h6>
+                    <FormControl
+                        className="register_form_box"
+                        autoFocus
+                        value={fields.username}
+                        onChange={handleFieldChange}
+                    />
+                    </FormGroup>
                     <FormGroup controlId="email" bssize="large">
                     <h6>Email</h6>
                     <FormControl
