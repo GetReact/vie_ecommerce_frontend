@@ -8,12 +8,12 @@ import "./ProductPage.css";
 const ProductPage = () => {
     return (
         <Row className="productpage">
-            <Col lg={4}>
+            <Col lg={4} md={12}>
                 <div className="sidebar">
                     <SideBar/>
                 </div>
             </Col>
-            <Col lg={8} className="products">
+            <Col lg={8} md={12} className="products">
                 <Row>
                     <InputGroup className="search-bar">
                         <FormControl
@@ -26,7 +26,7 @@ const ProductPage = () => {
                         </InputGroup.Append>
                     </InputGroup>
                 </Row>
-                <Row>
+                <Row className="product-grid">
                     <ProductGrid/>
                 </Row>
                 <Row>

@@ -27,13 +27,15 @@ const NavBar = () => {
                     <NavItem className="nav-text">
                         <Link to="/shop" style={{color: 'white', textDecoration: 'none'}}> SHOP </Link>
                     </NavItem>
-                    <NavDropdown title="SELL WITH US">
+                    <NavDropdown alignRight title="SELL WITH US">
                         <LinkContainer to="/sell-now">
                             <NavDropdown.Item>Sell now</NavDropdown.Item>
                         </LinkContainer>
+                        <NavDropdown.Divider />
                         <LinkContainer to="/how-to-sell">
                             <NavDropdown.Item>How to sell</NavDropdown.Item>
                         </LinkContainer>
+                        <NavDropdown.Divider />
                         <LinkContainer to="/how-to-ship">
                             <NavDropdown.Item>How it works</NavDropdown.Item>
                         </LinkContainer>

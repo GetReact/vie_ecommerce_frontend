@@ -42,4 +42,31 @@
     cursor: pointer;
 }
 
+.slick-slide {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.slick-track {
+    display: flex;
+}
+
+
+/* 
+.slick-slider {
+    margin-top: 0.5cm;
+    margin-bottom: 1cm;    
+    text-align: center;
+}
+
+.slick-track {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.slick-slide{
+    justify-content: center;
+    align-items: center;
+} */
+
 

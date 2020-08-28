@@ -10,7 +10,7 @@ import "./SlickCarousel.css";
 const NewReleases = () => {
     const settings = {
         infinite: false,
-        centerPadding: '5px',
+        centerPadding: '0',
         slidesToShow: 3,
         swipeToSlide: true,
         dots: true,
