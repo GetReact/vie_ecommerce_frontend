@@ -18,7 +18,7 @@ const SideBar = () => {
                 type="submit"
                 style={{
                     marginTop:"1cm",
-                    width:"3cm",
+                    width:"4cm",
                     float:"right",
                     backgroundColor:"gray",
                     borderColor:"gray",
