@@ -24,7 +24,7 @@ const SideBar = () => {
                     borderColor:"gray",
                 }}
             >
-                Save
+                Apply Now
             </Button>
         </>
     )
