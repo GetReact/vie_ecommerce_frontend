@@ -1,0 +1,43 @@
+.detail-page {
+    margin-top: 3cm;
+    text-align: center;
+}
+.detail-page .add-to-cart-btn {
+    margin-bottom: 2cm;
+}
+.detail-page .detail-grid {
+    margin-top: 2cm;
+    margin-bottom: 3cm;
+    text-align: center;
+}
+.detail-page .detail-grid .column1 .main-shoes-img:hover {
+    transform: scale(1.3);
+    transition: all 500ms linear;
+}
+
+@media (min-width:992px) {
+    .detail-page .detail-grid {
+        margin-bottom: 3cm;
+    }
+    .detail-page .detail-grid .column2 h1,
+    .detail-page .detail-grid .column2 .shoes-info {
+        /* text-align: left; */
+        justify-content: left!important;
+    }
+}
+
+.detail-page .detail-grid .column2 h1 {
+    margin-bottom: 1cm;
+}
+.detail-page .detail-grid .column2 .shoes-info h5 {
+    margin-bottom: 0.5cm;
+}
+.detail-page .detail-grid .column2 .shoes-info h6 {
+    font-style: italic;
+}
+.detail-page .detail-grid .column2 .shoes-info .info {
+    margin-left: 0.5cm;
+    color: green;
+    font-style: italic;
+    font-weight: 700;
+}

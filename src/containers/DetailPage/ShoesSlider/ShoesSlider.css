@@ -1,0 +1,10 @@
+.shoes-slider {
+    margin-bottom: 1cm;
+}
+.shoes-slider .slick-list {
+    max-width: 10cm;
+    max-height: 5cm;
+}
+.shoes-slider .slick-list img {
+    border: 1px solid black;
+}
