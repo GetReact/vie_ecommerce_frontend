@@ -30,7 +30,7 @@ const PriceBar = () => {
                 </Card.Body>
             </Accordion.Collapse>
             <Accordion.Collapse eventKey="1">
-                <Card.Body style={{paddingLeft:"10%",}}>
+                <Card.Body style={{textAlign:"center",}}>
                     <h6>${minVal} &lt; Current &lt; ${maxVal}</h6>
                 </Card.Body>
             </Accordion.Collapse>
