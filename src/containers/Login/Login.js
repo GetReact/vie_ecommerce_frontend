@@ -7,9 +7,9 @@ import {
 import FacebookLogin from 'react-facebook-login';
 import {GoogleLogin} from 'react-google-login';
 import { useFormFields } from "../../libs/hooksLib";
-import "./Register.css";
+import "./Login.css";
 
-const Register = ()  => {
+const Login = ()  => {
     const [fields, handleFieldChange] = useFormFields({
         fullname: "",
         username: "",
@@ -36,7 +36,7 @@ const Register = ()  => {
         return (
             <div>
                 <h3 className="register_title">
-                    REGISTER HERE
+                    LOGIN HERE
                 </h3>
                 <form onSubmit={handleSubmit} className="register_form" >
                     <FacebookLogin
@@ -57,24 +57,6 @@ const Register = ()  => {
                     <h3 className="register_title">
                         OR
                     </h3>
-                    <FormGroup controlId="fullname" bssize="large">
-                    <h6>Full Name</h6>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        value={fields.fullname}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="username" bssize="large">
-                    <h6>User Name</h6>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        value={fields.username}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
                     <FormGroup controlId="email" bssize="large">
                     <h6>Email</h6>
                     <FormControl
@@ -92,15 +74,6 @@ const Register = ()  => {
                         type="password"
                         value={fields.password}
                         onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="confirmPassword" bssize="large">
-                    <h6>Confirm Password</h6>
-                    <FormControl
-                        className="register_form_box"
-                        type="password"
-                        onChange={handleFieldChange}
-                        value={fields.confirmPassword}
                     />
                     </FormGroup>
                     <Button
@@ -130,4 +103,4 @@ const Register = ()  => {
     );
 }
 
-export default Register;
+export default Login;
