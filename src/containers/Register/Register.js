@@ -4,6 +4,8 @@ import {
     FormControl,
     Button
 } from "react-bootstrap";
+import FacebookLogin from 'react-facebook-login';
+import {GoogleLogin} from 'react-google-login';
 import { useFormFields } from "../../libs/hooksLib";
 import "./Register.css";
 // import fb from "../../img/fb-icon-black.png";
@@ -38,16 +40,21 @@ const Register = ()  => {
                     REGISTER HERE
                 </h3>
                 <form onSubmit={handleSubmit} className="register_form" >
-                    <Button
-                        id = "facebook_oauth"
-                        className="register_form_box"
-                        block
-                        href="/oauth/facebook"
-                        bssize="large"
-                    >
-                        <img src="assets/images/shoes-img/fb-icon-black.png" alt="fb-logo" width="50em" height="50em" className="icon"/>
-                        Register with Facebook
-                    </Button>
+                    <FacebookLogin
+                        appId="562118384400275"
+                        autoLoad={true}
+                        fields="name,email,picture"
+                        scope="public_profile,user_friends"
+                        // callback={responseFacebook}
+                        icon="fa-facebook" />
+                    <GoogleLogin
+                        className="google-login"
+                        // clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+                        buttonText="LOGIN WITH GMAIL"
+                        // onSuccess={responseGoogle}
+                        // onFailure={responseGoogle}
+                        // cookiePolicy={'single_host_origin'}
+                    />
                     <h3 className="register_title">
                         OR
                     </h3>

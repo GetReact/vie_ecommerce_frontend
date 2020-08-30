@@ -7,7 +7,7 @@ import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 const NavBar = () => {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [navbar, setNavbar] = useState(false); 
 
     const changeBackground = () => {
@@ -89,14 +89,17 @@ const NavBar = () => {
                             </div>
                         </LinkContainer>
                         :
-                        <NavDropdown title="PROFILE" className="nav-profile">
-                            <LinkContainer to="/register">
-                                <NavDropdown.Item>Register</NavDropdown.Item>
-                            </LinkContainer>
-                            <LinkContainer to="/login">
-                                <NavDropdown.Item>Log In</NavDropdown.Item>
-                            </LinkContainer>
-                        </NavDropdown>
+                        // <NavDropdown title="LOG IN" className="nav-profile">
+                        //     <LinkContainer to="/register">
+                        //         <NavDropdown.Item>Register</NavDropdown.Item>
+                        //     </LinkContainer>
+                        //     <LinkContainer to="/login">
+                        //         <NavDropdown.Item>Log In</NavDropdown.Item>
+                        //     </LinkContainer>
+                        // </NavDropdown>
+                        <Nav.Item className="nav-text">
+                            <Link to="/login" style={{textDecoration: 'none'}}> LOG IN </Link>
+                        </Nav.Item>
                     }
                 </Nav>
             </Navbar.Collapse>

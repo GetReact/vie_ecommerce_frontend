@@ -6,16 +6,12 @@
 .register_form{
     justify-content: center;
     padding-top: 1cm;
+    padding-left: 1cm;
+    padding-right:1cm;
 }
 
 .register_form_box{
-    width: 15cm;
-}
-
-@media (max-width: 600px) {
-    .register_form_box{
-        width: 8cm;
-    }
+    width: 100%;
 }
 
 .register_title {
@@ -37,9 +33,34 @@
     border-color: black;
 }
 
-#facebook_oauth {
-    background-color: black;
-    border-color: black;
-    margin-bottom: 1cm;
+.kep-login-facebook {
+    font-family: 'Spartan', sans-serif !important;
+    border-radius: 10px !important;
+    width: 100%;
+    padding: 10px !important;
+}
+
+.google-login {
+    margin-top:0.5cm;
+    font-family: 'Spartan', sans-serif !important;
+    border-radius: 10px !important;
+    border-color: rgb(181, 180, 180) !important;
+    width: 100%;
+    background:black;
+    justify-content: center;
+    /* display: inline-block !important; */
+}
+
+.google-login:hover {
+    cursor: pointer;
+}
+
+
+.google-login span {
+    text-transform: uppercase;
+    color: black!important;
+    font-weight: 700!important;
+    font-size:calc(.27548vw + 12.71074px) !important;
+    padding: none !important;
 }
 
