@@ -28,7 +28,7 @@ const NavBar = () => {
                 </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle>
-                <svg className="bi bi-justify" width="2em" height="2em" viewBox="0 0 16 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg className="bi bi-justify" width="2em" height="2em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                 </svg>
             </Navbar.Toggle>
