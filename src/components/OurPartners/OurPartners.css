@@ -3,8 +3,8 @@
 }
 
 #value{
-    width: 3.5cm;
-    height: 3.5cm;
+    width: 3cm;
+    height: 3cm;
 }
 
 @media (max-width: 577px) {
