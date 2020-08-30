@@ -1,8 +1,3 @@
-.big-carousel {
-    margin-top: 1cm;
-        /* margin-bottom: 9cm; */
-}
-
 .big-carousel .carousel-item img {
     object-fit: cover;
 }
