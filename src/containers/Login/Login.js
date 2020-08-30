@@ -5,7 +5,8 @@ import {
     Button
 } from "react-bootstrap";
 import FacebookLogin from 'react-facebook-login';
-import {GoogleLogin} from 'react-google-login';
+import GoogleLogin from 'react-google-login';
+import { Link } from 'react-router-dom';
 import { useFormFields } from "../../libs/hooksLib";
 import "./Login.css";
 
@@ -58,7 +59,7 @@ const Login = ()  => {
                         OR
                     </h3>
                     <FormGroup controlId="email" bssize="large">
-                    <h6>Email</h6>
+                    <h5>Email</h5>
                     <FormControl
                         className="register_form_box"
                         autoFocus
@@ -68,7 +69,7 @@ const Login = ()  => {
                     />
                     </FormGroup>
                     <FormGroup controlId="password" bssize="large">
-                    <h6>Password</h6>
+                    <h5>Password</h5>
                     <FormControl
                         className="register_form_box"
                         type="password"
@@ -78,14 +79,15 @@ const Login = ()  => {
                     </FormGroup>
                     <Button
                         id = "register_button"
-                        className="register_form_box"
+                        className="register_form_box mb-3"
                         block
                         type="submit"
                         bssize="large"
                         disabled={!validateForm()}
                     >
-                        Register
+                        Login
                     </Button>
+                    <Link to="/register"><h6>Have not registerd? Register here!</h6></Link>
                 </form>
             </div>
             
