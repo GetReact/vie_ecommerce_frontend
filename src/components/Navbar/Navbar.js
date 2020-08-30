@@ -7,7 +7,7 @@ import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 const NavBar = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const [navbar, setNavbar] = useState(false); 
 
     const changeBackground = () => {
