@@ -33,7 +33,7 @@ const NavBar = () => {
                 </svg>
             </Navbar.Toggle>
             <Navbar.Collapse >
-                <Nav className="mx-auto">
+                <Nav className="nav-options mx-auto">
                     {/* <NavItem className="nav-text">
                         <Link to="/about-us" style={{color: 'white', textDecoration: 'none'}}> ABOUT US </Link>
                     </NavItem> */}

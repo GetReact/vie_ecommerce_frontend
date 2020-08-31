@@ -5,7 +5,7 @@
 }
 
 .navbar.active {
-    background: linear-gradient(90deg, rgb(126, 120, 120) 0%, rgba(177, 178, 179, 0.256) 100%);
+    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(130, 130, 130, 0.7) 100%);
 }
 
 .navbar-expand-lg {
@@ -26,7 +26,6 @@
     font-family: 'Spartan', sans-serif;
     font-size: 140%;
     align-items: center;
-    justify-content: center;
 }
 
 .nav-profile {

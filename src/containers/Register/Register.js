@@ -114,7 +114,7 @@ const Register = ()  => {
                     >
                         Register
                     </Button>
-                    <Link to="/login"><h6>Registered? Login in here!</h6></Link>
+                    <Link to="/login"><h6>Already registered? Login in here!</h6></Link>
                 </form>
             </div>
             
