@@ -30,7 +30,7 @@ const detailPage = (props) => {
                     <Row className="shoes-info"><h5>Price:</h5><h5 className="info">$ 999</h5></Row>
                     <Row className="shoes-info"><h5>Availability:</h5><h5 className="info">43</h5></Row>
                     <Row className="shoes-info"><h5>Color:</h5><h5 className="info">White</h5></Row>
-                    <Row className="shoes-info"><h5>Descriptions:</h5><h5 className="info"></h5></Row>
+                    <Row className="shoes-info"><h5>Descriptions:</h5></Row>
                     <Row className="shoes-info"><h6>"This is the space where shoes owners describe their shoes in more details. It can be either your past experiences with the shoes or any issue-related information."</h6></Row>
                 </Col>
             </Row>

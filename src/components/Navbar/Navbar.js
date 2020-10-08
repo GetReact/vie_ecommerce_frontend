@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import logo_black from '../../vigg_black.png';
@@ -7,7 +7,7 @@ import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 const NavBar = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
     const [navbar, setNavbar] = useState(false); 
 
     const changeBackground = () => {

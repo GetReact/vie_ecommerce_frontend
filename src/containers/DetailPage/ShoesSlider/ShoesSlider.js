@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Image } from 'react-bootstrap';
 import Slider from 'react-slick';
 import ArrowLeft from "@material-ui/icons/ArrowLeft";

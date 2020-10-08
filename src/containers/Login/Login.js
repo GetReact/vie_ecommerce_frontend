@@ -2,10 +2,9 @@ import React from "react";
 import {
     FormGroup,
     FormControl,
-    Button
+    Button,
+    Container
 } from "react-bootstrap";
-import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
 import { Link } from 'react-router-dom';
 import { useFormFields } from "../../libs/hooksLib";
 import "./Login.css";
@@ -40,7 +39,7 @@ const Login = ()  => {
                     LOGIN HERE
                 </h3>
                 <form onSubmit={handleSubmit} className="register_form" >
-                    <FacebookLogin
+                    {/* <FacebookLogin
                         appId="562118384400275"
                         // autoLoad={true}
                         fields="name,email,picture"
@@ -57,7 +56,7 @@ const Login = ()  => {
                     />
                     <h3 className="register_title">
                         OR
-                    </h3>
+                    </h3> */}
                     <FormGroup controlId="email" bssize="large">
                     <h5>Email</h5>
                     <FormControl
@@ -96,11 +95,9 @@ const Login = ()  => {
 
     return (
         <div className="register">
-            <div className="container">
-                <div className="row">
-                    {renderForm()}
-                </div>
-            </div>
+            <Container>
+                {renderForm()}
+            </Container>
         </div>
     );
 }
