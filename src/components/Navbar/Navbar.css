@@ -1,7 +1,7 @@
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
-    background: transparent;
+    background: rgba(210, 210, 210, 0.5);
 }
 
 .navbar.active {
