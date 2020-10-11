@@ -51,23 +51,7 @@
     display: flex;
 }
 
-
-/* 
-.slick-slider {
-    margin-top: 0.5cm;
-    margin-bottom: 1cm;    
-    text-align: center;
+.container .style:hover {
+    cursor: pointer;
 }
-
-.slick-track {
-    display: flex;
-    align-items: center;
-    margin: auto;
-}
-
-.slick-slide{
-    justify-content: center;
-    align-items: center;
-} */
-
 
