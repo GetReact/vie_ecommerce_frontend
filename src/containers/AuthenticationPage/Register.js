@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import FormInput from '../../components/FormInput/FormInput';
 
 class RegisterForm extends Component {
 
     state = {
-        fullname: "",
-        username: "",
+        displayName: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -15,6 +15,7 @@ class RegisterForm extends Component {
     render() {
         const validateForm = () => {
             return (
+                this.state.displayName.length > 0 &&
                 this.state.email.length > 0 &&
                 this.state.password.length > 0 &&
                 this.state.password === this.state.confirmPassword
@@ -23,9 +24,17 @@ class RegisterForm extends Component {
 
         const handleSubmit = async (event) => {
             event.preventDefault();
+            if (validateForm()) {
+                try {
+                    const { displayName, email, password, comfirmPassword } = this.state;
+                    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                    createUserProfileDocument(user, { displayName });
+                } catch (e) {
+                    console.error(e);
+                }
+            }
             this.setState({ 
-                fullname: "",
-                username: "",
+                displayName: "",
                 email: "",
                 password: "",
                 confirmPassword: "", 
@@ -46,18 +55,10 @@ class RegisterForm extends Component {
                     <h6>Have not registered? Sign up here!</h6>
                     <form onSubmit={handleSubmit} className="register_form" >
                         <FormInput 
-                            label='Full Name'
-                            name='fullname'
-                            type='input'
-                            value={this.state.fullname}
-                            handleChange={handleChange}
-                            required
-                        />
-                        <FormInput 
                             label='User Name'
-                            name='username'
+                            name='displayName'
                             type='input'
-                            value={this.state.username}
+                            value={this.state.displayName}
                             handleChange={handleChange}
                             required
                         />
@@ -95,7 +96,6 @@ class RegisterForm extends Component {
                         >
                             Register
                         </Button>
-                        {/* <Link to="/login"><h6>Already registered? Login in here!</h6></Link> */}
                     </form>
                 </div>
                 

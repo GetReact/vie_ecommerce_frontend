@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
+import { signInWithGoogle } from '../../firebase/firebase';
 
 class LoginForm extends Component {
 
@@ -66,6 +67,7 @@ class LoginForm extends Component {
                             block
                             variant="outline-primary"
                             bssize="large"
+                            onClick={signInWithGoogle}
                         >
                             Login with Google
                         </Button>

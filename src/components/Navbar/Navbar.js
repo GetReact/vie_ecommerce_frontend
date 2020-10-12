@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
+import { auth } from '../../firebase/firebase';
+// import { useAppContext } from '../../libs/contextLib';
+
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 const NavBar = (props) => {
-    const [loggedIn, setLoggedIn] = useState(false);
     const [navbar, setNavbar] = useState(false); 
     const history = useHistory();
+    // const { userHasAuthenticated } = useAppContext();
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
@@ -66,17 +69,24 @@ const NavBar = (props) => {
                         </div>
                     </LinkContainer>
                     {
-                        loggedIn ?
+                        props.currentUser ?
                         (
-                            <LinkContainer to="/profile">
-                                <div className="nav-icon">
-                                    <svg className="bi bi-person-circle" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
-                                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                                        <path fillRule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                        <path fillRule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                                    </svg>
-                                </div>
-                            </LinkContainer>
+                            <>
+                                <LinkContainer to="/profile">
+                                    <div className="nav-icon">
+                                        <svg className="bi bi-person-circle" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
+                                            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                                            <path fillRule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                            <path fillRule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                                        </svg>
+                                    </div>
+                                </LinkContainer>
+                                <Nav.Item className="nav-text" onClick={() => {
+                                    auth.signOut();
+                                }}>
+                                    SIGN OUT
+                                </Nav.Item>
+                            </>
                         )
                         :
                         (

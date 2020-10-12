@@ -12,11 +12,14 @@ class AuthenticationPage extends Component {
 
     setWindowWidth() {
         this.setState({ windowWidth: window.innerWidth })
-        console.log(window.innerWidth)
     }
 
     componentDidMount() {
         window.addEventListener("resize", this.setWindowWidth.bind(this))
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.setWindowWidth.bind(this));
     }
     
     render() {
