@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import {
-    Button,
-    Container
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
 
 class LoginForm extends Component {

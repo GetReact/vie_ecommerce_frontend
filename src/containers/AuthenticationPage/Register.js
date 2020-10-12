@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-    FormGroup,
-    FormControl,
-    Button,
-    Container
-} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
 
 class RegisterForm extends Component {
