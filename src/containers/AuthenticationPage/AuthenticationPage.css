@@ -1,0 +1,46 @@
+.authentication-page {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.register {
+    padding-top: 3cm;
+    padding-bottom: 5cm;
+}
+
+.register .container {
+    width: 90%;
+}
+
+.register_form{
+    justify-content: center;
+    padding-top: 1cm;
+}
+
+.register_form h6 {
+    text-align: center;
+}
+
+.register_form_box{
+    width: 100%;
+}
+
+.register_title {
+    margin-top: 1cm;
+    font-size: 1cm;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.btn-primary:disabled{
+    cursor: no-drop;
+}
+
+#register_button {
+    background-color: black;
+    border-color: black;
+}

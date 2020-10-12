@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import logo_black from '../../vigg_black.png';
@@ -7,7 +7,7 @@ import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 const NavBar = () => {
-    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [navbar, setNavbar] = useState(false); 
 
     const changeBackground = () => {
@@ -34,9 +34,6 @@ const NavBar = () => {
             </Navbar.Toggle>
             <Navbar.Collapse >
                 <Nav className="nav-options mx-auto">
-                    {/* <NavItem className="nav-text">
-                        <Link to="/about-us" style={{color: 'white', textDecoration: 'none'}}> ABOUT US </Link>
-                    </NavItem> */}
                     <Nav.Item className="nav-text">
                         <Link to="/shop" style={{textDecoration: 'none'}}> SHOP </Link>
                     </Nav.Item>
@@ -53,21 +50,11 @@ const NavBar = () => {
                             <NavDropdown.Item>How it works</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
-                    {/* <NavItem className="nav-text">
-                        <Link to="/gallery" style={{color: 'white', textDecoration: 'none'}}> STYLE </Link>
-                    </NavItem> */}
-                    {/* <NavItem className="nav-text">
-                        <Link to="/contact-us" style={{color: 'white', textDecoration: 'none'}}> CONTACT US </Link>
-                    </NavItem> */}
+                    <Nav.Item className="nav-text">
+                        <Link to="/contact-us" style={{textDecoration: 'none'}}> CONTACT US </Link>
+                    </Nav.Item>
                 </Nav>
                 <Nav className="nav-icons">
-                    {/* <LinkContainer to="/order-history">
-                        <div className="nav-icon">
-                            <svg width="4em" height="4em" viewBox="0 0 16 16" className="bi bi-table" fill="white" xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
-                                <path fillRule="evenodd" d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
-                            </svg>
-                        </div>
-                    </LinkContainer> */}
                     <LinkContainer to="/cart">
                         <div className="nav-icon">
                             <svg className="bi bi-cart-plus" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
@@ -79,27 +66,23 @@ const NavBar = () => {
                     </LinkContainer>
                     {
                         loggedIn ?
-                        <LinkContainer to="/profile">
-                            <div className="nav-icon">
-                                <svg className="bi bi-person-circle" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
-                                    <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                                    <path fillRule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                    <path fillRule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                                </svg>
-                            </div>
-                        </LinkContainer>
+                        (
+                            <LinkContainer to="/profile">
+                                <div className="nav-icon">
+                                    <svg className="bi bi-person-circle" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
+                                        <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                                        <path fillRule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        <path fillRule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                                    </svg>
+                                </div>
+                            </LinkContainer>
+                        )
                         :
-                        // <NavDropdown title="LOG IN" className="nav-profile">
-                        //     <LinkContainer to="/register">
-                        //         <NavDropdown.Item>Register</NavDropdown.Item>
-                        //     </LinkContainer>
-                        //     <LinkContainer to="/login">
-                        //         <NavDropdown.Item>Log In</NavDropdown.Item>
-                        //     </LinkContainer>
-                        // </NavDropdown>
-                        <Nav.Item className="nav-text">
-                            <Link to="/login" style={{textDecoration: 'none'}}> LOG IN </Link>
-                        </Nav.Item>
+                        (
+                            <Nav.Item className="nav-text">
+                                <Link to="/authenticate" style={{textDecoration: 'none'}}> LOG IN </Link>
+                            </Nav.Item>
+                        )
                     }
                 </Nav>
             </Navbar.Collapse>

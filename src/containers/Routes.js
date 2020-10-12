@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import Register from './Register/Register';
-import Login from './Login/Login';
+import AuthenticationPage from './AuthenticationPage/AuthenticationPage';
 import NotFound from './NotFound/NotFound';
 import ProductPage from './ShopPage/ShopPage';
 import DetailPage from './DetailPage/DetailPage';
@@ -18,11 +17,8 @@ const Routes = (props) => (
         <Route exact path="/">
             <Home />
         </Route>
-        <Route exact path="/register">
-            <Register />
-        </Route>
-        <Route exact path="/login">
-            <Login />
+        <Route exact path="/authenticate">
+            <AuthenticationPage />
         </Route>
         <Route exact path="/shop">
             <ProductPage />

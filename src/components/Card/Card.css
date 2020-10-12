@@ -25,8 +25,8 @@
     transition: all 500ms linear;
     background-size: cover;
     background-position: center;
-    height: 250px;
-    justify-content: center;}
+    justify-content: center;
+}
 
 .card-item .card-body .card-img-top:hover {
     transform: scale(1.2);
