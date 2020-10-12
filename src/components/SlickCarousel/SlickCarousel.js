@@ -94,8 +94,8 @@ class SlickCarousel extends Component  {
                     {this.props.name.toUpperCase()}
                 </h3>
                 <Slider {...settings} className="slider-carousel">
-                    {this.state.shoesItems.map(({imageUrl, ...otherSectionProps }) => (
-                        <Card img={imageUrl} {...otherSectionProps}/>
+                    {this.state.shoesItems.map(({imageUrl, id, ...otherSectionProps }) => (
+                        <Card key={id} img={imageUrl} {...otherSectionProps}/>
                     ))}
                 </Slider>
             </Container>

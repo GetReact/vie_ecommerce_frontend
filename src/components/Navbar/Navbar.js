@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
     const [loggedIn, setLoggedIn] = useState(false);
     const [navbar, setNavbar] = useState(false); 
+    const history = useHistory();
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
@@ -34,8 +35,8 @@ const NavBar = () => {
             </Navbar.Toggle>
             <Navbar.Collapse >
                 <Nav className="nav-options mx-auto">
-                    <Nav.Item className="nav-text">
-                        <Link to="/shop" style={{textDecoration: 'none'}}> SHOP </Link>
+                    <Nav.Item className="nav-text" onClick={() => history.push('/shop')}>
+                        SHOP
                     </Nav.Item>
                     <NavDropdown alignRight title="SELL WITH US">
                         <LinkContainer to="/sell-now">
@@ -50,8 +51,8 @@ const NavBar = () => {
                             <NavDropdown.Item>How it works</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
-                    <Nav.Item className="nav-text">
-                        <Link to="/contact-us" style={{textDecoration: 'none'}}> CONTACT US </Link>
+                    <Nav.Item className="nav-text" onClick={() => history.push('/contact-us')}>
+                        CONTACT US
                     </Nav.Item>
                 </Nav>
                 <Nav className="nav-icons">
@@ -79,8 +80,8 @@ const NavBar = () => {
                         )
                         :
                         (
-                            <Nav.Item className="nav-text">
-                                <Link to="/authenticate" style={{textDecoration: 'none'}}> LOG IN </Link>
+                            <Nav.Item className="nav-text" onClick={() => history.push('/authenticate')}>
+                                LOG IN
                             </Nav.Item>
                         )
                     }
@@ -90,4 +91,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
