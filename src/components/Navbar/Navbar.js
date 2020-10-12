@@ -8,11 +8,12 @@ import { auth } from '../../firebase/firebase';
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
+import { UserContext } from '../../libs/contextLib';
 
 const NavBar = (props) => {
     const [navbar, setNavbar] = useState(false); 
     const history = useHistory();
-    // const { userHasAuthenticated } = useAppContext();
+    const currentUser = useContext(UserContext);
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
@@ -69,7 +70,7 @@ const NavBar = (props) => {
                         </div>
                     </LinkContainer>
                     {
-                        props.currentUser ?
+                        currentUser ?
                         (
                             <>
                                 <LinkContainer to="/profile">

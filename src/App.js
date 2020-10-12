@@ -1,47 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
 import { auth, createUserProfileDocument } from './firebase/firebase';
+import { UserContext } from './libs/contextLib';
 
-const App = () => {
+class App extends Component {
   
-  const [ currentUser , setCurrentUser ] = useState(null);
+  state = {
+    currentUser : null,
+  }
 
-  useEffect(() => {
-    onLoad();
-  },)
+  unsubscribeFromAuth = null;
 
-  const onLoad = async () => {
-    auth.onAuthStateChanged(async userAuth => {
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
+          this.setState({
+            currentUser : {
+              id: snapShot.id,
+              ...snapShot.data(),
+            }
+          }, () => {
+            console.log(this.state)
           })
         });
-      } else setCurrentUser(userAuth);
+      } else this.setState({ currentUser : userAuth });
     })
   }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
+  render() {
+    return (
+      <UserContext.Provider value={ this.state.currentUser }>
+        <div className="App">
+            <header>
+              <Navbar />
+            </header>
+            <main>
+              <Routes />
+            </main>
+            <div className="footer-distributed">
+              <footer>
+                <Footer />
+              </footer>
+            </div>
+        </div>
+      </UserContext.Provider>
+    );
+  }
   
-  return (
-    <div className="App">
-      <header>
-        <Navbar currentUser={currentUser}/>
-      </header>
-      <main>
-        <Routes />
-      </main>
-      <div className="footer-distributed">
-        <footer>
-          <Footer />
-        </footer>
-      </div>
-    </div>
-  );
 }
 
 export default App;
