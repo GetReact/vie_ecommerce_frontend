@@ -1,114 +1,118 @@
-import React from "react";
+import React, { Component } from "react";
 import {
     FormGroup,
     FormControl,
     Button,
     Container
 } from "react-bootstrap";
+import FormInput from '../../components/FormInput/FormInput';
 
-import { Link } from 'react-router-dom';
-import { useFormFields } from "../../libs/hooksLib";
+class RegisterForm extends Component {
 
-const RegisterForm = ()  => {
-    const [fields, handleFieldChange] = useFormFields({
+    state = {
         fullname: "",
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
-    });
-    // const [isActive, setIsActive] = useState(false);
+    }
 
-    const validateForm = () => {
+    render() {
+        const validateForm = () => {
+            return (
+                this.state.email.length > 0 &&
+                this.state.password.length > 0 &&
+                this.state.password === this.state.confirmPassword
+            );
+        }
+
+        const handleSubmit = async (event) => {
+            event.preventDefault();
+            this.setState({ 
+                fullname: "",
+                username: "",
+                email: "",
+                password: "",
+                confirmPassword: "", 
+            })
+        }
+
+        const handleChange = (event) => {
+            const { value, name } = event.target
+            this.setState({ [name] : value })
+        }
+
+        const renderForm = () => {
+            return (
+                <div>
+                    <h3 className="register_title mb-3">
+                        REGISTER HERE
+                    </h3>
+                    <h6>Have not registered? Sign up here!</h6>
+                    <form onSubmit={handleSubmit} className="register_form" >
+                        <FormInput 
+                            label='Full Name'
+                            name='fullname'
+                            type='input'
+                            value={this.state.fullname}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <FormInput 
+                            label='User Name'
+                            name='username'
+                            type='input'
+                            value={this.state.username}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <FormInput 
+                            label='Email'
+                            name='email'
+                            type='email'
+                            value={this.state.email}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <FormInput 
+                            label='Password'
+                            name='password'
+                            type='password'
+                            value={this.state.password}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <FormInput 
+                            label='Confirm Password'
+                            name='confirmPassword'
+                            type='password'
+                            value={this.state.confirmPassword}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <Button
+                            className="register_form_box mb-3"
+                            block
+                            type="submit"
+                            variant="outline-dark"
+                            bssize="large"
+                            disabled={!validateForm()}
+                        >
+                            Register
+                        </Button>
+                        {/* <Link to="/login"><h6>Already registered? Login in here!</h6></Link> */}
+                    </form>
+                </div>
+                
+            );
+        }
+    
         return (
-            fields.email.length > 0 &&
-            fields.password.length > 0 &&
-            fields.password === fields.confirmPassword
-        );
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        // setIsLoading(true);
-    }
-
-    const renderForm = () => {
-        return (
-            <div>
-                <h3 className="register_title">
-                    REGISTER HERE
-                </h3>
-                <form onSubmit={handleSubmit} className="register_form" >
-                    <FormGroup controlId="fullname" bssize="large">
-                    <h5>Full Name</h5>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        value={fields.fullname}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="username" bssize="large">
-                    <h5>User Name</h5>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        value={fields.username}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="email" bssize="large">
-                    <h5>Email</h5>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        type="email"
-                        value={fields.email}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="password" bssize="large">
-                    <h5>Password</h5>
-                    <FormControl
-                        className="register_form_box"
-                        type="password"
-                        value={fields.password}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="confirmPassword" bssize="large">
-                    <h5>Confirm Password</h5>
-                    <FormControl
-                        className="register_form_box"
-                        type="password"
-                        onChange={handleFieldChange}
-                        value={fields.confirmPassword}
-                    />
-                    </FormGroup>
-                    <Button
-                        id = "register_button"
-                        className="register_form_box mb-3"
-                        block
-                        type="submit"
-                        bssize="large"
-                        disabled={!validateForm()}
-                    >
-                        Register
-                    </Button>
-                    {/* <Link to="/login"><h6>Already registered? Login in here!</h6></Link> */}
-                </form>
-            </div>
-            
-        );
-    }
-
-    return (
-        <div className="register">
-            <Container>
+            <div className="register">
                 {renderForm()}
-            </Container>
-        </div>
-    );
+            </div>
+        );
+    }
 }
 
 export default RegisterForm;

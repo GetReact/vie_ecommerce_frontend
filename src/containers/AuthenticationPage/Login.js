@@ -1,94 +1,89 @@
-import React from "react";
+import React, { Component } from "react";
 import {
-    FormGroup,
-    FormControl,
     Button,
     Container
 } from "react-bootstrap";
-import { Link } from 'react-router-dom';
-import { useFormFields } from "../../libs/hooksLib";
+import FormInput from '../../components/FormInput/FormInput';
 
-const LoginForm = ()  => {
-    const [fields, handleFieldChange] = useFormFields({
-        fullname: "",
-        username: "",
+class LoginForm extends Component {
+
+    state = {
         email: "",
         password: "",
-        confirmPassword: "",
-    });
+    }
     // const [isActive, setIsActive] = useState(false);
+    render() {
+        const validateForm = () => {
+            return (
+                this.state.email.length > 0 &&
+                this.state.password.length > 0
+            );
+        }
 
-    const validateForm = () => {
+        const handleSubmit = (event) => {
+            event.preventDefault()
+            this.setState({ email: '', password: '' })
+        }
+
+        const handleChange = (event) => {
+            const { value, name } = event.target
+            this.setState({ [name] : value })
+        }
+
+        const renderForm = () => {
+            return (
+                <div>
+                    <h3 className="register_title mb-3">
+                        LOGIN HERE
+                    </h3>
+                    <h6>Already registered? Login in here!</h6>
+                    <form onSubmit={handleSubmit} className="register_form" >
+                        <FormInput 
+                            label='Email'
+                            name='email'
+                            type='email'
+                            value={this.state.email}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <FormInput 
+                            label='Password'
+                            name='password'
+                            type='password'
+                            value={this.state.password}
+                            handleChange={handleChange}
+                            required
+                        />
+                        <Button
+                            className="register_form_box mb-3"
+                            block
+                            type="submit"
+                            variant="outline-dark"
+                            bssize="large"
+                            disabled={!validateForm()}
+                        >
+                            Login
+                        </Button>
+                        <Button
+                            className="register_form_box mb-3"
+                            block
+                            variant="outline-primary"
+                            bssize="large"
+                        >
+                            Login with Google
+                        </Button>
+                    </form>
+                </div>
+                
+            );
+        }
+
         return (
-            fields.email.length > 0 &&
-            fields.password.length > 0 &&
-            fields.password === fields.confirmPassword
-        );
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // setIsLoading(true);
-    }
-
-    const renderForm = () => {
-        return (
-            <div>
-                <h3 className="register_title">
-                    LOGIN HERE
-                </h3>
-                <form onSubmit={handleSubmit} className="register_form" >
-                    <FormGroup controlId="email" bssize="large">
-                    <h5>Email</h5>
-                    <FormControl
-                        className="register_form_box"
-                        autoFocus
-                        type="email"
-                        value={fields.email}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <FormGroup controlId="password" bssize="large">
-                    <h5>Password</h5>
-                    <FormControl
-                        className="register_form_box"
-                        type="password"
-                        value={fields.password}
-                        onChange={handleFieldChange}
-                    />
-                    </FormGroup>
-                    <Button
-                        id = "register_button"
-                        className="register_form_box mb-3"
-                        block
-                        type="submit"
-                        bssize="large"
-                        disabled={!validateForm()}
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        className="register_form_box mb-3"
-                        block
-                        variant="primary"
-                        bssize="large"
-                    >
-                        Login with Google
-                    </Button>
-                    {/* <Link to="/register"><h6>Have not registerd? Register here!</h6></Link> */}
-                </form>
-            </div>
-            
-        );
-    }
-
-    return (
-        <div className="register">
-            <Container>
+            <div className="register">
                 {renderForm()}
-            </Container>
-        </div>
-    );
+            </div>
+        );           
+    }
 }
 
 export default LoginForm;

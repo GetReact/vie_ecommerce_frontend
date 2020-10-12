@@ -2,31 +2,29 @@
     width: 80%;
     margin: auto;
     display: flex;
-}
-
-.register {
     padding-top: 3cm;
-    padding-bottom: 5cm;
+    padding-bottom: 4cm;
 }
 
-.register .container {
+.authentication-page .register {
     width: 90%;
+    margin: auto;
 }
 
-.register_form{
+.authentication-page .register_form{
     justify-content: center;
     padding-top: 1cm;
 }
 
-.register_form h6 {
+.authentication-page h6 {
     text-align: center;
 }
 
-.register_form_box{
+.authentication-page .register_form_box{
     width: 100%;
 }
 
-.register_title {
+.authentication-page .register_title {
     margin-top: 1cm;
     font-size: 1cm;
     font-family: 'Alegreya Sans', sans-serif;
@@ -36,11 +34,11 @@
     text-align: center;
 }
 
-.btn-primary:disabled{
+.authentication-page button:disabled{
     cursor: no-drop;
 }
 
-#register_button {
-    background-color: black;
-    border-color: black;
+.authentication-page .small-page {
+    display: inline;
+    width: 100%;
 }
