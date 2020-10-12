@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from '../components/Carousel/Carousel';
-import SlickCarousel from '../components/HomeCarousel/SlickCarousel';
+import SlickCarousel from '../components/SlickCarousel/SlickCarousel';
 import OurPartners from '../components/OurPartners/OurPartners';
 
 const Home = (props) => (

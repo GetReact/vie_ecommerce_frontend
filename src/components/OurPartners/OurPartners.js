@@ -1,7 +1,7 @@
 import React from 'react';
 import 'owl.carousel/dist/assets/owl.carousel.min.css';
 import 'owl.carousel/dist/assets/owl.theme.default.min.css';
-import "../HomeCarousel/SlickCarousel.css";
+import "../SlickCarousel/SlickCarousel.css";
 import "./OurPartners.css";
 
 const OurPartners = (props) => (

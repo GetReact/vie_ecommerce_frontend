@@ -16,26 +16,32 @@ class SlickCarousel extends Component  {
             {
                 title: 'shoes1',
                 imageUrl: 'assets/images/shoes-img/shoes1.jpg',
+                id: 1, 
             },
             {
                 title: 'shoes2',
                 imageUrl: 'assets/images/shoes-img/shoes2.jpg',
+                id: 2,
             },
             {
                 title: 'shoes3',
                 imageUrl: 'assets/images/shoes-img/shoes3.jpg',
+                id: 3,
             },
             {
                 title: 'shoes4',
                 imageUrl: 'assets/images/shoes-img/shoes4.jpg',
+                id: 4,
             },
             {
                 title: 'shoes5',
                 imageUrl: 'assets/images/shoes-img/shoes1.jpg',
+                id: 5,
             },
             {
                 title: 'shoes6',
                 imageUrl: 'assets/images/shoes-img/shoes2.jpg',
+                id: 6,
             },
         ]
     }

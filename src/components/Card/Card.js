@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {Card} from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 import './Card.css';
 
-const card = (props) => (
-        <Card className="card">
-            <Card.Body className="img-container p-5">
-                <Link to="/details">
-                    <img src={props.img} alt="product" className="card-img-top"/>
-                </Link>
+const MyCard = (props) => (
+        <Card id = { props.id } className="card-item">
+            <Card.Body className="p-5">
+                <img 
+                    className="card-img-top"
+                    onClick={() => props.history.push(`/details/${props.id}`)} 
+                    src={props.img} alt="product"
+                />
                 <svg 
                     className="cart-btn" 
                     width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="black" 
@@ -23,12 +26,10 @@ const card = (props) => (
                 </svg>
             </Card.Body>
             <Card.Footer className="card-footer d-flex justify-content-between">
-                <p className="align-self-center mb-0">Name</p>
-                <h5 className="text-blue font-italic mb-0">
-                    <span className="mr-1">$999</span>
-                </h5>
+                <span>{props.name}</span>
+                <span>$ {props.price} </span>
             </Card.Footer>
         </Card>
 );
 
-export default card;
+export default withRouter(MyCard);

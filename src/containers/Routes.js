@@ -4,7 +4,7 @@ import Home from './Home';
 import Register from './Register/Register';
 import Login from './Login/Login';
 import NotFound from './NotFound/NotFound';
-import ProductPage from './ProductPage/ProductPage';
+import ProductPage from './ShopPage/ShopPage';
 import DetailPage from './DetailPage/DetailPage';
 import SellPage from './SellPage/SellPage';
 import StandardPage from './HowToSellPage/Standard/ImageStandard';
@@ -27,7 +27,7 @@ const Routes = (props) => (
         <Route exact path="/shop">
             <ProductPage />
         </Route>
-        <Route exact path="/details">
+        <Route exact path="/details/:id">
             <DetailPage/>
         </Route>
         <Route exact path="/sell-now">
