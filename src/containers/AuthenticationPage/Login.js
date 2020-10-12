@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
-import { signInWithGoogle } from '../../firebase/firebase';
+import { auth, signInWithGoogle } from '../../firebase/firebase';
 
 class LoginForm extends Component {
 
@@ -9,7 +9,7 @@ class LoginForm extends Component {
         email: "",
         password: "",
     }
-    // const [isActive, setIsActive] = useState(false);
+
     render() {
         const validateForm = () => {
             return (
@@ -18,9 +18,19 @@ class LoginForm extends Component {
             );
         }
 
-        const handleSubmit = (event) => {
+        const handleSubmit = async (event) => {
             event.preventDefault()
-            this.setState({ email: '', password: '' })
+
+            const { email, password } = this.state;
+            
+            if (!validateForm()) return;
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                this.setState({ email: '', password: '' })
+            } catch(e) {
+                console.log(e);
+            }
         }
 
         const handleChange = (event) => {
