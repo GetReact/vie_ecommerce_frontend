@@ -5,13 +5,14 @@ import { withRouter } from 'react-router-dom';
 import './Card.css';
 
 const MyCard = (props) => (
-        <Card id = { props.id } className="card-item">
+        <Card key={props.id} className="card-item">
             <Card.Body className="p-5">
-                <img 
-                    className="card-img-top"
-                    onClick={() => props.history.push(`/details/${props.id}`)} 
-                    src={props.img} alt="product"
-                />
+                <Link to={`/details/${props.id}`}>
+                    <img 
+                        className="card-img-top" 
+                        src={props.img} alt="product"
+                    />
+                </Link>
                 <svg 
                     className="cart-btn" 
                     width="2.5em" height="2.5em" viewBox="0 0 16 16" fill="black" 

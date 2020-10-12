@@ -22,13 +22,13 @@ const ShoesSlider = () => {
 
     return (
         <Slider className="shoes-slider" {...settings}>
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>    
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>    
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>    
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>   
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>   
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>   
-            <Image src="assets/images/shoes-img/shoes4.jpg"/>    
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>    
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>    
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>    
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>   
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>   
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>   
+            <Image src="/assets/images/shoes-img/shoes4.jpg"/>    
         </Slider>
     );
 }

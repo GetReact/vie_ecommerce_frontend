@@ -16,7 +16,7 @@ const detailPage = (props) => {
                         <Image
                             className="main-shoes-img" 
                             alt="shoes-img" 
-                            src="assets/images/shoes-img/shoes4.jpg"
+                            src="/assets/images/shoes-img/shoes4.jpg"
                             width="70%"/>
                     </Row>
                     <Row>
