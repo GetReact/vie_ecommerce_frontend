@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
 import { auth, signInWithGoogle } from '../../firebase/firebase';
+import Spinner from '../../components/Spinner/Spinner';
 
 class LoginForm extends Component {
 
     state = {
         email: "",
         password: "",
+        isLoading: false,
     }
+
+    setLoading = (boolean) => { this.setState({ isLoading: boolean })}
 
     render() {
         const validateForm = () => {
@@ -19,8 +23,8 @@ class LoginForm extends Component {
         }
 
         const handleSubmit = async (event) => {
-            event.preventDefault()
-
+            event.preventDefault();
+            this.setLoading(true);
             const { email, password } = this.state;
             
             if (!validateForm()) return;
@@ -28,8 +32,10 @@ class LoginForm extends Component {
             try {
                 await auth.signInWithEmailAndPassword(email, password);
                 this.setState({ email: '', password: '' })
+                this.setLoading(false);
             } catch(e) {
                 console.log(e);
+                this.setLoading(false);
             }
         }
 
@@ -62,25 +68,31 @@ class LoginForm extends Component {
                             handleChange={handleChange}
                             required
                         />
-                        <Button
-                            className="register_form_box mb-3"
-                            block
-                            type="submit"
-                            variant="outline-dark"
-                            bssize="large"
-                            disabled={!validateForm()}
-                        >
-                            Login
-                        </Button>
-                        <Button
-                            className="register_form_box mb-3"
-                            block
-                            variant="outline-primary"
-                            bssize="large"
-                            onClick={signInWithGoogle}
-                        >
-                            Login with Google
-                        </Button>
+                        <Row className="login-btn-group">
+                            <Col lg={4} md={4} sm={4}>
+                                <Button
+                                    className="register_form_box mb-3"
+                                    block
+                                    type="submit"
+                                    variant="outline-dark"
+                                    bssize="large"
+                                    disabled={!validateForm()}
+                                >
+                                    Login
+                                </Button>
+                            </Col>
+                            <Col lg={8} md={8} sm={8}>
+                                <Button
+                                    className="register_form_box mb-3"
+                                    block
+                                    variant="outline-primary"
+                                    bssize="large"
+                                    onClick={signInWithGoogle}
+                                >
+                                    Login with Google
+                                </Button>
+                            </Col>
+                        </Row>
                     </form>
                 </div>
                 
@@ -89,7 +101,11 @@ class LoginForm extends Component {
 
         return (
             <div className="register">
-                {renderForm()}
+                {this.state.isLoading? (
+                    <Spinner/>
+                ) : (
+                    renderForm()
+                )}
             </div>
         );           
     }

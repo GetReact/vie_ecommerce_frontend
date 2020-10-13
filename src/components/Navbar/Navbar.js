@@ -1,10 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import { Link, withRouter, useHistory } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { auth } from '../../firebase/firebase';
-// import { useAppContext } from '../../libs/contextLib';
-
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
@@ -22,8 +20,16 @@ const NavBar = (props) => {
             setNavbar(false);
         }
     }
-
     window.addEventListener('scroll', changeBackground);
+
+    const handleSignOut = async () => {
+        try {
+            await auth.signOut();
+            history.push('/authenticate')
+        } catch (e) {
+            console.log(e);
+        }
+    }   
 
     return (
         <Navbar fluid="true" collapseOnSelect fixed="top" className={navbar ? 'navbar active' : 'navbar'} expand='lg'>
@@ -82,9 +88,7 @@ const NavBar = (props) => {
                                         </svg>
                                     </div>
                                 </LinkContainer>
-                                <Nav.Item className="nav-text" onClick={() => {
-                                    auth.signOut();
-                                }}>
+                                <Nav.Item className="nav-text" onClick={ handleSignOut }>
                                     SIGN OUT
                                 </Nav.Item>
                             </>

@@ -29,10 +29,10 @@ class AuthenticationPage extends Component {
                     this.state.windowWidth > 992 ? (
                         <>
                             <Col lg={6}>
-                                <LoginForm />
+                                <LoginForm/>
                             </Col>
                             <Col lg={6}> 
-                                <RegisterForm />
+                                <RegisterForm/>
                             </Col>
                         </>
                     ) : (
@@ -45,14 +45,10 @@ class AuthenticationPage extends Component {
                             </Row>
                         </div>
                     )
-                    
                 }
             </div>
         )
-
     }
-
-    
 }
 
 export default AuthenticationPage;

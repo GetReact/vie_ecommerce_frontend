@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import FormInput from '../../components/FormInput/FormInput';
+import Spinner from '../../components/Spinner/Spinner';
 
 class RegisterForm extends Component {
 
@@ -10,7 +11,10 @@ class RegisterForm extends Component {
         email: "",
         password: "",
         confirmPassword: "",
+        isLoading: false,
     }
+
+    setLoading = (boolean) => { this.setState({ isLoading: boolean })};
 
     render() {
         const validateForm = () => {
@@ -24,13 +28,16 @@ class RegisterForm extends Component {
 
         const handleSubmit = async (event) => {
             event.preventDefault();
+            this.setLoading(true);
             if (validateForm()) {
                 try {
-                    const { displayName, email, password, comfirmPassword } = this.state;
+                    const { displayName, email, password } = this.state;
                     const { user } = await auth.createUserWithEmailAndPassword(email, password);
                     createUserProfileDocument(user, { displayName });
+                    this.setLoading(false);
                 } catch (e) {
                     console.error(e);
+                    this.setLoading(false);
                 }
             }
             this.setState({ 
@@ -104,7 +111,11 @@ class RegisterForm extends Component {
     
         return (
             <div className="register">
-                {renderForm()}
+                {this.state.isLoading? (
+                    <Spinner />
+                ) : (
+                    renderForm()
+                )}
             </div>
         );
     }

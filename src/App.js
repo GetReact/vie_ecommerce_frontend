@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { withRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
@@ -25,7 +26,7 @@ class App extends Component {
               ...snapShot.data(),
             }
           }, () => {
-            console.log(this.state)
+            this.props.history.push('/')
           })
         });
       } else this.setState({ currentUser : userAuth });
@@ -37,20 +38,21 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <UserContext.Provider value={ this.state.currentUser }>
         <div className="App">
-            <header>
-              <Navbar />
-            </header>
-            <main>
-              <Routes />
-            </main>
-            <div className="footer-distributed">
-              <footer>
-                <Footer />
-              </footer>
-            </div>
+          <header>
+            <Navbar />
+          </header>
+          <main>
+            <Routes />
+          </main>
+          <div className="footer-distributed">
+            <footer>
+              <Footer />
+            </footer>
+          </div>
         </div>
       </UserContext.Provider>
     );
@@ -58,4 +60,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default withRouter(App);
