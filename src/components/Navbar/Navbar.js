@@ -6,12 +6,13 @@ import { auth } from '../../firebase/firebase';
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
-import { UserContext } from '../../libs/contextLib';
+// import { UserContext } from '../../libs/contextLib';
+import { connect } from 'react-redux';
 
-const NavBar = (props) => {
+const NavBar = ({ currentUser }) => {
     const [navbar, setNavbar] = useState(false); 
     const history = useHistory();
-    const currentUser = useContext(UserContext);
+    // const currentUser = useContext(UserContext);
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
@@ -106,4 +107,8 @@ const NavBar = (props) => {
     );
 };
 
-export default withRouter(NavBar);
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser,
+});
+
+export default withRouter(connect(mapStateToProps)(NavBar));

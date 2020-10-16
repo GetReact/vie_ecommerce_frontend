@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
 import { auth, createUserProfileDocument } from './firebase/firebase';
-import { UserContext } from './libs/contextLib';
+// import { UserContext } from './libs/contextLib';
+import { setCurrentUser } from './redux/user/user-action';
 
 class App extends Component {
-  
-  state = {
-    currentUser : null,
-  }
 
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          this.setState({
+          setCurrentUser({
             currentUser : {
               id: snapShot.id,
               ...snapShot.data(),
@@ -29,7 +29,7 @@ class App extends Component {
             this.props.history.push('/')
           })
         });
-      } else this.setState({ currentUser : userAuth });
+      } else setCurrentUser(userAuth);
     })
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
   render() {
 
     return (
-      <UserContext.Provider value={ this.state.currentUser }>
+      // <UserContext.Provider value={ this.state.currentUser }>
         <div className="App">
           <header>
             <Navbar />
@@ -54,10 +54,13 @@ class App extends Component {
             </footer>
           </div>
         </div>
-      </UserContext.Provider>
+      // </UserContext.Provider>
     );
   }
   
 }
 
-export default withRouter(App);
+const mapDispathtoProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+}); 
+export default withRouter(connect(null, mapDispathtoProps)(App));
