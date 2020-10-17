@@ -13,7 +13,6 @@ import { toggleCartHidden } from '../../redux/cart/cart-action';
 const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     const [navbar, setNavbar] = useState(false); 
     const history = useHistory();
-    // const currentUser = useContext(UserContext);
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
