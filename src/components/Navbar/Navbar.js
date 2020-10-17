@@ -96,7 +96,7 @@ const NavBar = ({ currentUser }) => {
                         )
                         :
                         (
-                            <Nav.Item className="nav-text" onClick={() => history.push('/authenticate')}>
+                            <Nav.Item className="nav-text" onClick={() => history.push('/signin')}>
                                 LOG IN
                             </Nav.Item>
                         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './Home';
 import AuthenticationPage from './AuthenticationPage/AuthenticationPage';
 import NotFound from './NotFound/NotFound';
@@ -11,14 +11,21 @@ import HowToShipPage from './HowToSellPage/HowToShip';
 import HowToSell from './HowToSellPage/HowToSell';
 import ProfilePage from './ProfilePage/ProfilePage';
 import CartPage from './CartPage/CartPage';
+import { connect } from 'react-redux';
 
 const Routes = (props) => (
     <Switch>
         <Route exact path="/">
             <Home />
         </Route>
-        <Route exact path="/authenticate">
-            <AuthenticationPage />
+        <Route 
+            exact path="/signin" 
+            render= {() => 
+                props.currentUser ? (
+                    <Redirect to="/" />
+                ) : (
+                    <AuthenticationPage />
+                )}>
         </Route>
         <Route exact path="/shop">
             <ProductPage />
@@ -62,4 +69,8 @@ const Routes = (props) => (
     </Switch>
 );
 
-export default Routes;
+const mapStatetoProps = (state) => ({
+    currentUser: state.user.currentUser,
+})
+
+export default connect(mapStatetoProps)(Routes);

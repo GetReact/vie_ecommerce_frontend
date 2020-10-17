@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
@@ -62,5 +62,6 @@ class App extends Component {
 
 const mapDispathtoProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
-}); 
-export default withRouter(connect(null, mapDispathtoProps)(App));
+});
+
+export default connect(null, mapDispathtoProps)(App);
