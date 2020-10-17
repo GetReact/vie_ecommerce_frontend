@@ -14,32 +14,32 @@ class SlickCarousel extends Component  {
     state = {
         shoesItems: [
             {
-                title: 'shoes1',
+                name: 'shoes1',
                 imageUrl: 'assets/images/shoes-img/shoes1.jpg',
                 id: 1, 
             },
             {
-                title: 'shoes2',
+                name: 'shoes2',
                 imageUrl: 'assets/images/shoes-img/shoes2.jpg',
                 id: 2,
             },
             {
-                title: 'shoes3',
+                name: 'shoes3',
                 imageUrl: 'assets/images/shoes-img/shoes3.jpg',
                 id: 3,
             },
             {
-                title: 'shoes4',
+                name: 'shoes4',
                 imageUrl: 'assets/images/shoes-img/shoes4.jpg',
                 id: 4,
             },
             {
-                title: 'shoes5',
+                name: 'shoes5',
                 imageUrl: 'assets/images/shoes-img/shoes1.jpg',
                 id: 5,
             },
             {
-                title: 'shoes6',
+                name: 'shoes6',
                 imageUrl: 'assets/images/shoes-img/shoes2.jpg',
                 id: 6,
             },
@@ -94,8 +94,8 @@ class SlickCarousel extends Component  {
                     {this.props.name.toUpperCase()}
                 </h3>
                 <Slider {...settings} className="slider-carousel">
-                    {this.state.shoesItems.map(({imageUrl, id, ...otherSectionProps }) => (
-                        <Card key={id} img={imageUrl} {...otherSectionProps}/>
+                    {this.state.shoesItems.map((item) => (
+                        <Card key={item.id} img={item.imageUrl} item={item}/>
                     ))}
                 </Slider>
             </Container>

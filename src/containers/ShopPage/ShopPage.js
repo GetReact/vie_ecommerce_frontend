@@ -34,7 +34,7 @@ class ShopPage extends Component {
                         </InputGroup>
                     </Row>
                     <Row className="product-grid">
-                        <ProductGrid shoesCollection = { this.state.shoesCollection }/>
+                        <ProductGrid items = { this.state.shoesCollection }/>
                     </Row>
                 </Col>
             </Row>
