@@ -6,10 +6,11 @@ import { auth } from '../../firebase/firebase';
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
 import './Navbar.css';
-// import { UserContext } from '../../libs/contextLib';
 import { connect } from 'react-redux';
+import CartDropDown from '../../components/CartDropDown/CartDropDown';
+import { toggleCartHidden } from '../../redux/cart/cart-action';
 
-const NavBar = ({ currentUser }) => {
+const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     const [navbar, setNavbar] = useState(false); 
     const history = useHistory();
     // const currentUser = useContext(UserContext);
@@ -67,15 +68,6 @@ const NavBar = ({ currentUser }) => {
                     </Nav.Item>
                 </Nav>
                 <Nav className="nav-icons">
-                    <LinkContainer to="/cart">
-                        <div className="nav-icon">
-                            <svg className="bi bi-cart-plus" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
-                                <path fillRule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
-                                <path fillRule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
-                                <path fillRule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                            </svg>
-                        </div>
-                    </LinkContainer>
                     {
                         currentUser ?
                         (
@@ -101,14 +93,28 @@ const NavBar = ({ currentUser }) => {
                             </Nav.Item>
                         )
                     }
+                    <div className="nav-icon" onClick={toggleCartHidden}>
+                        <svg className="bi bi-cart-plus" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
+                            <path fillRule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fillRule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
+                            <path fillRule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                    </div>
                 </Nav>
             </Navbar.Collapse>
+            {hidden ? "" : <CartDropDown />}
         </Navbar>
     );
 };
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser,
+const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
+    currentUser,
+    hidden,
 });
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+const mapDispatchtoProps = (dispatch) => ({
+    toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchtoProps)(NavBar));

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
