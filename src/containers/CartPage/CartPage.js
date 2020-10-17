@@ -7,19 +7,22 @@ import SellerCell from '../../components/CartPageCells/SellerCell/SellerCell';
 import QuantityCell from '../../components/CartPageCells/QuantityCell/QuantityCell';
 import PriceCell from '../../components/CartPageCells/PriceCell/PriceCell';
 import './CartPage.css';
+import { connect } from 'react-redux';
 
-const CartPage = () => {
-    const [empty, setEmpty] = useState(false);
+const CartPage = ({ cartItems, addItem }) => {
     const history = useHistory();
 
     const handleCheckout = () => {
         history.push('/checkout');
     }
 
+    let totalPrice = 0;
+    cartItems.map(item => totalPrice += (item.price * item.quantity));
+
     return (
         <div className="cart-page">
             <Row>
-                {empty?(
+                {cartItems.length === 0?(
                     <h1>
                         YOUR CART IS EMPTY
                     </h1>
@@ -42,39 +45,31 @@ const CartPage = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <ProductCell
-                                            img_src="assets/images/shoes-img/shoes1.jpg"
-                                            name="Product Name"
-                                            description="This is the description of this shoes"
-                                            id="ABCD1234"/>
-                                        <SellerCell 
-                                            name="Seller Name"
-                                            phone="(+84)1234567890"
-                                            email="sample123@gmail.com"/>
-                                        <QuantityCell quantity="3"/>
-                                        <PriceCell price={999}/>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <ProductCell
-                                            img_src="assets/images/shoes-img/shoes2.jpg"
-                                            name="Product Name"
-                                            description="This is the description of this shoes"
-                                            id="ABCD1234"/>
-                                        <SellerCell 
-                                            name="Seller Name"
-                                            phone="(+84)1234567890"
-                                            email="sample123@gmail.com"/>
-                                        <QuantityCell quantity="3"/>
-                                        <PriceCell price={999}/>
-                                    </tr>
+                                    {
+                                        cartItems.map((item, index) => {
+                                            return (
+                                                <tr key={item.id}>
+                                                    <td>{index}</td>
+                                                    <ProductCell
+                                                        img_src={item.imageUrl}
+                                                        name={item.name}
+                                                        description="This is the description of this shoes"
+                                                        id={item.id}/>
+                                                    <SellerCell 
+                                                        name="Seller Name"
+                                                        phone="(+84)1234567890"
+                                                        email="sample123@gmail.com"/>
+                                                    <QuantityCell item={item}/>
+                                                    <PriceCell price={item.quantity * item.price}/>
+                                                </tr>
+                                            );
+                                        })
+                                    }
                                 </tbody>
                             </Table>
                         </Row>
                         <Row>
-                            <h3>Total: ${(999*3).toFixed(2)}</h3>
+                            <h3>Total: ${totalPrice.toFixed(2)}</h3>
                         </Row>
                     </div>
                 )}
@@ -87,8 +82,8 @@ const CartPage = () => {
                 </LinkContainer>
                 <Button 
                     variant="outline-dark" 
-                    disabled={empty}
-                    onClick={!empty ? handleCheckout : null}>
+                    disabled={cartItems.length === 0}
+                    onClick={!cartItems.length === 0 ? handleCheckout : null}>
                     Checkout Now
                 </Button>
             </Row>
@@ -96,4 +91,8 @@ const CartPage = () => {
     )
 }
 
-export default CartPage;
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+    cartItems,
+});
+
+export default connect(mapStateToProps)(CartPage);
