@@ -9,7 +9,7 @@ import PriceCell from '../../components/CartPageCells/PriceCell/PriceCell';
 import './CartPage.css';
 import { connect } from 'react-redux';
 
-const CartPage = ({ cartItems, addItem }) => {
+const CartPage = ({ cartItems }) => {
     const history = useHistory();
 
     const handleCheckout = () => {
