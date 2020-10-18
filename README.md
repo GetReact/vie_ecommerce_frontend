@@ -22,7 +22,7 @@ In your terminal, type:
 
 #### `cd Desktop` 
 
-#### `git clone {this project git repo URL (found above)}`
+#### `git clone https://github.com/TimHuynh0905/viggs_frontend_Tim.git`
 
 #### `cd viggs_frontend_Tim`
 
