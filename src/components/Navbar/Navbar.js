@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { auth } from '../../firebase/firebase';
@@ -11,7 +11,8 @@ import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import { toggleCartHidden } from '../../redux/cart/cart-action';
 
 const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
-    const [navbar, setNavbar] = useState(false); 
+    const [ navbar, setNavbar ] = useState(false);
+    const [ navDropdownHidden, setNavDropDownHidden ] = useState(true);
     const history = useHistory();
 
     const changeBackground = () => {
@@ -30,7 +31,15 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
         } catch (e) {
             console.log(e);
         }
-    }   
+    }
+    
+    const sellDropdown = (
+        <div className='nav-item-dropdown'>
+            <div className='dropdown-item' onClick={() => history.push('/sell-now')}>Sell Now</div>
+            <div className='dropdown-item' onClick={() => history.push('/how-to-sell')}>How To Sell?</div>
+            <div className='dropdown-item' onClick={() => history.push('/how-to-ship')}>How It Works?</div>
+        </div>
+    );
 
     return (
         <Navbar fluid="true" collapseOnSelect fixed="top" className={navbar ? 'navbar active' : 'navbar'} expand='lg'>
@@ -44,24 +53,14 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
                     <path fillRule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                 </svg>
             </Navbar.Toggle>
-            <Navbar.Collapse >
+            <Navbar.Collapse>
                 <Nav className="nav-options mx-auto">
                     <Nav.Item className="nav-text" onClick={() => history.push('/shop')}>
                         SHOP
                     </Nav.Item>
-                    <NavDropdown alignRight title="SELL WITH US">
-                        <LinkContainer to="/sell-now">
-                            <NavDropdown.Item>Sell now</NavDropdown.Item>
-                        </LinkContainer>
-                        <NavDropdown.Divider />
-                        <LinkContainer to="/how-to-sell">
-                            <NavDropdown.Item>How to sell</NavDropdown.Item>
-                        </LinkContainer>
-                        <NavDropdown.Divider />
-                        <LinkContainer to="/how-to-ship">
-                            <NavDropdown.Item>How it works</NavDropdown.Item>
-                        </LinkContainer>
-                    </NavDropdown>
+                    <Nav.Item className="nav-text" onClick={() => setNavDropDownHidden(!navDropdownHidden)}>
+                        SELL WITH US <span className='nav-item-dropdown-icon'>&#10095;</span>
+                    </Nav.Item>
                     <Nav.Item className="nav-text" onClick={() => history.push('/contact-us')}>
                         CONTACT US
                     </Nav.Item>
@@ -101,6 +100,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
                     </div>
                 </Nav>
             </Navbar.Collapse>
+            {navDropdownHidden ? "" : sellDropdown}
             {hidden ? "" : <CartDropDown />}
         </Navbar>
     );
