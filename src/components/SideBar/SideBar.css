@@ -1,0 +1,20 @@
+.sidebar .sidebar-header {
+    margin: 0.5cm;
+    font-weight: 700;
+}
+
+.sidebar .sidebar-header:hover {
+    cursor: pointer;
+}
+
+.sidebar .toggle {
+    margin-right: 0.5cm;
+}
+
+.sidebar .items {
+    padding-left: 1.5cm;
+}
+
+/* .sidebar .items .item{
+    padding-bottom: 0.5cm;
+} */

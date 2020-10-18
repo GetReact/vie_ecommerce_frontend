@@ -16,9 +16,7 @@ class ShopPage extends Component {
         return (
             <Row className="productpage">
                 <Col lg={4} md={12}>
-                    <div className="sidebar">
-                        <SideBar/>
-                    </div>
+                    <SideBar/>
                 </Col>
                 <Col lg={8} md={12} className="products">
                     <Row>

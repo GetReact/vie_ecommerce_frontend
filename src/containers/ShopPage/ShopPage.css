@@ -4,13 +4,10 @@
 
 @media (min-width: 992px) {
     .sidebar {
-        width: 30%;
-        margin-left: 1cm;
-        margin-right: 1cm;
-        overflow-x: hidden;
-        position: fixed;
-        top: 0;
-        margin-top: 7cm
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
     }
 }
 
@@ -37,29 +34,6 @@
 
 .card-body {
     padding: 0.5rem;
-}
-
-.sidebar .catbar .card-body,
-.sidebar .conditionbar .card-body {
-    padding: 0.5rem;
-    margin-left: 20%;
-}
-
-/* .sidebar .accordion {
-    width: 120%;
-} */
-
-.sidebar .accordion .card-header{
-    font-weight: 700;
-}
-
-.sidebar .pricebar .MuiSlider-root {
-    padding-top: 30px;
-}
-
-.sidebar .sizebar .MuiSlider-root {
-    padding-top: 30px;
-    color: #3fb553;
 }
 
 .products .pagination {
