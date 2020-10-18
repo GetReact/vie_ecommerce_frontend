@@ -1,3 +1,7 @@
+.sidebar.dropped {
+    margin-left: 25%;
+}
+
 .sidebar .sidebar-header {
     margin: 0.5cm;
     font-weight: 700;

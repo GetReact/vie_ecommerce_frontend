@@ -69,7 +69,7 @@ const SideBar = () => {
     );
 
     return (
-        <div className='sidebar'>
+        <div className={dropped ? 'sidebar' : 'sidebar dropped'}>
             <div className='sidebar-header' onClick={handleDropDown}>
                 {dropdownToggle}
                 Catagories
