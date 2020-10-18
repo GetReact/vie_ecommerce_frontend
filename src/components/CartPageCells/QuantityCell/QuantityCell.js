@@ -17,13 +17,13 @@ const QuantityCell = (props) => {
                     ? () => props.clearItem(props.item) 
                     : () => props.removeItem(props.item)
                 }
-                >-</Button>
+                >&#10094;</Button>
             {props.item.quantity}
             <Button 
                 className="plus-btn" 
                 variant="outline-dark"
                 onClick={() => props.addItem(props.item)}
-                >+</Button>
+                >&#10095;</Button>
         </td>
     );
 }

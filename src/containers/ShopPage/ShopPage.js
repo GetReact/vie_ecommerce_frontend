@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Pagination, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import "./ShopPage.css";

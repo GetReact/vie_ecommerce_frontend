@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
@@ -26,7 +26,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     const handleSignOut = async () => {
         try {
             await auth.signOut();
-            history.push('/authenticate')
+            history.push('/signin')
         } catch (e) {
             console.log(e);
         }
@@ -92,7 +92,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
                             </Nav.Item>
                         )
                     }
-                    <div className="nav-icon" onClick={toggleCartHidden}>
+                    <div className="nav-icon" onClick={ window.innerWidth <= 992 ? () => history.push('/cart') : toggleCartHidden }>
                         <svg className="bi bi-cart-plus" width="4em" height="4em" viewBox="0 0 16 16" fill={navbar ? "white" : "black"} xmlns="http://www.w3.org/2000/svg" style={{padding:'0px 20px 0px 20px'}}>
                             <path fillRule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                             <path fillRule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>
