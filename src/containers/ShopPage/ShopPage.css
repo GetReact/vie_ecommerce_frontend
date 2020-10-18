@@ -1,36 +1,12 @@
 .productpage {
     margin-top: 3cm;
+    display: flex;
 }
 
-@media (min-width: 992px) {
-    .sidebar {
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-    }
+.productpage .product-grid {
+    margin-right: 1cm;
+    margin-left: 1cm;
 }
-
-@media (min-width: 992px) {
-    .productpage .product-grid {
-        margin-right: 1cm;
-        margin-left: 1cm;
-    }
-
-}
-@media (max-width: 992px) {
-    .productpage .product-grid {
-        margin-right: 1cm;
-        margin-left: 1cm;
-    }
-
-    .sidebar {
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
 
 .card-body {
     padding: 0.5rem;

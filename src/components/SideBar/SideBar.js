@@ -4,9 +4,9 @@ import { Slider } from '@material-ui/core';
 import "./SideBar.css";
 
 const SideBar = () => {
-    const [ dropped, setDropped ] = useState(false);
-    const [priceVal, setPrice] = useState([50, 1000]);
-    const [sizeVal, setSize] = useState([7, 10]);
+    const [ dropped, setDropped ] = useState(true);
+    const [ priceVal, setPrice ] = useState([50, 1000]);
+    const [ sizeVal, setSize ] = useState([7, 10]);
 
     const handleDropDown = () => {
         setDropped(!dropped);
@@ -22,8 +22,8 @@ const SideBar = () => {
 
     const dropdownToggle = (
         dropped
-        ? <span className='toggle'>&#10134;</span>
-        : <span className='toggle'>&#10133;</span>
+        ? <span className='toggle' role='img'>&#10134;</span>
+        : <span className='toggle' role='img'>&#10133;</span>
     );
 
     const catagories = (
@@ -44,7 +44,7 @@ const SideBar = () => {
                 onChange={handlePriceChange}
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"/>
-            <h6 style={{textAlign:"center",}}>${priceVal[0]} &lt; Current &lt; ${priceVal[1]}</h6>
+            <h6 style={{textAlign:"center",}}>{priceVal[0]} &lt; Current (USD) &lt; {priceVal[1]}</h6>
         </div>
     );
 
@@ -69,7 +69,7 @@ const SideBar = () => {
     );
 
     return (
-        <div className={dropped ? 'sidebar' : 'sidebar dropped'}>
+        <div className={dropped ? 'sidebar dropped' : 'sidebar'}>
             <div className='sidebar-header' onClick={handleDropDown}>
                 {dropdownToggle}
                 Catagories
@@ -95,9 +95,10 @@ const SideBar = () => {
                     variant="outline-dark"
                     type="submit"
                     style={{
-                        width:"4cm",
-                        float: "right",
-                        textAlign:"center",
+                        width:"30%",
+                        marginTop:"0.5cm",
+                        marginLeft:"35%",
+                        marginRigth:"45%",
                     }}
                 >
                     Apply Now

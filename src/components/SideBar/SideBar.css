@@ -1,20 +1,50 @@
-.sidebar.dropped {
-    margin-left: 25%;
+@media (min-width: 992px) {
+    .sidebar {
+        margin-top: 5cm;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        border-right: 1px solid rgb(155, 155, 155);
+    }
+
+    .sidebar .sidebar-header {
+        margin-left: 40%;
+        margin-bottom: 1cm;
+        font-weight: 700;
+    }
 }
 
-.sidebar .sidebar-header {
+@media (max-width: 992px) {
+    .sidebar {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1cm;
+        padding-bottom: 1cm;
+        border-bottom: 1px solid rgb(155, 155, 155);
+    }
+
+    .sidebar .sidebar-header {
+        margin-left: 20%;
+        margin-bottom: 0.5cm;
+        font-weight: 700;
+    }
+}
+
+.sidebar.dropped .sidebar-header {
     margin: 0.5cm;
     font-weight: 700;
 }
 
-.sidebar .sidebar-header:hover {
-    cursor: pointer;
-}
-
-.sidebar .toggle {
+.toggle {
     margin-right: 0.5cm;
 }
 
-.sidebar .items {
+.sidebar-header:hover {
+    cursor: pointer;
+}
+
+.sidebar.dropped .items {
     padding-left: 1.5cm;
 }
