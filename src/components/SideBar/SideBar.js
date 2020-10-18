@@ -22,8 +22,8 @@ const SideBar = () => {
 
     const dropdownToggle = (
         dropped
-        ? <span className='toggle' role='img'>&#10134;</span>
-        : <span className='toggle' role='img'>&#10133;</span>
+        ? <span className='toggle' aria-labelledby='minus' role='img'>&#10134;</span>
+        : <span className='toggle' aria-labelledby='plus' role='img'>&#10133;</span>
     );
 
     const catagories = (
