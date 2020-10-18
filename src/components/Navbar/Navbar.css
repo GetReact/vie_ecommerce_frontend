@@ -36,9 +36,12 @@
 }
 
 .nav-text .nav-item-dropdown-icon {
-    transform: rotate(90deg)!important;
     display: inline-block;
     margin-left: 10px;
+}
+
+.nav-text .nav-item-dropdown-icon.active {
+    transform: rotate(90deg)!important;
 }
 
 .navbar.active .navbar-nav .nav-text {
@@ -76,13 +79,14 @@
     width: 33%;
     margin-left: 10px;
     margin-right: 10px;
+    color: black;
 }
 
 .nav-item-dropdown .dropdown-item:hover {
-    color: black;
+    color: rgb(120, 120, 120);
     background: transparent;
     cursor: pointer;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(120, 120, 120);
 }
 
 .nav-icons {
@@ -117,10 +121,6 @@
 }
 
 @media(max-width: 992px) {
-    .navbar {
-        height: 350px;
-    }
-
     .nav-item-dropdown {
         top: 350px;
         width: 100%;

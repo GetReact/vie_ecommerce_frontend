@@ -1,10 +1,21 @@
 import React, { useRef, useState } from 'react';
-import { Container, Col, Form, Button, FormLabel } from 'react-bootstrap';
+import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './SellPage.css';
+import FormInput from '../../components/FormInput/FormInput';
 
 const SellPage = (props) => {
     const file = useRef(null);
+
+    const [ fullname, setName ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ street, setStreet ] = useState("");
+    const [ city, setCity ] = useState("");
+    const [ state, setState ] = useState("");
+    const [ country, setCountry ] = useState("");
+    const [ zip, setZip ] = useState("");
+    const [ conditions, setConditions ] = useState("");
+    const [ price, setPrice ]= useState("");
     const [checked, setChecked] = useState(false)
 
     const handleFileChange = (event) => {
@@ -17,40 +28,86 @@ const SellPage = (props) => {
 
     let formInfo = (
         <>
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridName">
-                    <Form.Label>Full Name</Form.Label>
-                    <Form.Control placeholder="John Doe" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="sample@email.com" />
-                </Form.Group>
-            </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} controlId="formGridAddress1">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder="12345 Woodward Ave" />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridCity">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control placeholder="Austin"/>
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridState">
-                    <Form.Label>State</Form.Label>
-                    <Form.Control placeholder="Texas"/>
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridZip">
-                    <Form.Label>ZIP</Form.Label>
-                    <Form.Control placeholder="92877"/>
-                </Form.Group>
-            </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} controlId="formCondition">
-                    <Form.Label>Status</Form.Label>
+            <Row>
+                <Col>
+                    <FormInput 
+                        label='Full Name'
+                        name='fullname'
+                        type='fullname'
+                        value={fullname}
+                        handleChange={ e => setName(e.target.value) }
+                        required/>
+                </Col>
+                <Col>
+                    <FormInput 
+                        label='Email'
+                        name='email'
+                        type='email'
+                        value={email}
+                        handleChange={ e => setEmail(e.target.value) }
+                        required/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <FormInput 
+                        label='Street'
+                        name='street'
+                        type='street'
+                        value={street}
+                        handleChange={ e => setStreet(e.target.value) }
+                        required/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <FormInput 
+                        label='City'
+                        name='city'
+                        type='city'
+                        value={city}
+                        handleChange={ e => setCity(e.target.value) }
+                        required/>
+                </Col>
+                <Col>
+                    <FormInput 
+                        label='State'
+                        name='state'
+                        type='state'
+                        value={state}
+                        handleChange={ e => setState(e.target.value) }
+                        required/>
+                </Col>
+                <Col>
+                    <FormInput 
+                        label='Country'
+                        name='country'
+                        type='country'
+                        value={country}
+                        handleChange={ e => setCountry(e.target.value) }
+                        required/>
+                </Col>
+                <Col>
+                    <FormInput 
+                        label='Zip'
+                        name='zip'
+                        type='zip'
+                        value={zip}
+                        handleChange={ e => setZip(e.target.value) }
+                        required/>
+                </Col>
+            </Row>
+            <Row>
+                <Col lg={10} md={12}>
+                    <FormInput 
+                        label='Condition Description'
+                        name='conditions'
+                        type='conditions'
+                        value={conditions}
+                        handleChange={e => setConditions(e.target.value) }
+                        required/>
+                </Col>
+                <Col lg={2} md={12}>
                     <Form.Control
                         as="select"
                         id="inlineFormCustomSelectPref"
@@ -59,12 +116,8 @@ const SellPage = (props) => {
                         <option value="0">New</option>
                         <option value="1">Used</option>
                     </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} controlId="formBug">
-                    <FormLabel>Briefly Describe Conditions (Optional - Used Only)</FormLabel>
-                    <Form.Control />
-                </Form.Group>
-            </Form.Row>
+                </Col>
+            </Row>
         </>
     );
 
@@ -129,15 +182,25 @@ const SellPage = (props) => {
                     {formInfo}
                     <h2>IMAGES OF THE SHOES (*)</h2>
                     {formPics}
-                    <h2>PRICE $ (USD)</h2>
-                    <Form.Control className="mb-5"/>
-                    <Form.Check 
-                        type="checkbox"
-                        id="default-checkbox"
-                        label="By checking this box, you understand that we'll collect 5% of each transaction as service fee"
-                        style={{textAlign:'center'}}
-                        onChange={handleChecked}
-                    />
+                    <Row>
+                        <Col>
+                            <FormInput 
+                            label='Price'
+                            name='price'
+                            type='price'
+                            value={price}
+                            handleChange={e => setPrice(e.target.value) }
+                            required/>
+                        </Col>
+                        <Col>
+                            <Form.Check 
+                            type="checkbox"
+                            id="default-checkbox"
+                            label="By checking this box, you understand that we'll collect 5% of each transaction as service fee"
+                            style={{textAlign:'center'}}
+                            onChange={handleChecked}/>
+                        </Col>
+                    </Row>
                     <Button 
                         className="mt-4"
                         variant="primary" 

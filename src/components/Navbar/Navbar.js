@@ -18,6 +18,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     const changeBackground = () => {
         if (window.scrollY >= 70) {
             setNavbar(true);
+            setNavDropDownHidden(true)
         } else {
             setNavbar(false);
         }
@@ -59,7 +60,26 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
                         SHOP
                     </Nav.Item>
                     <Nav.Item className="nav-text" onClick={() => setNavDropDownHidden(!navDropdownHidden)}>
-                        SELL WITH US <span className='nav-item-dropdown-icon'>&#10095;</span>
+                        SELL WITH US 
+                        {
+                            navDropdownHidden
+                            ? (
+                                <span 
+                                    role='img' 
+                                    aria-labelledby='dropdown-icon' 
+                                    className='nav-item-dropdown-icon active'>
+                                        &#10095;
+                                </span>
+                            )
+                            : (
+                                <span 
+                                    role='img' 
+                                    aria-labelledby='dropdown-icon' 
+                                    className='nav-item-dropdown-icon'>
+                                        &#10134;
+                                </span>
+                            )
+                        }
                     </Nav.Item>
                     <Nav.Item className="nav-text" onClick={() => history.push('/contact-us')}>
                         CONTACT US
