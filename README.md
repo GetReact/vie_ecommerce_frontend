@@ -34,6 +34,6 @@ Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Author:
-- Full name: Quoc (Tim) Huynh
+- Full name: Quoc (Tim) Huynh.
 - Education: Northwestern University, Class of 2024.
-- Major: Computer Science
+- Major: Computer Science.
