@@ -1,7 +1,7 @@
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
-    background: rgba(210, 210, 210, 0.5);
+    background: rgb(240, 240, 240);
     padding-left: 1.5cm;
     padding-right: 1.5cm;
 }
@@ -60,7 +60,7 @@
 
 .navbar .nav-item-dropdown,
 .navbar.active .nav-item-dropdown {
-    background: rgba(210, 210, 210, .5);
+    background: rgb(240, 240, 240);
 }
 
 .nav-item-dropdown {

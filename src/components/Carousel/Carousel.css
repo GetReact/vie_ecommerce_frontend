@@ -1,9 +1,11 @@
 .home-carousel {
+    margin-top: 70px;
     height: 600px;
 }
 
 .home-carousel .cover {
-    object-fit: cover;
+    object-fit: fill;
+    /* object-position: center; */
 }
 
 .home-carousel .carousel-control-next-icon, .carousel-control-prev-icon {
