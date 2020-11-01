@@ -1,43 +1,49 @@
 import React from 'react';
-import { Row, Col, Form, Button, Figure } from 'react-bootstrap';
+import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
 import ProfileButton from '../../components/ProfilePageButton/ProfileButton';
 import './ProfilePage.css';
 
-const ProfilePage = (props) => {
+const ProfilePage = ({ currentUser }) => {
+    let user = {
+        currentUser : {
+            displayName : "User Name",
+            fullName : "Full Name",
+            email : "user@email.com",
+        }
+    }
+
+    if (currentUser) user = currentUser;
+
     return (
         <div className="profile-page">
             <Row>
                 <Col lg={3} className="user-info">
-                    <Figure>
-                        <Figure.Image
-                            width={170}
-                            heigh={180}   
-                            src="assets/images/profile-pic-temp.png" 
-                        />
-                    </Figure>
                     <Form>
                         <Form.Group controlId="formBasicUserName">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control placeholder="GotaKu" />
+                            <Form.Control placeholder={user.currentUser.displayName} />
                         </Form.Group>
                         <Form.Group controlId="formBasicFullName">
                             <Form.Label>Full Name (Optional)</Form.Label>
-                            <Form.Control placeholder="Tim Huang" />
+                            <Form.Control placeholder={user.currentUser.fullName? user.currentUser.fullName : user.currentUser.displayName} />
                         </Form.Group>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="sample@gmail.com" />
+                            <Form.Control type="email" placeholder={user.currentUser.email} />
                         </Form.Group>
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>New Password</Form.Label>
                             <Form.Control type="password" placeholder="New Password" />
                         </Form.Group>
-                        <Button variant="primary" type="submit" className="mr-2">
+                        <Button variant="primary" type="submit">
                             Save
                         </Button>
                         <Button variant="danger" type="submit">
-                            Log Out
+                            Sign Out
                         </Button>
                     </Form>
                 </Col>
@@ -66,4 +72,8 @@ const ProfilePage = (props) => {
     );
 }
 
-export default ProfilePage;
+const mapPropstoState = createStructuredSelector({
+    currentUser: selectCurrentUser,
+});
+
+export default connect(mapPropstoState)(ProfilePage);

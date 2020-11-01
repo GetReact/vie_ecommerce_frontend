@@ -1,6 +1,7 @@
 .profile-button {
     width: 80%;
     text-align: center;
+    justify-content: center;
     height: 2cm;
     color: black;
 }
