@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
-import { selectDirectoryCollection } from '../../redux/directory/directory-selectors';
+import { selectShopCollection } from '../../redux/shop/shop-selectors';
 import "./ShopPage.css";
 
 class ShopPage extends Component {
@@ -69,7 +69,7 @@ class ShopPage extends Component {
 };
 
 const mapStatetoProps = createStructuredSelector({
-    shoesCollection: selectDirectoryCollection,
+    shoesCollection: selectShopCollection,
 });
 
 export default connect(mapStatetoProps)(ShopPage);
