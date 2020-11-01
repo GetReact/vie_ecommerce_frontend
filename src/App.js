@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
 import { connect } from 'react-redux'
+import { auth, createUserProfileDocument } from './firebase/firebase';
+import { setCurrentUser } from './redux/user/user-action';
+import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
-import { auth, createUserProfileDocument } from './firebase/firebase';
-// import { UserContext } from './libs/contextLib';
-import { setCurrentUser } from './redux/user/user-action';
 
 class App extends Component {
 
@@ -39,21 +38,19 @@ class App extends Component {
   render() {
 
     return (
-      // <UserContext.Provider value={ this.state.currentUser }>
-        <div className="App">
-          <header>
-            <Navbar />
-          </header>
-          <main>
-            <Routes />
-          </main>
-          <div className="footer-distributed">
-            <footer>
-              <Footer />
-            </footer>
-          </div>
+      <div className="App">
+        <header>
+          <Navbar />
+        </header>
+        <main>
+          <Routes />
+        </main>
+        <div className="footer-distributed">
+          <footer>
+            <Footer />
+          </footer>
         </div>
-      // </UserContext.Provider>
+      </div>
     );
   }
   
