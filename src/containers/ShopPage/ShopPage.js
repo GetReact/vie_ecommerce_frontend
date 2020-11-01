@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -10,11 +10,15 @@ import "./ShopPage.css";
 const ShopPage = (props) => {
     const [ width, setWidth ] = useState(window.innerWidth);
 
-    const handleWindowSizeChange = () => {
-        setWidth(window.innerWidth);
-    }
-
-    window.addEventListener('resize', handleWindowSizeChange)
+    useEffect(() => {
+        const handleWindowSizeChange = () => {
+            if (window.innerWidth !== width) setWidth(window.innerWidth);
+        }
+        window.addEventListener('resize', handleWindowSizeChange);
+        return _ => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    });
 
     return (
         <div className="productpage">
