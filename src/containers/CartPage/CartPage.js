@@ -8,6 +8,7 @@ import QuantityCell from '../../components/CartPageCells/QuantityCell/QuantityCe
 import PriceCell from '../../components/CartPageCells/PriceCell/PriceCell';
 import './CartPage.css';
 import { connect } from 'react-redux';
+import { selectCartItems } from '../../redux/cart/cart-selectors';
 
 const CartPage = ({ cartItems }) => {
     const history = useHistory();
@@ -91,8 +92,8 @@ const CartPage = ({ cartItems }) => {
     )
 }
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-    cartItems,
+const mapStateToProps = (state) => ({
+    cartItems: selectCartItems(state),
 });
 
 export default connect(mapStateToProps)(CartPage);

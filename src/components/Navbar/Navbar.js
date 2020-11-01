@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
+import { createStructuredSelector } from 'reselect';
 import { auth } from '../../firebase/firebase';
 import logo_black from '../../vigg_black.png';
 import logo_white from '../../vigg.png';
@@ -9,6 +10,8 @@ import './Navbar.css';
 import { connect } from 'react-redux';
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import { toggleCartHidden } from '../../redux/cart/cart-action';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
+import { selectCartHidden } from '../../redux/cart/cart-selectors';
 
 const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     const [ navbar, setNavbar ] = useState(false);
@@ -126,9 +129,9 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     );
 };
 
-const mapStateToProps = ({user: { currentUser }, cart: { hidden }}) => ({
-    currentUser,
-    hidden,
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden,
 });
 
 const mapDispatchtoProps = (dispatch) => ({

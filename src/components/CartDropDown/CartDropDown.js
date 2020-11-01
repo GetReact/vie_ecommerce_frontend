@@ -3,12 +3,12 @@ import { Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import './CartDropDown.css';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItems, selectCartItemsCount } from '../../redux/cart/cart-selectors';
 import CartItem from '../CartItem/CartItem';
-const CartDropDown = ({ cartItems, history }) => {
 
-    let cartLength = 0;
-    cartItems.map(item => cartLength += item.quantity);
-    
+
+const CartDropDown = ({ cartItems, cartLength, history }) => {
     return (
         <div className='cart-dropdown'>
             <h6 className='dropdown-title'>CART SUMMARY</h6>
@@ -33,8 +33,9 @@ const CartDropDown = ({ cartItems, history }) => {
     )
 };
 
-const mapStatetoProps = ({ cart: { cartItems } }) => ({
-    cartItems,
+const mapStatetoProps = createStructuredSelector({
+    cartItems: selectCartItems,
+    cartLength: selectCartItemsCount,
 });
 
 export default withRouter(connect(mapStatetoProps)(CartDropDown));

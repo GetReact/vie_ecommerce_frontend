@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
+import { selectDirectoryCollection } from '../../redux/directory/directory-selectors';
 import "./ShopPage.css";
-import SHOP_DATA from './ShopData';
 
 class ShopPage extends Component {
 
-
     state = {
-        shoesCollection: SHOP_DATA,
         width: window.innerWidth,
     }
 
@@ -48,7 +48,7 @@ class ShopPage extends Component {
                                     </InputGroup>
                                 </Row>
                                 <Row className="product-grid">
-                                    <ProductGrid items = { this.state.shoesCollection }/>
+                                    <ProductGrid items = { this.props.shoesCollection }/>
                                 </Row>
                             </Col>
                         </>
@@ -57,7 +57,7 @@ class ShopPage extends Component {
                         <>
                             <Row>
                                 <Col md={12}><SideBar/></Col>
-                                <Col md={12}><ProductGrid items = { this.state.shoesCollection }/></Col>
+                                <Col md={12}><ProductGrid items = { this.props.shoesCollection }/></Col>
                             </Row>
                         </>
                     )
@@ -68,4 +68,8 @@ class ShopPage extends Component {
     }
 };
 
-export default ShopPage;
+const mapStatetoProps = createStructuredSelector({
+    shoesCollection: selectDirectoryCollection,
+});
+
+export default connect(mapStatetoProps)(ShopPage);
