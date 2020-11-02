@@ -14,6 +14,9 @@ import Footer from './components/Footer/Footer';
 import { updateCollections } from './redux/shop/shop-actions';
 
 class App extends Component {
+  state = {
+    isLoading: true,
+  };
 
   unsubscribeFromAuth = null;
 
@@ -40,6 +43,7 @@ class App extends Component {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
         this.props.updateCollections(collectionsMap);
         // console.log(collectionsMap);
+        this.setState({ isLoading: false });
       });
 
 
@@ -60,7 +64,7 @@ class App extends Component {
           <Navbar />
         </header>
         <main>
-          <Routes />
+          <Routes isLoading={this.state.isLoading}/>
         </main>
         <div className="footer-distributed">
           <footer>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import FormInput from '../../components/FormInput/FormInput';
-import Spinner from '../../components/Spinner/Spinner';
+import { SpinnerContainer } from '../../components/Spinner/Spinner';
 
 class RegisterForm extends Component {
 
@@ -112,7 +112,7 @@ class RegisterForm extends Component {
         return (
             <div className="register">
                 {this.state.isLoading? (
-                    <Spinner />
+                    <SpinnerContainer />
                 ) : (
                     renderForm()
                 )}

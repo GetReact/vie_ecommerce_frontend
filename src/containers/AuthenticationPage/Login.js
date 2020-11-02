@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import FormInput from '../../components/FormInput/FormInput';
 import { auth, signInWithGoogle } from '../../firebase/firebase';
-import Spinner from '../../components/Spinner/Spinner';
+import { SpinnerContainer } from '../../components/Spinner/Spinner';
 
 class LoginForm extends Component {
 
@@ -102,7 +102,7 @@ class LoginForm extends Component {
         return (
             <div className="register">
                 {this.state.isLoading? (
-                    <Spinner/>
+                    <SpinnerContainer/>
                 ) : (
                     renderForm()
                 )}
