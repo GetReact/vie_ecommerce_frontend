@@ -2,6 +2,6 @@
     justify-content: center;
 }
 
-.grid .card {
-    margin: 7px;
+.grid .grid-col {
+    margin-bottom: 2%;
 }
