@@ -5,8 +5,10 @@ import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshott
 // import { auth, createUserProfileDocument, addCollectionandDocuments } from './firebase/firebase';
 
 import { setCurrentUser } from './redux/user/user-action';
+import { setLoading } from './redux/spinner/spinner-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
+
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
@@ -14,15 +16,11 @@ import Footer from './components/Footer/Footer';
 import { updateCollections } from './redux/shop/shop-actions';
 
 class App extends Component {
-  state = {
-    isLoading: true,
-  };
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
+    const { setCurrentUser, setLoading } = this.props;
+    setLoading(true);
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -42,10 +40,9 @@ class App extends Component {
       collectionRef.onSnapshot(async snapshot => {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
         this.props.updateCollections(collectionsMap);
-        // console.log(collectionsMap);
-        this.setState({ isLoading: false });
       });
 
+      setLoading(false);
 
       // console.log(this.props.shoesCollection);
       // addCollectionandDocuments('shop_data', this.props.shoesCollection);
@@ -64,7 +61,7 @@ class App extends Component {
           <Navbar />
         </header>
         <main>
-          <Routes isLoading={this.state.isLoading}/>
+          <Routes />
         </main>
         <div className="footer-distributed">
           <footer>
@@ -85,6 +82,7 @@ const mapStatetoProps = createStructuredSelector({
 const mapDispathtoProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
+  setLoading: loadingState => dispatch(setLoading(loadingState)),
 });
 
 export default connect(mapStatetoProps, mapDispathtoProps)(App);

@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import FormInput from '../../components/FormInput/FormInput';
+import { connect } from 'react-redux';
+
 import { auth, signInWithGoogle } from '../../firebase/firebase';
-import { SpinnerContainer } from '../../components/Spinner/Spinner';
+import { setLoading } from '../../redux/spinner/spinner-actions';
+
+import FormInput from '../../components/FormInput/FormInput';
 
 class LoginForm extends Component {
 
     state = {
         email: "",
         password: "",
-        isLoading: false,
     }
-
-    setLoading = (boolean) => { this.setState({ isLoading: boolean })}
 
     render() {
         const validateForm = () => {
@@ -24,7 +24,7 @@ class LoginForm extends Component {
 
         const handleSubmit = async (event) => {
             event.preventDefault();
-            this.setLoading(true);
+            this.props.setLoading(true);
             const { email, password } = this.state;
             
             if (!validateForm()) return;
@@ -32,10 +32,9 @@ class LoginForm extends Component {
             try {
                 await auth.signInWithEmailAndPassword(email, password);
                 this.setState({ email: '', password: '' })
-                this.setLoading(false);
+                this.props.setLoading(false);
             } catch(e) {
                 console.log(e);
-                this.setLoading(false);
             }
         }
 
@@ -101,14 +100,14 @@ class LoginForm extends Component {
 
         return (
             <div className="register">
-                {this.state.isLoading? (
-                    <SpinnerContainer/>
-                ) : (
-                    renderForm()
-                )}
+                { renderForm() }
             </div>
         );           
     }
 }
 
-export default LoginForm;
+const mapDispatchtoProps = dispatch => ({
+    setLoading: loadingState => (setLoading(loadingState)),
+})
+
+export default connect(null, mapDispatchtoProps)(LoginForm);

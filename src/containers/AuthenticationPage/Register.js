@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+
 import { auth, createUserProfileDocument } from '../../firebase/firebase';
+import { setLoading } from '../../redux/spinner/spinner-actions';
+
 import FormInput from '../../components/FormInput/FormInput';
-import { SpinnerContainer } from '../../components/Spinner/Spinner';
 
 class RegisterForm extends Component {
 
@@ -11,10 +14,7 @@ class RegisterForm extends Component {
         email: "",
         password: "",
         confirmPassword: "",
-        isLoading: false,
     }
-
-    setLoading = (boolean) => { this.setState({ isLoading: boolean })};
 
     render() {
         const validateForm = () => {
@@ -28,16 +28,15 @@ class RegisterForm extends Component {
 
         const handleSubmit = async (event) => {
             event.preventDefault();
-            this.setLoading(true);
+            this.props.setLoading(true);
             if (validateForm()) {
                 try {
                     const { displayName, email, password } = this.state;
                     const { user } = await auth.createUserWithEmailAndPassword(email, password);
                     createUserProfileDocument(user, { displayName });
-                    this.setLoading(false);
+                    this.props.setLoading(false);
                 } catch (e) {
                     console.error(e);
-                    this.setLoading(false);
                 }
             }
             this.setState({ 
@@ -111,14 +110,14 @@ class RegisterForm extends Component {
     
         return (
             <div className="register">
-                {this.state.isLoading? (
-                    <SpinnerContainer />
-                ) : (
-                    renderForm()
-                )}
+                { renderForm() }
             </div>
         );
     }
 }
 
-export default RegisterForm;
+const mapDispatchtoProps = dispatch => ({
+    setLoading: loadingState => (setLoading(loadingState)),
+})
+
+export default connect(null, mapDispatchtoProps)(RegisterForm);

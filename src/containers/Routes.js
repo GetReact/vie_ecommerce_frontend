@@ -1,5 +1,11 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../redux/user/user-selectors';
+import { selectLoading } from '../redux/spinner/spinner-selectors';
+import WithSpinner from '../hoc/WithSpinner';
+
 import Home from './Home';
 import AuthenticationPage from './AuthenticationPage/AuthenticationPage';
 import NotFound from './NotFound/NotFound';
@@ -11,11 +17,10 @@ import HowToShipPage from './HowToSellPage/HowToShip';
 import HowToSell from './HowToSellPage/HowToSell';
 import ProfilePage from './ProfilePage/ProfilePage';
 import CartPage from './CartPage/CartPage';
-import { connect } from 'react-redux';
-import WithSpinner from '../hoc/WithSpinner';
 
 const HomeWithSpinner = WithSpinner(Home);
 const ProductPageWithSpinner = WithSpinner(ProductPage);
+const AuthenticationPageWithSpinner = WithSpinner(AuthenticationPage);
 
 const Routes = (props) => {
     const { isLoading } = props;
@@ -31,7 +36,7 @@ const Routes = (props) => {
                     props.currentUser ? (
                         <Redirect to="/"/>
                     ) : (
-                        <AuthenticationPage/>
+                        <AuthenticationPageWithSpinner isLoading={ isLoading }/>
                     )}
             />
             <Route 
@@ -66,8 +71,9 @@ const Routes = (props) => {
     );
 };
 
-const mapStatetoProps = (state) => ({
-    currentUser: state.user.currentUser,
+const mapStatetoProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    isLoading: selectLoading,
 })
 
 export default connect(mapStatetoProps)(Routes);

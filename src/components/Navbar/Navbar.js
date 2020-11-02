@@ -3,17 +3,21 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { createStructuredSelector } from 'reselect';
-import { auth } from '../../firebase/firebase';
-import logo_black from '../../vigg_black.png';
-import logo_white from '../../vigg.png';
-import './Navbar.css';
 import { connect } from 'react-redux';
-import CartDropDown from '../../components/CartDropDown/CartDropDown';
+
+import { auth } from '../../firebase/firebase';
 import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
+import { setLoading } from '../../redux/spinner/spinner-actions';
 
-const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
+import CartDropDown from '../../components/CartDropDown/CartDropDown';
+import logo_black from '../../vigg_black.png';
+import logo_white from '../../vigg.png';
+import './Navbar.css';
+
+
+const NavBar = ({ currentUser, toggleCartHidden, hidden, setLoading }) => {
     const [ navbar, setNavbar ] = useState(false);
     const [ navDropdownHidden, setNavDropDownHidden ] = useState(true);
     const history = useHistory();
@@ -29,9 +33,11 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     window.addEventListener('scroll', changeBackground);
 
     const handleSignOut = async () => {
+        setLoading(true);
         try {
             await auth.signOut();
-            history.push('/signin')
+            history.push('/signin');
+            setLoading(false);
         } catch (e) {
             console.log(e);
         }
@@ -136,6 +142,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchtoProps = (dispatch) => ({
     toggleCartHidden: () => dispatch(toggleCartHidden()),
+    setLoading: loadingState => dispatch(setLoading(loadingState)),
 });
 
 
