@@ -4,11 +4,12 @@ import { createStructuredSelector } from 'reselect';
 import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
 import { setCurrentUser } from './redux/user/user-action';
 import { selectCurrentUser } from './redux/user/user-selectors';
-import { selectShoesCollection, selectCollections } from './redux/shop/shop-selectors';
+import { selectCollections } from './redux/shop/shop-selectors';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
+import { updateCollections } from './redux/shop/shop-actions';
 
 class App extends Component {
 
@@ -34,8 +35,8 @@ class App extends Component {
 
       const collectionRef = firestore.collection('shop_data');
       collectionRef.onSnapshot(snapshot => {
-        const collectionMap = convertCollectionsSnapshottoMap(snapshot);
-        console.log(collectionMap);
+        const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
+        this.props.updateCollections(collectionsMap);
       });
 
 
@@ -75,7 +76,8 @@ const mapStatetoProps = createStructuredSelector({
 });
 
 const mapDispathtoProps = (dispatch) => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
 });
 
 export default connect(mapStatetoProps, mapDispathtoProps)(App);
