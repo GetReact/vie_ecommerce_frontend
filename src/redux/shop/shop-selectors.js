@@ -1,9 +1,5 @@
 import { createSelector } from 'reselect';
 
-// const SHOP_DATA_ID_MAP = {
-//     shoesCollection : 0,
-// };
-
 const selectShop = (state) => state.shop;
 
 export const selectCollections = createSelector(
@@ -13,5 +9,5 @@ export const selectCollections = createSelector(
 
 export const selectShoesCollection = createSelector(
     [selectCollections],
-    collections => collections ? collections[0].shoes : [],
-)
+    collections => collections ? collections.shoes.items : [],
+);

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
+// import { auth, createUserProfileDocument, addCollectionandDocuments } from './firebase/firebase';
+
 import { setCurrentUser } from './redux/user/user-action';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
@@ -37,6 +39,7 @@ class App extends Component {
       collectionRef.onSnapshot(async snapshot => {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
         this.props.updateCollections(collectionsMap);
+        // console.log(collectionsMap);
       });
 
 

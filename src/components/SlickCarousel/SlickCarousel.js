@@ -19,7 +19,7 @@ const SlickCarousel = (props) => {
         centerPadding: '0',
         slidesToShow: (props.size === 'large' ? 3 : 4),
         swipeToSlide: true,
-        dots: true,
+        // dots: true,
         pauseOnHover: true,
         autoplay: true,
         speed: 300,

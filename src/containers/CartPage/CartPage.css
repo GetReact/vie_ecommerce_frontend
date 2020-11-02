@@ -13,6 +13,8 @@
 .cart-page .row {
     margin-bottom: 2cm;
     margin-top: 1cm;
+    justify-content: center;
+    align-items: center;
 }
 
 .cart-page .row .cart-table {

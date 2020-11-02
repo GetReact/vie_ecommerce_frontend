@@ -54,10 +54,19 @@ export const addCollectionandDocuments = async (collectionKey, objectsToAdd) => 
 
 export const convertCollectionsSnapshottoMap = (collections) => {
     const transformedCollection = collections.docs.map(doc => {
-        return doc.data();
+        const { title, items } = doc.data(); 
+
+        return {
+            id: doc.id,
+            title: title,
+            items: items,
+        };
     });
 
-    return transformedCollection;
+    return transformedCollection.reduce((accumulator, collection) => {
+        accumulator[collection.title.toLowerCase()] = collection;
+        return accumulator;
+    }, {});
 }
 
 export const auth = firebase.auth();
