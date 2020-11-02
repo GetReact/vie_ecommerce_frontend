@@ -34,7 +34,7 @@ class App extends Component {
       } else setCurrentUser(userAuth);
 
       const collectionRef = firestore.collection('shop_data');
-      collectionRef.onSnapshot(snapshot => {
+      collectionRef.onSnapshot(async snapshot => {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
         this.props.updateCollections(collectionsMap);
       });
