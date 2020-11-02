@@ -28,9 +28,8 @@ const SideBar = () => {
 
     const catagories = (
         <div className='items'>
-            <p><input className='toggle' type='checkbox' id='catagories'/><span>Men</span></p>
-            <p><input className='toggle' type='checkbox' id='catagories'/><span>Women</span></p>
-            <p><input className='toggle' type='checkbox' id='catagories'/><span>Kids</span></p>
+            <p><input className='toggle' type='checkbox' id='catagories'/><span>Adidas</span></p>
+            <p><input className='toggle' type='checkbox' id='catagories'/><span>Nike</span></p>
         </div>
     );
 

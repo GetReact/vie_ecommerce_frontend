@@ -1,106 +1,122 @@
-const collection = [
+const prefix = 'https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o'
+const params = '?alt=media'
+const SHOP_DATA = [
     {
-        id: 1,
-        name: 'Brown Brim',
-        imageUrl: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
-        price: 25
-    },
-    {
-        id: 2,
-        name: 'Blue Beanie',
-        imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
-        price: 18
-    },
-    {
-        id: 3,
-        name: 'Brown Cowboy',
-        imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
-        price: 35
-    },
-    {
-        id: 4,
-        name: 'Grey Brim',
-        imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-        price: 25
-    },
-    {
-        id: 5,
-        name: 'Green Beanie',
-        imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-        price: 18
-    },
-    {
-        id: 6,
-        name: 'Palm Tree Cap',
-        imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
-        price: 14
-    },
-    {
-        id: 7,
-        name: 'Red Beanie',
-        imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
-        price: 18
-    },
-    {
-        id: 8,
-        name: 'Wolf Cap',
-        imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
-        price: 14
-    },
-    {
-        id: 9,
-        name: 'Blue Snapback',
-        imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
-        price: 16
-    },
-    {
-        id: 10,
-        name: 'Adidas NMD',
-        imageUrl: 'https://i.ibb.co/0s3pdnc/adidas-nmd.png',
-        price: 220
-    },
-    {
-        id: 11,
-        name: 'Adidas Yeezy',
-        imageUrl: 'https://i.ibb.co/dJbG1cT/yeezy.png',
-        price: 280
-    },
-    {
-        id: 12,
-        name: 'Black Converse',
-        imageUrl: 'https://i.ibb.co/bPmVXyP/black-converse.png',
-        price: 110
-    },
-    {
-        id: 13,
-        name: 'Nike White AirForce',
-        imageUrl: 'https://i.ibb.co/1RcFPk0/white-nike-high-tops.png',
-        price: 160
-    },
-    {
-        id: 14,
-        name: 'Nike Red High Tops',
-        imageUrl: 'https://i.ibb.co/QcvzydB/nikes-red.png',
-        price: 160
-    },
-    {
-        id: 15,
-        name: 'Nike Brown High Tops',
-        imageUrl: 'https://i.ibb.co/fMTV342/nike-brown.png',
-        price: 160
-    },
-    {
-        id: 16,
-        name: 'Air Jordan Limited',
-        imageUrl: 'https://i.ibb.co/w4k6Ws9/nike-funky.png',
-        price: 190
-    },
-    {
-        id: 17,
-        name: 'Timberlands',
-        imageUrl: 'https://i.ibb.co/Mhh6wBg/timberlands.png',
-        price: 200
+        shoes : [
+            {
+                id: 1,
+                seller: 'Nike',
+                name: 'Air Jordan 1 Mid SE',
+                imageUrl: `${prefix}/Nike%2FAir-Jordan-1-Mid-SE.jpg${params}`,
+                price: 250
+            },
+            {
+                id: 2,
+                seller: 'Nike',
+                name: 'Kybrid S2 "Best Of"',
+                imageUrl: `${prefix}/Nike%2FKybrid-S2-"Best-Of".jpg${params}`,
+                price: 180
+            },
+            {
+                id: 3,
+                seller: 'Nike',
+                name: 'Lebron 18',
+                imageUrl: `${prefix}/Nike%2FLebron-18.jpg${params}`,
+                price: 350
+            },
+            {
+                id: 4,
+                seller: 'Nike',
+                name: 'Air Force 1 Pixel',
+                imageUrl: `${prefix}/Nike%2FNike-Air-Force-1-Pixel.jpg${params}`,
+                price: 125
+            },
+            {
+                id: 5,
+                seller: 'Nike',
+                name: 'Pegasus 37 FlyEase',
+                imageUrl: `${prefix}/Nike%2FNike-Air-Zoom-Pegasus-37-FlyEase.jpg${params}`,
+                price: 148
+            },
+            {
+                id: 6,
+                seller: 'Nike',
+                name: 'Pegasus 37',
+                imageUrl: `${prefix}/Nike%2FNike-Air-Zoom-Pegasus-37.jpg${params}`,
+                price: 148
+            },
+            {
+                id: 7,
+                seller: 'Nike',
+                name: 'Blazer Mid 77',
+                imageUrl: `${prefix}/Nike%2FNike-Blazer-Mid-'77.jpg${params}`,
+                price: 160
+            },
+            {
+                id: 8,
+                seller: 'Nike',
+                name: 'ZoomX Vaporfly Next%',
+                imageUrl: `${prefix}/Nike%2FNike-ZoomX-Vaporfly-Next%25.jpg${params}`,
+                price: 160
+            },
+            {
+                id: 9,
+                seller: 'Adidas',
+                name: 'Ultraboost LTD Red',
+                imageUrl: `${prefix}/Adidas%2Fultraboost-ltd-shoes-red.jpg${params}`,
+                price: 196
+            },
+            {
+                id: 10,
+                seller: 'Adidas',
+                name: 'Ultraboost LTD',
+                imageUrl: `${prefix}/Adidas%2Fultraboost-ltd-shoes.jpg${params}`,
+                price: 220
+            },
+            {
+                id: 11,
+                seller: 'Adidas',
+                name: 'Ultraboose OG',
+                imageUrl: `${prefix}/Adidas%2Fultraboost-og-shoes.jpg${params}`,
+                price: 280
+            },
+            {
+                id: 12,
+                seller: 'Adidas',
+                name: 'ZX 2K Boost Black',
+                imageUrl: `${prefix}/Adidas%2Fzx-2k-boost-shoes-black.jpg${params}`,
+                price: 110
+            },
+            {
+                id: 13,
+                seller: 'Adidas',
+                name: 'ZX 2K Boost',
+                imageUrl: `${prefix}/Adidas%2Fzx-2k-boost-shoes.jpg${params}`,
+                price: 160
+            },
+            {
+                id: 14,
+                seller: 'Adidas',
+                name: 'Ultraboost 20 White',
+                imageUrl: `${prefix}/Adidas%2Fultraboost-20-shoes-white.jpg${params}`,
+                price: 230
+            },
+            {
+                id: 15,
+                seller: 'Adidas',
+                name: 'Ultraboost 20',
+                imageUrl: `${prefix}/Adidas%2Fultraboost-20-shoes.jpg${params}`,
+                price: 230
+            },
+            {
+                id: 16,
+                seller: 'Adidas',
+                name: 'Forum Low',
+                imageUrl: `${prefix}/Adidas%2Fforum-low-shoes.jpg${params}`,
+                price: 190
+            },
+        ]
     }
-]
+];
   
-export default collection;
+export default SHOP_DATA;

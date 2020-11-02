@@ -34,11 +34,11 @@
 }
 
 .slick-arrow {
-    color: black;
+    color: black!important;
 }
 
 .slick-arrow:hover {
-    color: rgb(169, 169, 169);
+    color: rgb(169, 169, 169)!important;
     cursor: pointer;
 }
 
@@ -48,7 +48,7 @@
     padding-bottom: 15px;
 }
 .slick-track {
-    display: flex;
+    display: flex!important;
 }
 
 .container .style:hover {

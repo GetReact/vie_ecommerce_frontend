@@ -1,11 +1,13 @@
-import collection from'../../containers/ShopPage/ShopData';
+import SHOP_DATA from'../../containers/ShopPage/ShopData';
 
-const INITIAL_STATE = {collection};
+const INITIAL_STATE = {
+    collections : SHOP_DATA,
+};
 
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         default:
-            return state;   
+            return state;
     }
 }
 

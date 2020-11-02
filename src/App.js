@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { auth, createUserProfileDocument } from './firebase/firebase';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
 import { setCurrentUser } from './redux/user/user-action';
+import { selectCurrentUser } from './redux/user/user-selectors';
+import { selectShoesCollection, selectCollections } from './redux/shop/shop-selectors';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
@@ -28,6 +31,16 @@ class App extends Component {
           })
         });
       } else setCurrentUser(userAuth);
+
+      const collectionRef = firestore.collection('shop_data');
+      collectionRef.onSnapshot(snapshot => {
+        const collectionMap = convertCollectionsSnapshottoMap(snapshot);
+        console.log(collectionMap);
+      });
+
+
+      // console.log(this.props.shoesCollection);
+      // addCollectionandDocuments('shop_data', this.props.shoesCollection);
     })
   }
 
@@ -56,8 +69,13 @@ class App extends Component {
   
 }
 
+const mapStatetoProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  shoesCollection: selectCollections,
+});
+
 const mapDispathtoProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(null, mapDispathtoProps)(App);
+export default connect(mapStatetoProps, mapDispathtoProps)(App);
