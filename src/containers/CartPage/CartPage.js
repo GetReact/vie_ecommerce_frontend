@@ -1,29 +1,25 @@
 import React from 'react';
 import { Row, Button, Table } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItems, selectCartItemsCount} from '../../redux/cart/cart-selectors';
+
 import ProductCell from '../../components/CartPageCells/ProductCell/ProductCell';
 import SellerCell from '../../components/CartPageCells/SellerCell/SellerCell';
 import QuantityCell from '../../components/CartPageCells/QuantityCell/QuantityCell';
 import PriceCell from '../../components/CartPageCells/PriceCell/PriceCell';
+import StripeCheckoutButton from '../../components/StripeButton/StripeButton';
 import './CartPage.css';
-import { connect } from 'react-redux';
-import { selectCartItems } from '../../redux/cart/cart-selectors';
 
-const CartPage = ({ cartItems }) => {
-    const history = useHistory();
-
-    const handleCheckout = () => {
-        history.push('/checkout');
-    }
-
+const CartPage = ({ cartItems, cartLength }) => {
     let totalPrice = 0;
     cartItems.map(item => totalPrice += (item.price * item.quantity));
 
     return (
         <div className="cart-page">
             <Row>
-                {cartItems.length === 0?(
+                {cartLength === 0?(
                     <h1>
                         YOUR CART IS EMPTY
                     </h1>
@@ -50,7 +46,7 @@ const CartPage = ({ cartItems }) => {
                                         cartItems.map((item, index) => {
                                             return (
                                                 <tr key={item.id}>
-                                                    <td>{index}</td>
+                                                    <td>{index+1}</td>
                                                     <ProductCell
                                                         img_src={item.imageUrl}
                                                         name={item.name}
@@ -81,19 +77,20 @@ const CartPage = ({ cartItems }) => {
                         Continue Shopping
                     </Button>
                 </LinkContainer>
-                <Button 
-                    variant="outline-dark" 
-                    disabled={cartItems.length === 0}
-                    onClick={!cartItems.length === 0 ? handleCheckout : null}>
-                    Checkout Now
-                </Button>
+                {cartLength > 0 ? <StripeCheckoutButton price={totalPrice}/> : ''}
             </Row>
+            <div className="test-warning">
+                *Please use the following test credit card for payments*
+                <br />
+                4242 4242 4242 4242 - Exp: 01/21 - CVV 123
+            </div>
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    cartItems: selectCartItems(state),
+const mapStatetoProps = createStructuredSelector({
+    cartItems: selectCartItems,
+    cartLength: selectCartItemsCount,
 });
 
-export default connect(mapStateToProps)(CartPage);
+export default connect(mapStatetoProps)(CartPage);

@@ -31,3 +31,8 @@
 .cart-page .btn:disabled {
     cursor: no-drop;
 }
+
+.cart-page .test-warning {
+    text-align: center;
+    color: red;
+}
