@@ -39,7 +39,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden }) => {
     
     const sellDropdown = (
         <div className='nav-item-dropdown'>
-            <div className='dropdown-item' onClick={() => history.push('/sell-now')}>Sell Now</div>
+            <div className='dropdown-item' onClick={() => history.push('/sell-now')}>Sell Now!</div>
             <div className='dropdown-item' onClick={() => history.push('/how-to-sell')}>How To Sell?</div>
             <div className='dropdown-item' onClick={() => history.push('/how-to-ship')}>How It Works?</div>
         </div>

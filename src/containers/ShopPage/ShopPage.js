@@ -20,6 +20,16 @@ const ShopPage = (props) => {
         }
     });
 
+    const SortBar = (
+        <div>
+            <label htmlFor='sort' style={{paddingRight : '0.5rem'}}>Sort by price:</label>{' '}
+            <select id='sort'>
+                <option value='high to low'>High to low</option>
+                <option value='low to high'>Low to high</option>
+            </select>
+        </div>
+    );
+
     return (
         <div className="productpage">
             {   
@@ -29,8 +39,8 @@ const ShopPage = (props) => {
                             <SideBar/>
                         </Col>
                         <Col lg={8} md={12} className="products">
-                            <Row>
-                                <InputGroup className="search-bar">
+                            <Row className="search-bar">
+                                <InputGroup>
                                     <FormControl
                                         placeholder="Search"
                                         aria-label="Search"
@@ -40,6 +50,9 @@ const ShopPage = (props) => {
                                         <Button variant="outline-secondary">Search</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
+                            </Row>
+                            <Row className='sort-bar'>
+                                {SortBar}
                             </Row>
                             <Row className="product-grid">
                                 <ProductGrid items = { props.shoesCollection }/>
@@ -51,7 +64,12 @@ const ShopPage = (props) => {
                     <>
                         <Row>
                             <Col md={12}><SideBar/></Col>
-                            <Col md={12}><ProductGrid items = { props.shoesCollection }/></Col>
+                            <Col md={12}>
+                                <span className='sort-bar-small'>
+                                    {SortBar}
+                                </span>
+                                <ProductGrid items = { props.shoesCollection }/>
+                            </Col>
                         </Row>
                     </>
                 )

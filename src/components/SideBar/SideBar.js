@@ -43,7 +43,7 @@ const SideBar = () => {
                 onChange={handlePriceChange}
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"/>
-            <h6 style={{textAlign:"center",}}>{priceVal[0]} &lt; Current (USD) &lt; {priceVal[1]}</h6>
+            <h6 style={{textAlign:"center",}}>{priceVal[0]} &lt; Price (USD) &lt; {priceVal[1]}</h6>
         </div>
     );
 
@@ -71,7 +71,7 @@ const SideBar = () => {
         <div className={dropped ? 'sidebar dropped' : 'sidebar'}>
             <div className='sidebar-header' onClick={handleDropDown}>
                 {dropdownToggle}
-                Catagories
+                Brands
             </div>
             { dropped ? catagories : "" }
             <div className='sidebar-header' onClick={handleDropDown}>

@@ -3,14 +3,23 @@
     display: flex;
 }
 
+.productpage .products .search-bar {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;;
+    padding-top: 1cm;
+    padding-bottom: 0.5cm;
+}
+
+.productpage .products .sort-bar,
+.productpage .sort-bar-small {
+    margin: 0.5cm;
+    text-align: right;
+    display: block!important;
+}
+
 .productpage .products .product-grid {
     margin-right: 1cm;
     margin-left: 1cm;
-}
-
-.productpage .products .search-bar {
-    width: 80%;
-    padding-top: 1cm;
-    padding-bottom: 1cm;
 }
 
