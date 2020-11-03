@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../redux/user/user-selectors';
 import { selectLoading } from '../redux/spinner/spinner-selectors';
 import WithSpinner from '../hoc/WithSpinner';
+import { fireBaseMediaURL } from '../config';
 
 import Home from './Home';
 import AuthenticationPage from './AuthenticationPage/AuthenticationPage';
@@ -51,7 +52,7 @@ const Routes = (props) => {
                 <img 
                     alt="background"
                     className="background" 
-                    src="/assets/images/how-to-sell/standard/standard-background.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fstandard-background.jpg') } 
                     style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
                 />
                 <StandardPage/>
@@ -60,7 +61,7 @@ const Routes = (props) => {
                 <img 
                     alt="background"
                     className ="background"
-                    src="/assets/images/how-to-sell/ship/backgroundship.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fship%2Fbackgroundship.jpg') }
                     style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
                 />
                 <HowToShipPage/>

@@ -2,7 +2,10 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 
+import { fireBaseMediaURL } from '../../config';
+
 import ProfileButton from '../../components/ProfileNavigationOptions/ProfileNavigationOptions';
+
 import './ProfilePage.css';
 
 const ProfilePage = () => {
@@ -14,7 +17,7 @@ const ProfilePage = () => {
                         <ProfileButton 
                             title="order-history"
                             body="View your order history"
-                            img="assets/images/profile/profile-order.jpg"/>
+                            img={ fireBaseMediaURL('profile%2Fprofile-order.jpg') }/>
                     </Link>
                 </Col>
                 <Col xl={4}className='options-col'>
@@ -22,7 +25,7 @@ const ProfilePage = () => {
                         <ProfileButton
                             title="info"
                             body="Login and security"
-                            img="assets/images/profile/profile-lock.png"/>
+                            img={ fireBaseMediaURL('profile%2Fprofile-lock.png') }/>
                     </Link>
                 </Col>
                 <Col xl={4}className='options-col'>
@@ -30,7 +33,7 @@ const ProfilePage = () => {
                         <ProfileButton
                             title="cart"
                             body="View your cart"
-                            img="assets/images/profile/profile-cart.png"/>
+                            img={ fireBaseMediaURL('profile%2Fprofile-cart.png') }/>
                     </Link>
                 </Col>
             </Row>

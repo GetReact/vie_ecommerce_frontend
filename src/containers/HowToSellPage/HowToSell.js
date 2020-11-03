@@ -1,6 +1,9 @@
 import React from 'react';
 import { Carousel, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+
+import { fireBaseMediaURL } from '../../config';
+
 import './HowToSell.css'
 
 const HowToSell = () => {
@@ -9,7 +12,7 @@ const HowToSell = () => {
             <Carousel.Item className="big-carousel-item">
                 <img
                     className="d-block w-100"
-                    src="assets/images/how-to-sell/how-to-sell/how-to-sell.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fhow-to-sell%2Fhow-to-sell.jpg')}
                     alt="how-to-sell"
                     height="950px"
                 />
@@ -24,7 +27,7 @@ const HowToSell = () => {
             <Carousel.Item className="big-carousel-item">
                 <img
                     className="d-block w-100"
-                    src="assets/images/how-to-sell/how-to-sell/sell-step1.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fhow-to-sell%2Fsell-step1.jpg')}
                     alt="how-to-sell"
                     height="950px" 
                 />
@@ -43,7 +46,7 @@ const HowToSell = () => {
             <Carousel.Item className="big-carousel-item">
                 <img
                     className="d-block w-100"
-                    src="assets/images/how-to-sell/how-to-sell/sell-step2.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fhow-to-sell%2Fsell-step2.jpg')}
                     alt="how-to-sell"
                     height="950px"
                 />
@@ -62,7 +65,7 @@ const HowToSell = () => {
             <Carousel.Item className="big-carousel-item">
                 <img
                     className="d-block w-100"
-                    src="assets/images/how-to-sell/how-to-sell/sell-step3.jpg"
+                    src={ fireBaseMediaURL('how-to-sell%2Fhow-to-sell%2Fsell-step3.jpg')}
                     alt="how-to-sell"
                     height="950px"
                 />

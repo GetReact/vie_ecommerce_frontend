@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import { fireBaseMediaURL } from '../../config';
 import './SellPage.css';
 import FormInput from '../../components/FormInput/FormInput';
 
@@ -173,7 +175,7 @@ const SellPage = (props) => {
             <img 
                 alt="background"
                 className="background" 
-                src="assets/images/others/sell-page.jpg"
+                src={ fireBaseMediaURL('others%2Fsell-page.jpg')}
                 style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
             />
             <Container style={{alignItems:'center'}}>

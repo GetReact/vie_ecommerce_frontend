@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
+
+import { fireBaseMediaURL } from '../../../config';
+
 import StandardCard from './StandardCard';
 import './ImageStandard.css';
 
@@ -16,39 +19,39 @@ export default class ImageStandard extends Component {
                 <Row>
                     <StandardCard 
                         title="1. Box"
-                        img="assets/images/how-to-sell/standard/box.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fbox.jpg') }/> 
                     <StandardCard 
                         title="2. Nametag"
-                        img="assets/images/how-to-sell/standard/nametag.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fnametag.jpg') }/>
                 </Row>
                 <Row>
                     <StandardCard 
                         title="3. Front"
-                        img="assets/images/how-to-sell/standard/mui.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fmui.jpg') }/>
                     <StandardCard 
                         title="4. Bottom"
-                        img="assets/images/how-to-sell/standard/de.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fde.jpg') }/>
                 </Row>
                 <Row>
                     <StandardCard 
                         title="5. Back"
-                        img="assets/images/how-to-sell/standard/dit.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fdit.jpg') }/>
                     <StandardCard 
                         title="6. Outside"
-                        img="assets/images/how-to-sell/standard/ngoai.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fngoai.jpg') }/>
                 </Row>
                 <Row>
                     <StandardCard 
                         title="7. Inside"
-                        img="assets/images/how-to-sell/standard/trong.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Ftrong.jpg') }/>
                     <StandardCard 
                         title="8. Specs"
-                        img="assets/images/how-to-sell/standard/tem.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Ftem.jpg') }/>
                 </Row>
                 <Row>
                     <StandardCard 
                         title="9. Imperfections"
-                        img="assets/images/how-to-sell/standard/khiemkhuyet.jpg"/>
+                        img={ fireBaseMediaURL('how-to-sell%2Fstandard%2Fkhiemkhuyet.jpg') }/>
                 </Row>
             </Container>
         )

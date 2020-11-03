@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { fireBaseMediaURL } from '../../config';
+
 import './Footer.css';
 
 const Footer = (props) => (
     <div>
         <div className="footer-left">
             <h3>
-                <img alt="Vigg Icon" src='assets/images/icons/vigg.png' width="250px"/>
+                <img alt="Vigg Icon" src={ fireBaseMediaURL('icons%2Fvigg.png')} width="250px"/>
             </h3>
             <p className="footer-links">
                 <a href="/">Home</a>{' '}
@@ -42,13 +45,13 @@ const Footer = (props) => (
         <div className="footer-right">
             <div className="social-media">
                 <a href="https://facebook.com">
-                    <img src="assets/images/shoes-img/fb-icon.png" alt="fb-logo" width="50em" height="50em" className="icon"/>
+                    <img src={ fireBaseMediaURL('shoes-img%2Ffb-icon.png') } alt="fb-logo" width="50em" height="50em" className="icon"/>
                 </a>
                 <a href="https://instagram.com">
-                    <img src='assets/images/shoes-img/insta-icon.png' alt="insta-logo" width="50em" height="50em" className="icon"/>
+                    <img src={ fireBaseMediaURL('shoes-img%2Finsta-icon.png') } alt="insta-logo" width="50em" height="50em" className="icon"/>
                 </a>
                 <a href="https://linkedin.com">
-                    <img src='assets/images/shoes-img/linkedin-icon.png' alt="linkedin-logo" width="50em" height="50em" className="icon"/>
+                    <img src={ fireBaseMediaURL('shoes-img%2Flinkedin-icon.png') } alt="linkedin-logo" width="50em" height="50em" className="icon"/>
                 </a>
             </div>
         </div>

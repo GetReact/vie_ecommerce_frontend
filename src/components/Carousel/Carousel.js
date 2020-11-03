@@ -1,5 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+
+import { fireBaseMediaURL } from '../../config';
+
 import "./Carousel.css";
 
 
@@ -8,7 +11,7 @@ const carouselSlider = (props) => (
         <Carousel.Item>
             <img
                 className="d-block w-100 cover"
-                src='assets/images/shoes-img/shoes-cover-1.jpg'
+                src={ fireBaseMediaURL('shoes-img%2Fshoes-cover-1.jpg') } 
                 height="600px"
                 alt="First slide"
             />
@@ -16,7 +19,7 @@ const carouselSlider = (props) => (
         <Carousel.Item>
             <img
                 className="d-block w-100 cover"
-                src='assets/images/shoes-img/shoes-cover-2.jpg'
+                src={ fireBaseMediaURL('shoes-img%2Fshoes-cover-2.jpg') }
                 height="600px"
                 alt="Third slide"
             />
@@ -24,7 +27,7 @@ const carouselSlider = (props) => (
         <Carousel.Item>
             <img
                 className="d-block w-100 cover"
-                src='assets/images/shoes-img/shoes-cover-3.jpg'
+                src={ fireBaseMediaURL('shoes-img%2Fshoes-cover-3.jpg') }
                 height="600px"
                 alt="Third slide"
             />

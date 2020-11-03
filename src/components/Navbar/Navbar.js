@@ -10,6 +10,7 @@ import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
+import { fireBaseMediaURL } from '../../config';
 
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import './Navbar.css';
@@ -53,7 +54,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden, setLoading }) => {
         <Navbar fluid="true" collapseOnSelect fixed="top" className={navbar ? 'navbar active' : 'navbar'} expand='lg'>
             <Navbar.Brand>
                 <LinkContainer to="/">
-                    <img alt="Vigg Icon" src={navbar ? 'assets/images/icons/vigg.png' : 'assets/images/icons/vigg_black.png'} className="navbar-brand"/>
+                    <img alt="Vigg Icon" src={navbar ? fireBaseMediaURL('icons%2Fvigg.png') : fireBaseMediaURL('icons%2Fvigg_black.png')} className="navbar-brand"/>
                 </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle>

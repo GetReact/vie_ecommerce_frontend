@@ -1,44 +1,49 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentUser } from '../../../redux/user/user-selectors';
-import { setCurrentUser } from '../../../redux/user/user-action';
+import { auth } from '../../../firebase/firebase';
 
 import FormInput from '../../../components/FormInput/FormInput';
 import './SecurityPage.css';
 
 const SecurityPage = (props) => {
-    const { currentUser } = props;
+    const history = useHistory();
     const [ state, setState ] = useState({
-        password: "",
-        confirmPassword: "", 
+        newPassword: '',
+        confirmPassword: '', 
     });
 
     const validateForm = () => {
         return (
-            state.password.length > 0 &&
-            state.password.length === state.confirmPassword.length
+            state.newPassword.length > 0 &&
+            state.newPassword.length === state.confirmPassword.length
         );
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        this.props.setLoading(true);
-        if (validateForm()) {
-            try {
-                const { password } = state;
-                // const { user } = await auth.createUserWithEmailAndPassword(email, password);
-                // createUserProfileDocument(user, { displayName });
-                props.setLoading(false);
-            } catch (e) {
-                console.error(e);
+        const { newPassword } = state;
+        props.setLoading(true);
+        try {
+            const user = await auth.currentUser;
+            if (validateForm()) {
+                user.updatePassword(newPassword).then(
+                    async () => {
+                        await auth.signOut();
+                        history.push('/signin');
+                        props.setLoading(false);
+                    }
+                ).catch((e) => {
+                    console.log(e);
+                });
             }
+        } catch (e) {
+            console.log(e);
         }
         setState({ 
-            password: "",
-            confirmPassword: "", 
+            newPassword: '',
+            confirmPassword: '', 
         })
     }
 
@@ -58,9 +63,9 @@ const SecurityPage = (props) => {
             <form onSubmit={handleSubmit}>
                 <FormInput 
                     label='New Password'
-                    name='password'
+                    name='newPassword'
                     type='password'
-                    value={state.password}
+                    value={state.newPassword}
                     handleChange={handleChange}
                     required
                 />
@@ -88,6 +93,7 @@ const SecurityPage = (props) => {
                     type="submit"
                     variant="outline-primary"
                     bssize="large"
+                    onClick={() => history.push('/profile')}
                 >
                     Cancel
                 </Button>
@@ -96,12 +102,4 @@ const SecurityPage = (props) => {
     );
 }
 
-const mapStatetoProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-});
-
-const mapDispatchtoProps = (dispatch) => ({
-    setCurrentUser: user => (setCurrentUser(user)),
-});
-
-export default connect(mapStatetoProps, mapDispatchtoProps)(SecurityPage);
+export default SecurityPage;
