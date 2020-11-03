@@ -12,8 +12,6 @@ import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
-import logo_black from '../../vigg_black.png';
-import logo_white from '../../vigg.png';
 import './Navbar.css';
 
 
@@ -55,7 +53,7 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden, setLoading }) => {
         <Navbar fluid="true" collapseOnSelect fixed="top" className={navbar ? 'navbar active' : 'navbar'} expand='lg'>
             <Navbar.Brand>
                 <LinkContainer to="/">
-                    <img alt="Vigg Icon" src={navbar ? logo_white : logo_black} className="navbar-brand"/>
+                    <img alt="Vigg Icon" src={navbar ? 'assets/images/icons/vigg.png' : 'assets/images/icons/vigg_black.png'} className="navbar-brand"/>
                 </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle>

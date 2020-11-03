@@ -1,12 +1,11 @@
 import React from 'react';
 import './Footer.css';
-import logo from '../../vigg.png';
 
 const Footer = (props) => (
     <div>
         <div className="footer-left">
             <h3>
-                <img alt="Vigg Icon" src={logo} width="250px"/>
+                <img alt="Vigg Icon" src='assets/images/icons/vigg.png' width="250px"/>
             </h3>
             <p className="footer-links">
                 <a href="/">Home</a>{' '}

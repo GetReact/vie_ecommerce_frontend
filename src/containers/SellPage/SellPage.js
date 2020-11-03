@@ -173,7 +173,7 @@ const SellPage = (props) => {
             <img 
                 alt="background"
                 className="background" 
-                src="assets/images/sell-page.jpg"
+                src="assets/images/others/sell-page.jpg"
                 style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
             />
             <Container style={{alignItems:'center'}}>
