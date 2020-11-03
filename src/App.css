@@ -33,23 +33,21 @@
     min-height: 100vh;
 }
 
-main {
-    /* margin-top: 67.61px; */
+main #content-wrap {
+    margin-top: 70px;
     background-color: transparent!important;
     font-family: 'Spartan', sans-serif;
     font-weight: 500;
-    /* margin-bottom: 5cm; */
+    padding-bottom: 12cm;
 }
 
-footer {
-    font-family: 'Spartan', sans-serif;
-}
-
-.footer-distributed{
+main #footer {
     position: absolute;
-    /* bottom: 0; */
+    font-family: 'Spartan', sans-serif;
+    bottom: 0;
     width: 100%;
-	justify-content: center;
+    height: 12cm;
+    justify-content: center;
 	background-color: black;
 	box-sizing: border-box;
 	text-align: left;

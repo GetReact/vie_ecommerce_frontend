@@ -51,7 +51,7 @@ const Routes = (props) => {
                 <img 
                     alt="background"
                     className="background" 
-                    src="assets/images/how-to-sell/standard/standard-background.jpg"
+                    src="/assets/images/how-to-sell/standard/standard-background.jpg"
                     style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
                 />
                 <StandardPage/>
@@ -60,7 +60,7 @@ const Routes = (props) => {
                 <img 
                     alt="background"
                     className ="background"
-                    src="assets/images/how-to-sell/ship/backgroundship.jpg"
+                    src="/assets/images/how-to-sell/ship/backgroundship.jpg"
                     style={{"position":"fixed", "zIndex":-1, objectFit:'cover', height: '100%', width: '100%'}}
                 />
                 <HowToShipPage/>

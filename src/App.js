@@ -58,16 +58,14 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Navbar />
+          <Navbar/>
         </header>
         <main>
-          <Routes />
-        </main>
-        <div className="footer-distributed">
-          <footer>
-            <Footer />
+          <div id='content-wrap'><Routes/></div>
+          <footer id='footer' className='footer-distributed'>
+            <Footer/>
           </footer>
-        </div>
+        </main>
       </div>
     );
   }
