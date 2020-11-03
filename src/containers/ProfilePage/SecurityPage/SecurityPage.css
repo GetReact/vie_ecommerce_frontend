@@ -1,0 +1,20 @@
+.security-page {
+    margin-top: 3cm;
+    width: 10cm;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.security-page .security-page-title {
+    margin-top: 1cm;
+    font-size: 1cm;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.security-page button:disabled{
+    cursor: no-drop;
+}

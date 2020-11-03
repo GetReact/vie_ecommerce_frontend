@@ -22,7 +22,7 @@ class RegisterForm extends Component {
                 this.state.displayName.length > 0 &&
                 this.state.email.length > 0 &&
                 this.state.password.length > 0 &&
-                this.state.password === this.state.confirmPassword
+                this.state.password.length === this.state.confirmPassword.length
             );
         }
 

@@ -16,6 +16,7 @@ import StandardPage from './HowToSellPage/Standard/ImageStandard';
 import HowToShipPage from './HowToSellPage/HowToShip';
 import HowToSell from './HowToSellPage/HowToSell';
 import ProfilePage from './ProfilePage/ProfilePage';
+import SecurityPage from './ProfilePage/SecurityPage/SecurityPage';
 import CartPage from './CartPage/CartPage';
 
 const HomeWithSpinner = WithSpinner(Home);
@@ -65,6 +66,7 @@ const Routes = (props) => {
                 <HowToShipPage/>
             </Route>
             <Route exact path="/profile" component={ProfilePage}/>
+            <Route exact path="/profile/info" component={SecurityPage}/>
             <Route exact path="/cart" component={CartPage}/>
             <Route component={NotFound}/>
         </Switch>

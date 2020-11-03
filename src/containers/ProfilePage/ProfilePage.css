@@ -1,8 +1,19 @@
 .profile-page {
     padding-top: 5cm;
     margin-bottom: 4cm;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
+.profile-page .options-row .options-col {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* 
 .profile-page .row {
     margin-right: none;
 }
@@ -19,4 +30,4 @@
 .profile-page .user-info button {
     width: 100%;
     margin-bottom: 5px;
-}
+} */

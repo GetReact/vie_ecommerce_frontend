@@ -1,0 +1,27 @@
+.profile-nav-options {
+    display: flex;
+    width: 12cm;
+    text-align: center;
+    align-items: center;
+    height: 2cm;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.profile-nav-options:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+.profile-nav-options .option-image {
+    width: 30%;
+}
+
+.profile-nav-options .option-title {
+    width: 70%;
+}
