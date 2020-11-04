@@ -1,16 +1,27 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Slider } from '@material-ui/core';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+
+import { selectSideBarFilters, selectSideBarDropped } from '../../redux/sidebar/sidebar-selectors';
+import { resetFilters, toggleSideBarDropped } from '../../redux/sidebar/sidebar-actions';
+
 import "./SideBar.css";
 
-const SideBar = () => {
-    const [ dropped, setDropped ] = useState(true);
-    const [ priceVal, setPrice ] = useState([50, 1000]);
-    const [ sizeVal, setSize ] = useState([7, 10]);
+const SideBar = (props) => {
+    const { dropped, toggleSideBarDropped, filters, resetFilters } = props;
 
-    const handleDropDown = () => {
-        setDropped(!dropped);
-    }
+    const { 
+        minPrice, 
+        maxPrice,
+        minSize,
+        maxSize,
+    } = filters;
+
+    const [ priceVal, setPrice ] = useState([minPrice, maxPrice]);
+    const [ sizeVal, setSize ] = useState([minSize, maxSize]);
+    const [ prodConditions, setConditions] = useState([]);
 
     const handlePriceChange = (event, newPrice) => {
         setPrice(newPrice);
@@ -18,6 +29,30 @@ const SideBar = () => {
     
     const handleSizeChange = (event, newSize) => {
         setSize(newSize);
+    };
+
+    const handleCheckboxClicked = event => {
+        const { value } = event.target;
+        const existed = prodConditions.find(cond => cond === value);
+        console.log(existed);
+        if (existed) {
+            const index = prodConditions.indexOf(existed);
+            prodConditions.splice(index, 1);
+        } else {
+            setConditions([ ...prodConditions, value ]);
+        }
+    }
+
+    const handleSubmit = () => {
+        resetFilters(
+            {
+                minPrice: priceVal[0],
+                maxPrice: priceVal[1],
+                minSize: sizeVal[0],
+                maxSize: sizeVal[1],
+                conditions: prodConditions,
+            }
+        );
     };
 
     const dropdownToggle = (
@@ -36,11 +71,11 @@ const SideBar = () => {
     const price = (
         <div className='items'>
             <Slider
-                style={{width:"90%", left:'5%', right:'5%',}}
+                style={{width:"80%", left:'5%', right:'15%',}}
                 value={priceVal}
-                min={50}
+                min={0}
                 max={1000}
-                onChange={handlePriceChange}
+                onChange={ handlePriceChange }
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"/>
             <h6 style={{textAlign:"center",}}>{priceVal[0]} &lt; Price (USD) &lt; {priceVal[1]}</h6>
@@ -50,45 +85,69 @@ const SideBar = () => {
     const size = (
         <div className='items'>
             <Slider
-                style={{width:"90%", left:'5%', right:'5%',}}
+                style={{width:"80%", left:'5%', right:'15%',}}
                 value={sizeVal}
                 min={0}
                 max={20}
-                onChange={handleSizeChange}
+                onChange={ handleSizeChange }
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"/>
         </div>
     );
 
-    const conditions = (
+    const conditionsOptions = (
         <div className='items'>
-        <p><input className='toggle' type='checkbox' id='catagories'/><span>New</span></p>
-        <p><input className='toggle' type='checkbox' id='catagories'/><span>Used</span></p>
+        <p>
+            <input 
+                className='toggle' 
+                type='checkbox' 
+                id='catagories'
+                value='new' 
+                onChange={ handleCheckboxClicked }/>
+            <span>New</span>
+        </p>
+        <p>
+            <input 
+                className='toggle' 
+                type='checkbox' 
+                id='catagories'
+                value='used' 
+                onChange={ handleCheckboxClicked }/>
+            <span>Used</span>
+        </p>
     </div>
     );
 
     return (
         <div className={dropped ? 'sidebar dropped' : 'sidebar'}>
-            <div className='sidebar-header' onClick={handleDropDown}>
-                {dropdownToggle}
-                Brands
+            <div className='sidebar-cell'>
+                <div className='sidebar-header' onClick={toggleSideBarDropped}>
+                    <span className='sidebar-header-title'>Brands</span>
+                    {dropdownToggle}
+                </div>
+                { dropped ? catagories : "" }
             </div>
-            { dropped ? catagories : "" }
-            <div className='sidebar-header' onClick={handleDropDown}>
-                {dropdownToggle}
-                Price
+            <div className='sidebar-cell'>
+                <div className='sidebar-header' onClick={toggleSideBarDropped}>
+                    <span className='sidebar-header-title'>Price</span>
+                    {dropdownToggle}
+                </div>
+                { dropped ? price : "" }
             </div>
-            { dropped ? price : "" }
-            <div className='sidebar-header' onClick={handleDropDown}>
-                {dropdownToggle}
-                Size
+            <div className='sidebar-cell'>
+                <div className='sidebar-header' onClick={toggleSideBarDropped}>
+                    <span className='sidebar-header-title'>Size</span>
+                    {dropdownToggle}
+                </div>
+                { dropped ? size : "" }
             </div>
-            { dropped ? size : "" }
-            <div className='sidebar-header' onClick={handleDropDown}>
-                {dropdownToggle}
-                Conditions
+            <div className='sidebar-cell-2'>
+                <div className='sidebar-header' onClick={toggleSideBarDropped}>
+                    <span className='sidebar-header-title'>Conditions</span>
+                    {dropdownToggle}
+                </div>
+                { dropped ? conditionsOptions : "" }
             </div>
-            { dropped ? conditions : "" }
             { dropped ? (
                 <Button
                     variant="outline-dark"
@@ -99,6 +158,7 @@ const SideBar = () => {
                         marginLeft:"35%",
                         marginRigth:"45%",
                     }}
+                    onClick={ handleSubmit }
                 >
                     Apply Now
                 </Button>
@@ -107,4 +167,14 @@ const SideBar = () => {
     )
 }
 
-export default SideBar;
+const mapStatetoProps = createStructuredSelector({
+    filters: selectSideBarFilters,
+    dropped: selectSideBarDropped,
+});
+
+const mapDispatchtoProps = dispatch => ({
+    resetFilters: newValues => dispatch(resetFilters(newValues)),
+    toggleSideBarDropped: () => dispatch(toggleSideBarDropped()),
+});
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(SideBar);

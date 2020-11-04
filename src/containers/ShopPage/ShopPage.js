@@ -22,10 +22,11 @@ const ShopPage = (props) => {
 
     const SortBar = (
         <div>
-            <label htmlFor='sort' style={{paddingRight : '0.5rem'}}>Sort by price:</label>{' '}
+            <label htmlFor='sort' style={{paddingRight : '0.5rem'}}>Sort by </label>{' '}
             <select id='sort'>
-                <option value='high to low'>High to low</option>
-                <option value='low to high'>Low to high</option>
+                <option value='high to low'>None</option>
+                <option value='high to low'>Price: High to low</option>
+                <option value='low to high'>Price: Low to high</option>
             </select>
         </div>
     );

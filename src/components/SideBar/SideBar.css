@@ -9,8 +9,7 @@
     }
 
     .sidebar .sidebar-header {
-        margin-left: 40%;
-        margin-bottom: 1cm;
+        margin-bottom: 0.5cm;
         font-weight: 700;
     }
 }
@@ -18,6 +17,7 @@
 @media (max-width: 992px) {
     .sidebar {
         width: 70%;
+        margin-top: 2cm;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1cm;
@@ -26,14 +26,13 @@
     }
 
     .sidebar .sidebar-header {
-        margin-left: 20%;
+        margin-left: 0.5cm;
         margin-bottom: 0.5cm;
         font-weight: 700;
     }
 }
 
 .sidebar.dropped .sidebar-header {
-    margin: 0.5cm;
     font-weight: 700;
 }
 
@@ -45,6 +44,34 @@
     cursor: pointer;
 }
 
+.sidebar-header {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.sidebar-header .sidebar-header-title {
+    width: 80%;
+    display: block;
+}
+
+.sidebar-header .toggle {
+    width: 20%;
+    display: block;
+    text-align: right;
+}
+
 .sidebar.dropped .items {
     padding-left: 1.5cm;
+}
+
+.sidebar-cell {
+    margin: 0.5cm;
+    padding: 0.25cm;
+    border-bottom: 1px solid gray;
+}
+
+.sidebar-cell-2 {
+    margin: 0.5cm;
+    padding: 0.25cm;
 }

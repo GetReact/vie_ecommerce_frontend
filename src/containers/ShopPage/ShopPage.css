@@ -5,14 +5,17 @@
 .productpage .products .search-bar {
     width: 80%;
     margin-left: 10%;
-    margin-right: 10%;;
+    margin-right: 10%;
     padding-top: 1cm;
     padding-bottom: 0.5cm;
 }
 
 .productpage .products .sort-bar,
 .productpage .sort-bar-small {
-    margin: 0.5cm;
+    margin-right: 10%;
+    margin-top: 0.5cm;
+    margin-left: 0.5cm;
+    margin-bottom: 0.5cm;
     text-align: right;
     display: block!important;
 }
