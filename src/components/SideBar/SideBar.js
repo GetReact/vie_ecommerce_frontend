@@ -57,21 +57,20 @@ const SideBar = (props) => {
 
     const dropdownToggle = (
         dropped
-        ? <span className='toggle' aria-labelledby='minus' role='img'>&#10134;</span>
-        : <span className='toggle' aria-labelledby='plus' role='img'>&#10133;</span>
+        ? <span className='dropdown-icon' aria-labelledby='minus' role='img'>&#10134;</span>
+        : <span className='dropdown-icon' aria-labelledby='plus' role='img'>&#10133;</span>
     );
 
     const catagories = (
         <div className='items'>
-            <p><input className='toggle' type='checkbox' id='catagories'/><span>Adidas</span></p>
-            <p><input className='toggle' type='checkbox' id='catagories'/><span>Nike</span></p>
+            <p><input className='items-icon' type='checkbox' id='catagories'/><span>Adidas</span></p>
+            <p><input className='items-icon' type='checkbox' id='catagories'/><span>Nike</span></p>
         </div>
     );
 
     const price = (
-        <div className='items'>
+        <div className='sidebar-slider'>
             <Slider
-                style={{width:"80%", left:'5%', right:'15%',}}
                 value={priceVal}
                 min={0}
                 max={1000}
@@ -83,9 +82,8 @@ const SideBar = (props) => {
     );
 
     const size = (
-        <div className='items'>
+        <div className='sidebar-slider'>
             <Slider
-                style={{width:"80%", left:'5%', right:'15%',}}
                 value={sizeVal}
                 min={0}
                 max={20}
@@ -99,7 +97,7 @@ const SideBar = (props) => {
         <div className='items'>
         <p>
             <input 
-                className='toggle' 
+                className='items-icon' 
                 type='checkbox' 
                 id='catagories'
                 value='new' 
@@ -108,7 +106,7 @@ const SideBar = (props) => {
         </p>
         <p>
             <input 
-                className='toggle' 
+                className='items-icon' 
                 type='checkbox' 
                 id='catagories'
                 value='used' 
@@ -149,19 +147,16 @@ const SideBar = (props) => {
                 { dropped ? conditionsOptions : "" }
             </div>
             { dropped ? (
+            <div className='sidebar-cell-2'>
                 <Button
+                    className='sidebar-button'
                     variant="outline-dark"
                     type="submit"
-                    style={{
-                        width:"30%",
-                        marginTop:"0.5cm",
-                        marginLeft:"35%",
-                        marginRigth:"45%",
-                    }}
                     onClick={ handleSubmit }
                 >
-                    Apply Now
+                    Apply
                 </Button>
+            </div>
             ) : "" }
         </div>
     )

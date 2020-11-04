@@ -26,7 +26,6 @@
     }
 
     .sidebar .sidebar-header {
-        margin-left: 0.5cm;
         margin-bottom: 0.5cm;
         font-weight: 700;
     }
@@ -36,7 +35,7 @@
     font-weight: 700;
 }
 
-.toggle {
+.items-icon {
     margin-right: 0.5cm;
 }
 
@@ -55,14 +54,14 @@
     display: block;
 }
 
-.sidebar-header .toggle {
+.sidebar-header .dropdown-icon {
     width: 20%;
     display: block;
     text-align: right;
 }
 
 .sidebar.dropped .items {
-    padding-left: 1.5cm;
+    padding-left: 1cm;
 }
 
 .sidebar-cell {
@@ -71,7 +70,20 @@
     border-bottom: 1px solid gray;
 }
 
+.sidebar-cell .sidebar-slider{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .sidebar-cell-2 {
     margin: 0.5cm;
     padding: 0.25cm;
+    overflow: hidden;
+}
+
+.sidebar-cell-2 .sidebar-button {
+    display: block;
+    right: 0;
+    float: right;
 }

@@ -9,7 +9,7 @@ const INITIAL_STATE = {
         maxSize: 20,
         conditions: [],
     },
-    dropped: true,
+    dropped: false,
 }
 
 const sidebarReducer = (state = INITIAL_STATE, action) => {
