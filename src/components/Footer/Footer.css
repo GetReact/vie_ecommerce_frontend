@@ -1,4 +1,45 @@
-.footer-distributed .footer-left,
+.footer {
+	padding: 2cm;
+}
+
+.footer .footer-shop-icon {
+	margin-bottom: 1cm;
+	text-align: center;
+	font-size: small;
+	color: gray;
+}
+
+.footer .footer-shop-icon .icon-image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0.25cm;
+}
+
+.footer .footer-nav-links {
+	margin-bottom: 1cm;
+	text-align: center;
+}
+
+.footer .footer-nav-links .footer-nav-link {
+	display: inline-block;
+	margin-left: 1cm;
+	margin-right: 1cm;
+}
+
+.footer .footer-nav-links .footer-nav-link a {
+	color: white;
+	font-weight: 700;
+}
+
+.footer .footer-nav-links .footer-info-link {
+	display: inline-block;
+	margin-left: 0.5cm;
+	margin-right: 0.5cm;
+}
+
+
+/* .footer-distributed .footer-left,
 .footer-distributed .footer-center,
 .footer-distributed .footer-right{
 	display: inline-block;
@@ -84,4 +125,4 @@
 
 .icon {
     padding: 7px;
-}
+} */

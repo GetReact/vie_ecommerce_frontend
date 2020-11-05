@@ -49,12 +49,6 @@ main #footer {
     height: 12cm;
     justify-content: center;
 	background-color: black;
-	box-sizing: border-box;
 	text-align: left;
-	font: bold 15px sans-serif;
-	padding-left: 70px;
-    padding-right: 70px;
-    padding-top: 30px;
-	padding-bottom: 70px;
 }
 

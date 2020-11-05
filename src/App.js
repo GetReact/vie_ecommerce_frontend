@@ -75,9 +75,7 @@ class App extends Component {
         </header>
         <main>
           <div id='content-wrap'><Routes/></div>
-          <footer id='footer' className='footer-distributed'>
-            <Footer/>
-          </footer>
+          <Footer/>
         </main>
       </div>
     );
