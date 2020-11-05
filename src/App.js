@@ -6,6 +6,9 @@ import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshott
 
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
+import { updateCollections } from './redux/shop/shop-actions';
+import { resetFilters } from './redux/sidebar/sidebar-actions';
+
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
 
@@ -13,7 +16,6 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Routes from './containers/Routes';
 import Footer from './components/Footer/Footer';
-import { updateCollections } from './redux/shop/shop-actions';
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -37,9 +39,20 @@ class App extends Component {
       } else setCurrentUser(userAuth);
 
       const collectionRef = firestore.collection('shop_data');
+
       collectionRef.onSnapshot(async snapshot => {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
+        
+        const brands = [];
+        collectionsMap.shoes.items.map(
+          item => brands.includes(item.seller.toLowerCase()) ? null : brands.push(item.seller.toLowerCase())
+        );  
+
         this.props.updateCollections(collectionsMap);
+        this.props.resetFilters({ 
+          brands: brands,
+          staticBrands: brands,
+        });
       });
 
       setLoading(false);
@@ -81,6 +94,7 @@ const mapDispathtoProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
   setLoading: loadingState => dispatch(setLoading(loadingState)),
+  resetFilters: newValues => dispatch(resetFilters(newValues)),
 });
 
 export default connect(mapStatetoProps, mapDispathtoProps)(App);

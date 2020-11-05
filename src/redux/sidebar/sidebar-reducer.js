@@ -3,11 +3,12 @@ import { SideBarActionTypes } from './sidebar-types';
 const INITIAL_STATE = {
     filters: {
         brands: [],
+        staticBrands: [],
         minPrice: 0,
         maxPrice: 1000,
         minSize: 0,
         maxSize: 20,
-        conditions: [],
+        conditions: ['new', 'used'],
     },
     dropped: false,
 }

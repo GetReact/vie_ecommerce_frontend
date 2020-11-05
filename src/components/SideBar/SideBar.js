@@ -10,18 +10,28 @@ import { resetFilters, toggleSideBarDropped } from '../../redux/sidebar/sidebar-
 import "./SideBar.css";
 
 const SideBar = (props) => {
-    const { dropped, toggleSideBarDropped, filters, resetFilters } = props;
+    const { 
+        dropped, 
+        toggleSideBarDropped,
+        filters,
+        resetFilters,
+    } = props;
 
     const { 
+        brands,
+        staticBrands,
         minPrice, 
         maxPrice,
         minSize,
         maxSize,
+        conditions,
     } = filters;
 
     const [ priceVal, setPrice ] = useState([minPrice, maxPrice]);
     const [ sizeVal, setSize ] = useState([minSize, maxSize]);
-    const [ prodConditions, setConditions] = useState([]);
+    const [ prodConditions, setConditions ] = useState(conditions);
+    const [ currentBrands, setCurrentBrands ] = useState(brands);
+    
 
     const handlePriceChange = (event, newPrice) => {
         setPrice(newPrice);
@@ -31,7 +41,19 @@ const SideBar = (props) => {
         setSize(newSize);
     };
 
-    const handleCheckboxClicked = event => {
+    const handleCatagoriesCheckboxClicked = event => {
+        const { value } = event.target;
+        const existed = currentBrands.find(brand => brand === value);
+        console.log(existed);
+        if (existed) {
+            const index = currentBrands.indexOf(existed);
+            currentBrands.splice(index, 1);
+        } else {
+            setCurrentBrands([ ...currentBrands, value ]);
+        }
+    }
+
+    const handleConditionsCheckboxClicked = event => {
         const { value } = event.target;
         const existed = prodConditions.find(cond => cond === value);
         console.log(existed);
@@ -46,6 +68,7 @@ const SideBar = (props) => {
     const handleSubmit = () => {
         resetFilters(
             {
+                brands: currentBrands,
                 minPrice: priceVal[0],
                 maxPrice: priceVal[1],
                 minSize: sizeVal[0],
@@ -63,8 +86,19 @@ const SideBar = (props) => {
 
     const catagories = (
         <div className='items'>
-            <p><input className='items-icon' type='checkbox' id='catagories'/><span>Adidas</span></p>
-            <p><input className='items-icon' type='checkbox' id='catagories'/><span>Nike</span></p>
+            {
+                staticBrands.map((brand, index) => 
+                    <p key={ index }>
+                        <input 
+                            className='items-icon' 
+                            type='checkbox' 
+                            id='catagories'
+                            value={ brand }
+                            onChange={ handleCatagoriesCheckboxClicked }/>
+                        <span>{ brand.toUpperCase() }</span>
+                    </p>
+                )
+            }   
         </div>
     );
 
@@ -95,25 +129,25 @@ const SideBar = (props) => {
 
     const conditionsOptions = (
         <div className='items'>
-        <p>
-            <input 
-                className='items-icon' 
-                type='checkbox' 
-                id='catagories'
-                value='new' 
-                onChange={ handleCheckboxClicked }/>
-            <span>New</span>
-        </p>
-        <p>
-            <input 
-                className='items-icon' 
-                type='checkbox' 
-                id='catagories'
-                value='used' 
-                onChange={ handleCheckboxClicked }/>
-            <span>Used</span>
-        </p>
-    </div>
+            <p>
+                <input 
+                    className='items-icon' 
+                    type='checkbox' 
+                    id='catagories'
+                    value='new'
+                    onChange={ handleConditionsCheckboxClicked }/>
+                <span>NEW</span>
+            </p>
+            <p>
+                <input 
+                    className='items-icon' 
+                    type='checkbox' 
+                    id='catagories'
+                    value='used'
+                    onChange={ handleConditionsCheckboxClicked }/>
+                <span>USED</span>
+            </p>
+        </div>
     );
 
     return (
