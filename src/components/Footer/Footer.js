@@ -4,7 +4,7 @@ import { fireBaseMediaURL } from '../../config';
 
 import './Footer.css';
 
-const Footer = (props) => {
+const Footer = () => {
     return (
         <footer id='footer' className='footer'>
             <div className='footer-shop-icon'>
