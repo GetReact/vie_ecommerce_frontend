@@ -1,12 +1,26 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+
+import { fireBaseMediaURL } from '../../config';
 
 const StripeCheckoutButton = ({ price }) => {
     const priceForStripe = price * 100;
     const publishableKey = 'pk_test_RbGyqUNtLADfy0AbvHBnDwVc00B55LwkFH';
     const onToken = token => {
-        console.log(token);
-        alert('Payment Successful!')
+        axios({
+            url: 'payment',
+            method: 'post',
+            data: {
+                amount: priceForStripe,
+                token
+            }
+        }).then(response => {
+            alert('Payment Successful!');
+        }) .catch(error => {
+            console.log('Payment error: ', JSON.parse(error));
+            alert('There was an issue. Please sure you use the provided credit card!')
+        });
     }
 
     return (
@@ -15,7 +29,7 @@ const StripeCheckoutButton = ({ price }) => {
             name='VIGG Marketplace'
             billingAddress
             shippingAddress
-            image='assets/images/vigg_small_icon.png'
+            image={ fireBaseMediaURL('icons%2Fvigg_small_icon.png') }
             description={`Your total is $${price}`}
             amount={priceForStripe}
             panelLabel='Pay Now'
