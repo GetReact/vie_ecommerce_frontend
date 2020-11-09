@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
+// import axios from 'axios';
 
 import { auth, signInWithGoogle } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
@@ -31,6 +32,20 @@ class LoginForm extends Component {
 
             try {
                 await auth.signInWithEmailAndPassword(email, password);
+                // axios({
+                //     url: 'signin',
+                //     method: 'post',
+                //     data: {
+                //         email,
+                //         password
+                //     }
+                // }).then(response => {
+                //     console.log(response)
+                //     alert(response.data.status);
+                // }).catch(error => {
+                //     console.log(error);
+                //     alert('An issue occurred!');
+                // });
                 this.setState({ email: '', password: '' })
                 this.props.setLoading(false);
             } catch(e) {

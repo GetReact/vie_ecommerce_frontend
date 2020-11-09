@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import axios from 'axios';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase';
+// import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 
 import FormInput from '../../components/FormInput/FormInput';
@@ -32,8 +33,23 @@ class RegisterForm extends Component {
             if (validateForm()) {
                 try {
                     const { displayName, email, password } = this.state;
-                    const { user } = await auth.createUserWithEmailAndPassword(email, password);
-                    createUserProfileDocument(user, { displayName });
+                    // const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                    axios({
+                        url: 'users',
+                        method: 'post',
+                        data: {
+                            displayName,
+                            email,
+                            password
+                        }
+                    }).then(response => {
+                        console.log(response)
+                        alert(response.data.status);
+                    }).catch(error => {
+                        console.log(error);
+                        alert('An issue occurred!');
+                    });
+                    // createUserProfileDocument(user, { displayName });
                     this.props.setLoading(false);
                 } catch (e) {
                     console.error(e);
