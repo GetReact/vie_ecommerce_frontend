@@ -4,22 +4,33 @@ import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { auth } from '../../firebase/firebase';
 import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
+import { setCurrentUser } from '../../redux/user/user-action';
+
 import { fireBaseMediaURL } from '../../config';
 
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import './Navbar.css';
 
 
-const NavBar = ({ currentUser, toggleCartHidden, hidden, setLoading }) => {
+const NavBar = (props) => {
     const [ navbar, setNavbar ] = useState(false);
     const [ navDropdownHidden, setNavDropDownHidden ] = useState(true);
     const history = useHistory();
+
+    const {
+        currentUser,
+        toggleCartHidden,
+        hidden,
+        setLoading,
+        setCurrentUser 
+    } = props;
 
     const changeBackground = () => {
         if (window.scrollY >= 70) {
@@ -32,11 +43,27 @@ const NavBar = ({ currentUser, toggleCartHidden, hidden, setLoading }) => {
     window.addEventListener('scroll', changeBackground);
 
     const handleSignOut = async () => {
+        console.log(Cookies.get('csrf_access_token'));
         setLoading(true);
         try {
-            await auth.signOut();
-            history.push('/signin');
-            setLoading(false);
+            // await auth.signOut();
+            axios({
+                url: '/signout',
+                method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN' : Cookies.get('csrf_access_token'),
+                }
+            }).then(response => {
+                console.log(response.data);
+                alert(response.data.status);
+                setCurrentUser(null);
+                setLoading(false);
+                history.push('/signin');
+            }).catch(error => {
+                console.log(error.response);
+                alert(error.response.data.error);
+                setLoading(false)
+            });
         } catch (e) {
             console.log(e);
         }
@@ -142,6 +169,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchtoProps = (dispatch) => ({
     toggleCartHidden: () => dispatch(toggleCartHidden()),
     setLoading: loadingState => dispatch(setLoading(loadingState)),
+    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
 });
 
 

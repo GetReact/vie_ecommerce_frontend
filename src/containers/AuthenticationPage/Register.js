@@ -35,7 +35,7 @@ class RegisterForm extends Component {
                     const { displayName, email, password } = this.state;
                     // const { user } = await auth.createUserWithEmailAndPassword(email, password);
                     axios({
-                        url: 'users',
+                        url: '/users',
                         method: 'post',
                         data: {
                             displayName,

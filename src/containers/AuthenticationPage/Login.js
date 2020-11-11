@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
-// import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
-import { auth, signInWithGoogle } from '../../firebase/firebase';
+
+import { signInWithGoogle } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
+import { setCurrentUser } from '../../redux/user/user-action';
 
 import FormInput from '../../components/FormInput/FormInput';
 
@@ -23,39 +26,42 @@ class LoginForm extends Component {
             );
         }
 
+        const { setLoading, setCurrentUser } = this.props;
+
         const handleSubmit = async (event) => {
             event.preventDefault();
-            this.props.setLoading(true);
+            setLoading(true);
+            
             const { email, password } = this.state;
             
             if (!validateForm()) return;
 
             try {
-                await auth.signInWithEmailAndPassword(email, password);
-                // axios({
-                //     url: 'signin',
-                //     method: 'post',
-                //     data: {
-                //         email,
-                //         password
-                //     }
-                // }).then(response => {
-                //     console.log(response)
-                //     alert(response.data.status);
-                // }).catch(error => {
-                //     console.log(error);
-                //     alert('An issue occurred!');
-                // });
-                this.setState({ email: '', password: '' })
-                this.props.setLoading(false);
+                await axios({
+                    url: '/signin',
+                    method: 'post',
+                    data: {
+                        email,
+                        password
+                    }
+                }).then(response => {
+                    const userAuth = response.data;
+                    console.log(userAuth);
+                    setCurrentUser(userAuth);
+                    setLoading(false);
+                }).catch(error => {
+                    console.log(error.response);
+                    alert(error.response.data.error);
+                    setLoading(false);
+                });
             } catch(e) {
                 console.log(e);
             }
         }
 
         const handleChange = (event) => {
-            const { value, name } = event.target
-            this.setState({ [name] : value })
+            const { value, name } = event.target;
+            this.setState({ [name] : value });
         }
 
         const renderForm = () => {
@@ -122,7 +128,8 @@ class LoginForm extends Component {
 }
 
 const mapDispatchtoProps = dispatch => ({
-    setLoading: loadingState => (setLoading(loadingState)),
+    setLoading: loadingState => dispatch(setLoading(loadingState)),
+    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
 })
 
-export default connect(null, mapDispatchtoProps)(LoginForm);
+export default withRouter(connect(null, mapDispatchtoProps)(LoginForm));

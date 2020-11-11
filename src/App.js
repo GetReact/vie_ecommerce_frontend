@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfileDocument, firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
+import { firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
 // import { auth, createUserProfileDocument, addCollectionandDocuments } from './firebase/firebase';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
@@ -22,24 +24,31 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser, setLoading } = this.props;
+    console.log('component did mount');
     setLoading(true);
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    
+    this.unsubscribeFromAuth = async () => {
+      
+      let userAuth = null;
+      userAuth = await axios({
+        url: '/users',
+        method: 'get',
+        headers: {
+          'X-CSRF-TOKEN' : Cookies.get('csrf_access_token'),
+        }
+      }).then(response => {
+        return response.data;
+      }).catch(error => {
+        console.log(error.response.data.error)
+        return null;
+      });
       if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            currentUser : {
-              id: snapShot.id,
-              ...snapShot.data(),
-            }
-          }, () => {
-            this.props.history.push('/')
-          })
-        });
+        setCurrentUser(userAuth, () => {
+          this.props.history.push('/')
+        })
       } else setCurrentUser(userAuth);
 
       const collectionRef = firestore.collection('shop_data');
-
       collectionRef.onSnapshot(async snapshot => {
         const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
         
@@ -59,10 +68,13 @@ class App extends Component {
 
       // console.log(this.props.shoesCollection);
       // addCollectionandDocuments('shop_data', this.props.shoesCollection);
-    })
+    }
+
+    this.unsubscribeFromAuth();
   }
 
   componentWillUnmount() {
+    console.log('componentwillunmount')
     this.unsubscribeFromAuth();
   }
 
