@@ -45,7 +45,7 @@ class LoginForm extends Component {
                         password
                     }
                 }).then(response => {
-                    const userAuth = response.data;
+                    const userAuth = response.data.currentUser;
                     console.log(userAuth);
                     setCurrentUser(userAuth);
                     setLoading(false);

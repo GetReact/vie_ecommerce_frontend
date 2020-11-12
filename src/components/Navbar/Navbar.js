@@ -46,22 +46,18 @@ const NavBar = (props) => {
         console.log(Cookies.get('csrf_access_token'));
         setLoading(true);
         try {
-            // await auth.signOut();
-            axios({
+            await axios({
                 url: '/signout',
                 method: 'post',
-                headers: {
-                    'X-CSRF-TOKEN' : Cookies.get('csrf_access_token'),
-                }
             }).then(response => {
                 console.log(response.data);
-                alert(response.data.status);
+                alert(response.data.message);
                 setCurrentUser(null);
                 setLoading(false);
                 history.push('/signin');
             }).catch(error => {
                 console.log(error.response);
-                alert(error.response.data.error);
+                alert(error.response);
                 setLoading(false)
             });
         } catch (e) {

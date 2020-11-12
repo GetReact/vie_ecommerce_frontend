@@ -31,17 +31,17 @@ class App extends Component {
       
       let userAuth = null;
       userAuth = await axios({
-        url: '/users',
+        url: '/me',
         method: 'get',
-        headers: {
-          'X-CSRF-TOKEN' : Cookies.get('csrf_access_token'),
-        }
+        withCredentials: true,
       }).then(response => {
-        return response.data;
-      }).catch(error => {
-        console.log(error.response.data.error)
+        console.log(response.data.currentUser)
+        return response.data.currentUser;
+      }).catch( error => {
+        console.log(error.response)
         return null;
       });
+
       if (userAuth) {
         setCurrentUser(userAuth, () => {
           this.props.history.push('/')
@@ -79,7 +79,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
         <header>
@@ -92,7 +91,6 @@ class App extends Component {
       </div>
     );
   }
-  
 }
 
 const mapStatetoProps = createStructuredSelector({
