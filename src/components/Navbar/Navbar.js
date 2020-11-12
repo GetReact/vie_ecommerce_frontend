@@ -5,7 +5,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
@@ -43,21 +42,18 @@ const NavBar = (props) => {
     window.addEventListener('scroll', changeBackground);
 
     const handleSignOut = async () => {
-        console.log(Cookies.get('csrf_access_token'));
         setLoading(true);
         try {
             await axios({
                 url: '/signout',
                 method: 'post',
             }).then(response => {
-                console.log(response.data);
                 alert(response.data.message);
                 setCurrentUser(null);
                 setLoading(false);
                 history.push('/signin');
             }).catch(error => {
-                console.log(error.response);
-                alert(error.response);
+                alert(error.response.data.error);
                 setLoading(false)
             });
         } catch (e) {

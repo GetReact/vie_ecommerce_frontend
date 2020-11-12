@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
 // import { auth, createUserProfileDocument, addCollectionandDocuments } from './firebase/firebase';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
@@ -35,10 +34,10 @@ class App extends Component {
         method: 'get',
         withCredentials: true,
       }).then(response => {
-        console.log(response.data.currentUser)
-        return response.data.currentUser;
+        console.log(response.data.message)
+        return response.data.message;
       }).catch( error => {
-        console.log(error.response)
+        console.log(error.response.data.error)
         return null;
       });
 

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-
 import { signInWithGoogle } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
@@ -45,12 +44,11 @@ class LoginForm extends Component {
                         password
                     }
                 }).then(response => {
-                    const userAuth = response.data.currentUser;
+                    const userAuth = response.data.message;
                     console.log(userAuth);
                     setCurrentUser(userAuth);
                     setLoading(false);
                 }).catch(error => {
-                    console.log(error.response);
                     alert(error.response.data.error);
                     setLoading(false);
                 });

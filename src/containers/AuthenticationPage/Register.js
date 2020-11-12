@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
+import { setCurrentUser } from '../../redux/user/user-action';
 
 import FormInput from '../../components/FormInput/FormInput';
 
@@ -27,40 +28,37 @@ class RegisterForm extends Component {
             );
         }
 
+        const { setLoading, setCurrentUser } = this.props;
+
         const handleSubmit = async (event) => {
             event.preventDefault();
-            this.props.setLoading(true);
+            setLoading(true);
             if (validateForm()) {
                 try {
                     const { displayName, email, password } = this.state;
                     // const { user } = await auth.createUserWithEmailAndPassword(email, password);
-                    axios({
+                    await axios({
                         url: '/users',
                         method: 'post',
                         data: {
                             displayName,
                             email,
                             password
-                        }
+                        },
+                        withCredentials: true
                     }).then(response => {
-                        console.log(response)
-                        alert(response.data.status);
+                        const userAuth = response.data.message;
+                        setCurrentUser(userAuth);
+                        setLoading(false);
                     }).catch(error => {
-                        console.log(error);
-                        alert('An issue occurred!');
+                        alert(error.response.data.error);
+                        setLoading(false);
                     });
                     // createUserProfileDocument(user, { displayName });
-                    this.props.setLoading(false);
                 } catch (e) {
                     console.error(e);
                 }
             }
-            this.setState({ 
-                displayName: "",
-                email: "",
-                password: "",
-                confirmPassword: "", 
-            })
         }
 
         const handleChange = (event) => {
@@ -133,7 +131,8 @@ class RegisterForm extends Component {
 }
 
 const mapDispatchtoProps = dispatch => ({
-    setLoading: loadingState => (setLoading(loadingState)),
+    setLoading: loadingState => dispatch(setLoading(loadingState)),
+    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
 })
 
 export default connect(null, mapDispatchtoProps)(RegisterForm);
