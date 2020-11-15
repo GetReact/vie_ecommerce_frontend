@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
-// import { auth, createUserProfileDocument, addCollectionandDocuments } from './firebase/firebase';
+// import { addCollectionandDocuments } from './firebase/firebase';
 import axios from 'axios';
 
 import { setCurrentUser } from './redux/user/user-action';

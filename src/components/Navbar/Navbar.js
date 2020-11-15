@@ -47,6 +47,7 @@ const NavBar = (props) => {
             await axios({
                 url: '/signout',
                 method: 'post',
+                withCredentials: true,
             }).then(response => {
                 alert(response.data.message);
                 setCurrentUser(null);

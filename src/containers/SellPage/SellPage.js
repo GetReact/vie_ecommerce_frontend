@@ -100,16 +100,19 @@ const SellPage = (props) => {
                 </Col>
             </Row>
             <Row>
-                <Col lg={10} md={12}>
+                <Col lg={7} md={12}>
                     <FormInput 
                         label='Condition Description'
                         name='conditions'
                         type='conditions'
                         value={conditions}
-                        handleChange={e => setConditions(e.target.value) }
+                        handleChange={ e => setConditions(e.target.value) }
                         required/>
                 </Col>
-                <Col lg={2} md={12}>
+                <Col lg={3} md={6}>
+                    <input onChange={ handleFileChange } type="file" id="myFile" name="filename"/>
+                </Col>
+                <Col lg={2} md={6}>
                     <Form.Control
                         as="select"
                         id="inlineFormCustomSelectPref"
@@ -123,52 +126,52 @@ const SellPage = (props) => {
         </>
     );
 
-    let formPics = (
-        <>
-            <Form.Row>
-                <Form.Group as={Col} controlId="hop">
-                    <Form.Label>Box</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="giay">
-                    <Form.Label>Shoes + Nametag</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="mui">
-                    <Form.Label>Front</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-            </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} controlId="de">
-                    <Form.Label>Bottom</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="mong">
-                    <Form.Label>Back</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="ngoai">
-                    <Form.Label>Outside</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-            </Form.Row>
-            <Form.Row>
-                <Form.Group as={Col} controlId="trong">
-                    <Form.Label>Inside</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="tem">
-                    <Form.Label>Specs</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-                <Form.Group as={Col} controlId="lot">
-                    <Form.Label>Imperfections (Used Only)</Form.Label>
-                    <Form.Control onChange={handleFileChange} type="file" />
-                </Form.Group>
-            </Form.Row>
-        </>
-    );
+    // let formPics = (
+        // <>
+        //     <Form.Row>
+        //         <Form.Group as={Col} controlId="hop">
+        //             <Form.Label>Box</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="giay">
+        //             <Form.Label>Shoes + Nametag</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="mui">
+        //             <Form.Label>Front</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //     </Form.Row>
+        //     <Form.Row>
+        //         <Form.Group as={Col} controlId="de">
+        //             <Form.Label>Bottom</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="mong">
+        //             <Form.Label>Back</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="ngoai">
+        //             <Form.Label>Outside</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //     </Form.Row>
+        //     <Form.Row>
+        //         <Form.Group as={Col} controlId="trong">
+        //             <Form.Label>Inside</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="tem">
+        //             <Form.Label>Specs</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //         <Form.Group as={Col} controlId="lot">
+        //             <Form.Label>Imperfections (Used Only)</Form.Label>
+        //             <Form.Control onChange={handleFileChange} type="file" />
+        //         </Form.Group>
+        //     </Form.Row>
+        // </>
+    // );
 
     return (
         <div className="sell-page">
@@ -182,39 +185,36 @@ const SellPage = (props) => {
                 <Form>
                     <h1 className="mb-5">SELL WITH US</h1>
                     {formInfo}
-                    <h2>IMAGES OF THE SHOES (*)</h2>
-                    {formPics}
+                    {/* <h2>IMAGES OF THE SHOES (*)</h2>
+                    {formPics} */}
                     <Row>
                         <Col>
                             <FormInput 
-                            label='Price'
-                            name='price'
-                            type='price'
-                            value={price}
-                            handleChange={e => setPrice(e.target.value) }
-                            required/>
-                        </Col>
-                        <Col>
-                            <Form.Check 
-                            type="checkbox"
-                            id="default-checkbox"
-                            label="By checking this box, you understand that we'll collect 5% of each transaction as service fee"
-                            style={{textAlign:'center'}}
-                            onChange={handleChecked}/>
+                                label='Price'
+                                name='price'
+                                type='price'
+                                value={price}
+                                handleChange={e => setPrice(e.target.value) }
+                                required/>
                         </Col>
                     </Row>
+                    <Form.Check 
+                        type="checkbox"
+                        id="default-checkbox"
+                        label="By checking this box, you understand that we'll collect 5% of each transaction as service fee"
+                        style={{textAlign:'left'}}
+                        onChange={handleChecked}/>
                     <Button 
-                        className="mt-4"
-                        variant="primary" 
+                        variant="outline-primary" 
                         type="submit" 
-                        style={{float:'right'}}
                         size="lg"
+                        style={{marginTop:'0.5cm'}}
                         disabled={!checked}
                     >
                         Submit
                     </Button>
                 </Form>
-                <Link to="/image-standards"><h6>(*) Click here to see our standards!</h6></Link>
+                {/* <Link to="/image-standards"><h6>(*) Click here to see our standards!</h6></Link> */}
             </Container>
         </div>
     );

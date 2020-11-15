@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import axios from 'axios';
 
-// import { auth, createUserProfileDocument } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
 
@@ -36,7 +35,6 @@ class RegisterForm extends Component {
             if (validateForm()) {
                 try {
                     const { displayName, email, password } = this.state;
-                    // const { user } = await auth.createUserWithEmailAndPassword(email, password);
                     await axios({
                         url: '/users',
                         method: 'post',
@@ -54,7 +52,6 @@ class RegisterForm extends Component {
                         alert(error.response.data.error);
                         setLoading(false);
                     });
-                    // createUserProfileDocument(user, { displayName });
                 } catch (e) {
                     console.error(e);
                 }

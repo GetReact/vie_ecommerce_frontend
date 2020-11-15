@@ -39,6 +39,7 @@ class LoginForm extends Component {
                 await axios({
                     url: '/signin',
                     method: 'post',
+                    withCredentials: true,
                     data: {
                         email,
                         password

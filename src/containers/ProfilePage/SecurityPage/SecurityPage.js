@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-import { auth } from '../../../firebase/firebase';
+import { setCurrentUser } from '../../../redux/user/user-action';
+import { setLoading } from '../../../redux/spinner/spinner-actions';
 
 import FormInput from '../../../components/FormInput/FormInput';
 import './SecurityPage.css';
@@ -14,6 +17,8 @@ const SecurityPage = (props) => {
         confirmPassword: '', 
     });
 
+    const { setCurrentUser, setLoading } = props;
+
     const validateForm = () => {
         return (
             state.newPassword.length > 0 &&
@@ -24,18 +29,22 @@ const SecurityPage = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { newPassword } = state;
-        props.setLoading(true);
+        setLoading(true);
         try {
-            const user = await auth.currentUser;
             if (validateForm()) {
-                user.updatePassword(newPassword).then(
-                    async () => {
-                        await auth.signOut();
-                        history.push('/signin');
-                        props.setLoading(false);
-                    }
-                ).catch((e) => {
-                    console.log(e);
+                await axios({
+                    url: '/me',
+                    method: 'post',
+                    withCredentials: true,
+                    data: { newPassword },
+                }).then(response => {
+                    alert(response.data.message);
+                    setCurrentUser(null);
+                    setLoading(false);
+                    history.push('/signin')
+                }).catch(error => {
+                    alert(error.response.data.error);
+                    setLoading(false);
                 });
             }
         } catch (e) {
@@ -102,4 +111,9 @@ const SecurityPage = (props) => {
     );
 }
 
-export default SecurityPage;
+const mapDispatchtoProps = dispatch => ({
+    setLoading: loadingState => dispatch(setLoading(loadingState)),
+    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
+});
+
+export default connect(null, mapDispatchtoProps)(SecurityPage);
