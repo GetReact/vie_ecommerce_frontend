@@ -106,6 +106,7 @@ class LoginForm extends Component {
                                     block
                                     variant="outline-primary"
                                     bssize="large"
+                                    disabled
                                     onClick={signInWithGoogle}
                                 >
                                     Login with Google
