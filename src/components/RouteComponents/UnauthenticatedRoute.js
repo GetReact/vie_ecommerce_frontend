@@ -21,7 +21,7 @@ const querystring = (name, url = window.location.href) => {
 const UnauthenticatedRoute = ({ 
     children, 
     ...rest }) => {
-    const { isAuthenticated } = Cookies.get('access_token_cokies') !== null;
+    const { isAuthenticated } = Cookies.get('session') !== null;
     const redirect = querystring("redirect");
     return (
         <Route {...rest}>

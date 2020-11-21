@@ -7,7 +7,7 @@ const AuthenticatedRoute = ({
     ...rest }) => {
 
     const { pathname, search } = useLocation();
-    const { isAuthenticated } = Cookies.get('access_token_cokies') !== null;
+    const { isAuthenticated } = Cookies.get('session') !== null;
     return (
         <Route {...rest}>
             {isAuthenticated ? (

@@ -2,10 +2,15 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
+
 import { selectCurrentUser } from '../redux/user/user-selectors';
 import { selectLoading } from '../redux/spinner/spinner-selectors';
 import WithSpinner from '../hoc/WithSpinner';
 import { fireBaseMediaURL } from '../config';
+
+import AuthenticatedRoute from '../components/RouteComponents/AuthenticatedRoute';
+// import UnauthenticatedRoute from '../components/RouteComponents/UnauthenticatedRoute';
 
 import Home from './Home';
 import AuthenticationPage from './AuthenticationPage/AuthenticationPage';
@@ -66,8 +71,8 @@ const Routes = (props) => {
                 />
                 <HowToShipPage/>
             </Route>
-            <Route exact path="/profile" component={ProfilePage}/>
-            <Route exact path="/profile/info" component={SecurityPage}/>
+            <AuthenticatedRoute exact path="/profile" component={ProfilePage}/>
+            <AuthenticatedRoute exact path="/profile/info" component={SecurityPage}/>
             <Route exact path="/cart" component={CartPage}/>
             <Route component={NotFound}/>
         </Switch>
