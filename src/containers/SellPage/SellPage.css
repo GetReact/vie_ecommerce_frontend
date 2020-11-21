@@ -37,3 +37,7 @@
 .sell-page .container a h6:hover {
     color: blue;
 }
+
+.sell-page .container button:disabled {
+    cursor: no-drop;
+}

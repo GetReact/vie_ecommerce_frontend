@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom'
+import { connect } from 'react-redux';
+
+import { setLoading } from '../../redux/spinner/spinner-actions';
 
 import { fireBaseMediaURL } from '../../config';
 import './SellPage.css';
@@ -8,17 +12,24 @@ import FormInput from '../../components/FormInput/FormInput';
 
 const SellPage = (props) => {
     const file = useRef(null);
+    const history = useHistory();
 
-    const [ fullname, setName ] = useState("");
-    const [ email, setEmail ] = useState("");
-    const [ street, setStreet ] = useState("");
-    const [ city, setCity ] = useState("");
-    const [ state, setState ] = useState("");
-    const [ country, setCountry ] = useState("");
-    const [ zip, setZip ] = useState("");
+    const [ name, setName ] = useState("");
+    const [ seller, setSeller ] = useState("");
+    const [ size, setSize ] = useState(10);
     const [ conditions, setConditions ] = useState("");
     const [ price, setPrice ]= useState("");
-    const [checked, setChecked] = useState(false)
+    const [ checked, setChecked ] = useState(false)
+
+    const buttonIsValid = () => {
+        const regex=/^[0-9]+$/;
+        return (
+            checked &&
+            name.length > 0 &&
+            seller.length > 0 &&
+            price.match(regex)
+        );
+    }
 
     const handleFileChange = (event) => {
         file.current = event.target.files[0];
@@ -28,150 +39,101 @@ const SellPage = (props) => {
         setChecked(event.target.checked);
     }
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+
+        try {
+            await axios({
+                url: '/shoes',
+                method: 'post',
+                withCredentials: true,
+                data: {
+                    name,
+                    seller,
+                    price,
+                    size,
+                    conditions,
+                    imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
+                }
+            }).then(response => {
+                const newShoes = response.data.shoesCollection;
+                alert("Success: Your shoes is submitted for review!");
+                console.log(newShoes);
+                setLoading(false);
+                history.push('/')
+            }).catch(error => {
+                alert(error.response.data.error);
+                setLoading(false);
+            });
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
     let formInfo = (
         <>
             <Row>
-                <Col>
+                <Col lg={4} md={12}>
                     <FormInput 
-                        label='Full Name'
-                        name='fullname'
-                        type='fullname'
-                        value={fullname}
+                        label='Name'
+                        name='name'
+                        value={name}
                         handleChange={ e => setName(e.target.value) }
                         required/>
                 </Col>
-                <Col>
+                <Col lg={4} md={12}>
                     <FormInput 
-                        label='Email'
-                        name='email'
-                        type='email'
-                        value={email}
-                        handleChange={ e => setEmail(e.target.value) }
+                        label='Seller'
+                        name='seller'
+                        value={seller}
+                        handleChange={ e => setSeller(e.target.value) }
                         required/>
                 </Col>
-            </Row>
-            <Row>
-                <Col>
+                <Col lg={4} md={12}>
                     <FormInput 
-                        label='Street'
-                        name='street'
-                        type='street'
-                        value={street}
-                        handleChange={ e => setStreet(e.target.value) }
-                        required/>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <FormInput 
-                        label='City'
-                        name='city'
-                        type='city'
-                        value={city}
-                        handleChange={ e => setCity(e.target.value) }
-                        required/>
-                </Col>
-                <Col>
-                    <FormInput 
-                        label='State'
-                        name='state'
-                        type='state'
-                        value={state}
-                        handleChange={ e => setState(e.target.value) }
-                        required/>
-                </Col>
-                <Col>
-                    <FormInput 
-                        label='Country'
-                        name='country'
-                        type='country'
-                        value={country}
-                        handleChange={ e => setCountry(e.target.value) }
-                        required/>
-                </Col>
-                <Col>
-                    <FormInput 
-                        label='Zip'
-                        name='zip'
-                        type='zip'
-                        value={zip}
-                        handleChange={ e => setZip(e.target.value) }
-                        required/>
-                </Col>
-            </Row>
-            <Row>
-                <Col lg={7} md={12}>
-                    <FormInput 
-                        label='Condition Description'
+                        label='Condition'
                         name='conditions'
                         type='conditions'
                         value={conditions}
                         handleChange={ e => setConditions(e.target.value) }
                         required/>
                 </Col>
-                <Col lg={3} md={6}>
-                    <input onChange={ handleFileChange } type="file" id="myFile" name="filename"/>
-                </Col>
-                <Col lg={2} md={6}>
+            </Row>
+            <Row>
+                <Col lg={4} md={4}>
                     <Form.Control
                         as="select"
                         id="inlineFormCustomSelectPref"
                         custom
+                        value={size} 
+                        onChange={ e => setSize(e.target.value) }
                     >
-                        <option value="0">New</option>
-                        <option value="1">Used</option>
+                        {
+                            [...Array(12).keys()].map(
+                                key => <option key={key} value={key}>{key + 1}</option>
+                            )
+                        }
+                    </Form.Control>
+                </Col>
+                <Col lg={4} md={4}>
+                    <input onChange={ handleFileChange } type="file" id="myFile" name="filename"/>
+                </Col>
+                <Col lg={4} md={4}>
+                    <Form.Control
+                        as="select"
+                        id="inlineFormCustomSelectPref"
+                        custom
+                        value={ conditions } 
+                        onChange={ e => setConditions(e.target.value) }
+                    >
+                        <option value="new">New</option>
+                        <option value="used">Used</option>
                     </Form.Control>
                 </Col>
             </Row>
         </>
     );
-
-    // let formPics = (
-        // <>
-        //     <Form.Row>
-        //         <Form.Group as={Col} controlId="hop">
-        //             <Form.Label>Box</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="giay">
-        //             <Form.Label>Shoes + Nametag</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="mui">
-        //             <Form.Label>Front</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //     </Form.Row>
-        //     <Form.Row>
-        //         <Form.Group as={Col} controlId="de">
-        //             <Form.Label>Bottom</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="mong">
-        //             <Form.Label>Back</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="ngoai">
-        //             <Form.Label>Outside</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //     </Form.Row>
-        //     <Form.Row>
-        //         <Form.Group as={Col} controlId="trong">
-        //             <Form.Label>Inside</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="tem">
-        //             <Form.Label>Specs</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //         <Form.Group as={Col} controlId="lot">
-        //             <Form.Label>Imperfections (Used Only)</Form.Label>
-        //             <Form.Control onChange={handleFileChange} type="file" />
-        //         </Form.Group>
-        //     </Form.Row>
-        // </>
-    // );
 
     return (
         <div className="sell-page">
@@ -185,8 +147,6 @@ const SellPage = (props) => {
                 <Form>
                     <h1 className="mb-5">SELL WITH US</h1>
                     {formInfo}
-                    {/* <h2>IMAGES OF THE SHOES (*)</h2>
-                    {formPics} */}
                     <Row>
                         <Col>
                             <FormInput 
@@ -209,7 +169,8 @@ const SellPage = (props) => {
                         type="submit" 
                         size="lg"
                         style={{marginTop:'0.5cm'}}
-                        disabled={!checked}
+                        disabled={ !buttonIsValid() }
+                        onClick={ handleSubmit }
                     >
                         Submit
                     </Button>
@@ -220,4 +181,8 @@ const SellPage = (props) => {
     );
 };
 
-export default SellPage;
+const mapDispatchtoProps = dispatch => ({
+    setLoading: loadingState => dispatch(setLoading(loadingState)),
+})
+
+export default connect(null, mapDispatchtoProps)(SellPage);
