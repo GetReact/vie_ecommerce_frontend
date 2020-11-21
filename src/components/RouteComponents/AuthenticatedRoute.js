@@ -1,24 +1,28 @@
 import React from 'react';
-import { Route, Redirect, useLocation } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
 
-const AuthenticatedRoute = ({ 
+
+const AuthenticatedRoute = ({
+    currentUser, 
     children, 
     ...rest }) => {
 
-    const { pathname, search } = useLocation();
-    const { isAuthenticated } = Cookies.get('session') !== null;
     return (
         <Route {...rest}>
-            {isAuthenticated ? (
+            {currentUser ? (
                 children
             ) : (
-                <Redirect to={
-                    `/login?redirect=${pathname}${search}`
-                } />
+                <Redirect to='/signin'/>
             )}
         </Route>
     );
 }
 
-export default AuthenticatedRoute;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(AuthenticatedRoute);
