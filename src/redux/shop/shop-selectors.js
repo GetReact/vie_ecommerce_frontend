@@ -11,3 +11,10 @@ export const selectShoesCollection = createSelector(
     [selectCollections],
     collections => collections ? collections : [],
 );
+
+export const selectShoes = params => createSelector(
+    [selectShoesCollection],
+    shoesCollection => shoesCollection.find(
+        item => item.id === params
+    ),
+);

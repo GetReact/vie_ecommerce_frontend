@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
-// import { addCollectionandDocuments } from './firebase/firebase';
 
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';

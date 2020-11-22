@@ -61,9 +61,9 @@ const SlickCarousel = (props) => {
                 {props.name.toUpperCase()}
             </h3>
             <Slider {...settings} className="slider-carousel">
-                {props.shoesCollection.slice(0, 7).map((item) => (
-                    <Card key={item.id} img={item.imageUrl} item={item}/>
-                ))}
+                {props.shoesCollection.slice(0, 7).map(
+                    item => <Card key={item.id} img={item.imageUrl} id={item.id} item={item}/>
+                )}
             </Slider>
         </Container>
     )
