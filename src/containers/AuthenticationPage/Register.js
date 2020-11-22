@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import axios from 'axios';
+
+import { axios_instance as axios } from '../../config';
 
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';

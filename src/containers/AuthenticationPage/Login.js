@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
+
+import { axios_instance as axios } from '../../config';
 
 import { signInWithGoogle } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';

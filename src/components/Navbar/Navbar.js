@@ -4,7 +4,6 @@ import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
@@ -12,7 +11,7 @@ import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
 
-import { fireBaseMediaURL } from '../../config';
+import { axios_instance as axios, fireBaseMediaURL } from '../../config';
 
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import './Navbar.css';

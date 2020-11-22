@@ -1,8 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import axios from 'axios';
 
-import { fireBaseMediaURL } from '../../config';
+import { axios_instance as axios, fireBaseMediaURL } from '../../config';
 
 const StripeCheckoutButton = ({ price }) => {
     const priceForStripe = price * 100;

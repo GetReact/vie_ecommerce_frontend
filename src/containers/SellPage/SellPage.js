@@ -1,12 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux';
-
 import { setLoading } from '../../redux/spinner/spinner-actions';
 
-import { fireBaseMediaURL } from '../../config';
+import { axios_instance as axios, fireBaseMediaURL } from '../../config';
 import './SellPage.css';
 import FormInput from '../../components/FormInput/FormInput';
 

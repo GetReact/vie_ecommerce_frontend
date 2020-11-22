@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { firestore, convertCollectionsSnapshottoMap } from './firebase/firebase';
 // import { addCollectionandDocuments } from './firebase/firebase';
-import axios from 'axios';
 
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
@@ -12,6 +11,8 @@ import { resetFilters } from './redux/sidebar/sidebar-actions';
 
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
+
+import { axios_instance as axios } from './config';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import axios from 'axios';
+
+import { axios_instance as axios } from '../../../config';
 
 import { setCurrentUser } from '../../../redux/user/user-action';
 import { setLoading } from '../../../redux/spinner/spinner-actions';
