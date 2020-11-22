@@ -9,5 +9,5 @@ export const selectCollections = createSelector(
 
 export const selectShoesCollection = createSelector(
     [selectCollections],
-    collections => collections ? collections.shoes.items : [],
+    collections => collections ? collections : [],
 );

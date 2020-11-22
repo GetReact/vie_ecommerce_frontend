@@ -38,7 +38,7 @@ class App extends Component {
         console.log(response.data.message)
         return response.data.message;
       }).catch( error => {
-        console.log(error.response.data.error)
+        // console.log(error.response.data.error)
         return null;
       });
 
@@ -48,26 +48,28 @@ class App extends Component {
         })
       } else setCurrentUser(userAuth);
 
-      const collectionRef = firestore.collection('shop_data');
-      collectionRef.onSnapshot(async snapshot => {
-        const collectionsMap = convertCollectionsSnapshottoMap(snapshot);
-        
+      await axios({
+        url: '/shoes',
+        method: 'get',
+        withCredentials: true,
+      }).then(response => {
+        console.log(response.data.message)
+        const shoesCollection = response.data.message;
         const brands = [];
-        collectionsMap.shoes.items.map(
+        shoesCollection.map(
           item => brands.includes(item.seller.toLowerCase()) ? null : brands.push(item.seller.toLowerCase())
         );  
 
-        this.props.updateCollections(collectionsMap);
+        this.props.updateCollections(shoesCollection);
         this.props.resetFilters({ 
           brands: brands,
           staticBrands: brands,
         });
+      }).catch(error => {
+        // console.log(error.response.data.error)
+        return null;
       });
-
       setLoading(false);
-
-      // console.log(this.props.shoesCollection);
-      // addCollectionandDocuments('shop_data', this.props.shoesCollection);
     }
 
     this.unsubscribeFromAuth();
