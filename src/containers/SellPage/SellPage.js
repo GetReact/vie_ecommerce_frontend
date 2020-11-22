@@ -2,9 +2,12 @@ import React, { useRef, useState } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { setLoading } from '../../redux/spinner/spinner-actions';
+import { createStructuredSelector } from 'reselect';
 
 import { axios_instance as axios, fireBaseMediaURL } from '../../config';
+import { selectCurrentUser } from '../../redux/user/user-selectors';
+import { setLoading } from '../../redux/spinner/spinner-actions';
+
 import './SellPage.css';
 import FormInput from '../../components/FormInput/FormInput';
 
@@ -15,7 +18,7 @@ const SellPage = (props) => {
     const [ name, setName ] = useState("");
     const [ seller, setSeller ] = useState("");
     const [ size, setSize ] = useState(10);
-    const [ conditions, setConditions ] = useState("");
+    const [ conditions, setConditions ] = useState("new");
     const [ price, setPrice ]= useState("");
     const [ checked, setChecked ] = useState(false)
 
@@ -40,6 +43,11 @@ const SellPage = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
+        
+        if (!props.currentUser) {
+            alert('You have to log in first!')
+            return;
+        }
 
         try {
             await axios({
@@ -49,9 +57,9 @@ const SellPage = (props) => {
                 data: {
                     name,
                     seller,
-                    price,
+                    price: parseInt(price),
                     size,
-                    conditions,
+                    condition: conditions,
                     imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
                 }
             }).then(response => {
@@ -72,7 +80,7 @@ const SellPage = (props) => {
     let formInfo = (
         <>
             <Row>
-                <Col lg={4} md={12}>
+                <Col>
                     <FormInput 
                         label='Name'
                         name='name'
@@ -80,21 +88,12 @@ const SellPage = (props) => {
                         handleChange={ e => setName(e.target.value) }
                         required/>
                 </Col>
-                <Col lg={4} md={12}>
+                <Col>
                     <FormInput 
                         label='Seller'
                         name='seller'
                         value={seller}
                         handleChange={ e => setSeller(e.target.value) }
-                        required/>
-                </Col>
-                <Col lg={4} md={12}>
-                    <FormInput 
-                        label='Condition'
-                        name='conditions'
-                        type='conditions'
-                        value={conditions}
-                        handleChange={ e => setConditions(e.target.value) }
                         required/>
                 </Col>
             </Row>
@@ -179,8 +178,12 @@ const SellPage = (props) => {
     );
 };
 
+const mapStatetoProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+});
+
 const mapDispatchtoProps = dispatch => ({
     setLoading: loadingState => dispatch(setLoading(loadingState)),
 })
 
-export default connect(null, mapDispatchtoProps)(SellPage);
+export default connect(mapStatetoProps, mapDispatchtoProps)(SellPage);
