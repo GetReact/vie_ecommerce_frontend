@@ -46,8 +46,9 @@ class RegisterForm extends Component {
                         },
                         withCredentials: true
                     }).then(response => {
-                        const userAuth = response.data.message;
-                        setCurrentUser(userAuth);
+                        alert(response.data.message);
+                        alert('Please sign in now!');
+                        setCurrentUser(null);
                         setLoading(false);
                     }).catch(error => {
                         alert(error.response.data.error);

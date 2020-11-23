@@ -17,8 +17,8 @@ const SellPage = (props) => {
 
     const [ name, setName ] = useState("");
     const [ seller, setSeller ] = useState("");
-    const [ size, setSize ] = useState(10);
-    const [ conditions, setConditions ] = useState("new");
+    const [ size, setSize ] = useState("");
+    const [ conditions, setConditions ] = useState("");
     const [ price, setPrice ]= useState("");
     const [ checked, setChecked ] = useState(false)
 
@@ -28,7 +28,9 @@ const SellPage = (props) => {
             checked &&
             name.length > 0 &&
             seller.length > 0 &&
-            price.match(regex)
+            price.match(regex) &&
+            size.match(regex) &&
+            conditions.length > 0 
         );
     }
 
@@ -106,6 +108,7 @@ const SellPage = (props) => {
                         value={size} 
                         onChange={ e => setSize(e.target.value) }
                     >
+                        <option>Size</option>
                         {
                             [...Array(12).keys()].map(
                                 key => <option key={key} value={key}>{key + 1}</option>
@@ -124,6 +127,7 @@ const SellPage = (props) => {
                         value={ conditions } 
                         onChange={ e => setConditions(e.target.value) }
                     >
+                        <option>Condition</option>
                         <option value="new">New</option>
                         <option value="used">Used</option>
                     </Form.Control>

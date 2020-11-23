@@ -40,12 +40,22 @@ const SecurityPage = (props) => {
                     data: { newPassword },
                 }).then(response => {
                     alert(response.data.message);
-                    setCurrentUser(null);
-                    setLoading(false);
-                    history.push('/signin')
                 }).catch(error => {
                     alert(error.response.data.error);
                     setLoading(false);
+                });
+                await axios({
+                    url: '/signout',
+                    method: 'post',
+                    withCredentials: true,
+                }).then(response => {
+                    alert(response.data.message);
+                    setCurrentUser(null);
+                    setLoading(false);
+                    history.push('/signin');
+                }).catch(error => {
+                    alert(error.response.data.error);
+                    setLoading(false)
                 });
             }
         } catch (e) {
