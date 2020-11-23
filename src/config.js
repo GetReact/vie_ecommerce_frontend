@@ -7,7 +7,7 @@ const firebaseMediaQuery = '?alt=media';
 
 export const axios_instance = axios.create({
     // baseURL: 'http://localhost:5000',
-    baseURL: 'http://api.vie-market.com',
+    baseURL: 'https://api.vie-market.com',
 });
 
 export const fireBaseMediaURL = (imageName) => {
