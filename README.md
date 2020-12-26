@@ -1,9 +1,10 @@
 ## Overview:
 - Single handedly founded and built an e-commerce website, mainly for learning purposes.
 - Get familiar with Full-stack Web Development.
-- Self-taught Cloud Technologies (AWS, Firebase, etc.), web development frameworks (React, Flask, etc.), REST API and GraphQL.  
+- Self-taught Cloud Technologies (AWS, Firebase, etc.), web development frameworks (React, Flask, etc.), REST API and GraphQL.
+- Back-end repository: [vie_ecommerce_backend](https://github.com/TimHuynh0905/vie_ecommerce_backend)
 
-## Technologies:
+## Technologies:  
 - Frontend:
   - [React](https://github.com/facebook/create-react-app), [Hooks](https://reactjs.org/docs/hooks-intro.html), [React-Bootstrap](https://react-bootstrap.github.io/), [Redux](https://redux.js.org/), [GraphQL](https://graphql.org/).
 
@@ -13,8 +14,7 @@
 - Deploymend: 
   - [Heroku](https://www.heroku.com/) (Server), [Netlify](https://www.netlify.com/) (Client).
 
-<!-- ## Demo: [vie-ecom.com](https://vie-ecom.com) -->
-## Demo: [not yet available]()
+## Demo: [vie-market.com](https://www.vie-market.com/)
 
 ## Run the Application in Development Mode
 
@@ -22,9 +22,9 @@ In your terminal, type:
 
 #### `cd Desktop` 
 
-#### `git clone https://github.com/TimHuynh0905/viggs_frontend_Tim.git`
+#### `git clone https://github.com/TimHuynh0905/vie_ecommerce_frontend.git`
 
-#### `cd viggs_frontend_Tim`
+#### `cd vie_ecommerce_frontend`
 
 In the project directory, you can run:
 
