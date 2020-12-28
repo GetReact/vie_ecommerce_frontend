@@ -29,8 +29,8 @@ const SideBar = (props) => {
 
     const [ priceVal, setPrice ] = useState([minPrice, maxPrice]);
     const [ sizeVal, setSize ] = useState([minSize, maxSize]);
-    const [ selectedConditions, setSelectedConditions ] = useState(conditions);
-    const [ selectedBrands, setSelectedBrands ] = useState(brands);
+    const [ selectedConditions, setSelectedConditions ] = useState([...conditions]);
+    const [ selectedBrands, setSelectedBrands ] = useState([...brands]);
     
 
     const handlePriceChange = (event, newPrice) => {

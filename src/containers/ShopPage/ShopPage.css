@@ -4,10 +4,14 @@
 
 .productpage .products .search-bar {
     width: 80%;
+    height: 3cm;
     margin-left: 10%;
     margin-right: 10%;
-    padding-top: 1cm;
-    padding-bottom: 0.5cm;
+}
+
+.productpage .products .search-bar .input-group {
+    padding-top: 2cm;
+    height: 1cm;
 }
 
 .productpage .products .sort-bar,
@@ -23,5 +27,6 @@
 .productpage .products .product-grid {
     margin-right: 1cm;
     margin-left: 1cm;
+    padding-top: 2cm;
 }
 

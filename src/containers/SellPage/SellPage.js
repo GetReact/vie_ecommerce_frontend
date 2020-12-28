@@ -30,7 +30,7 @@ const SellPage = (props) => {
             seller.length > 0 &&
             price.match(regex) &&
             size.match(regex) &&
-            conditions.length > 0 
+            (conditions === 'new' || conditions === 'old')
         );
     }
 
@@ -60,7 +60,7 @@ const SellPage = (props) => {
                     name,
                     seller,
                     price: parseInt(price),
-                    size,
+                    size: parseInt(size),
                     condition: conditions,
                     imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
                 }

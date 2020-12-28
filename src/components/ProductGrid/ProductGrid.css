@@ -1,4 +1,5 @@
 .grid {
+    position: relative;
     justify-content: center;
 }
 

@@ -20,17 +20,6 @@ const ShopPage = (props) => {
         }
     });
 
-    const SortBar = (
-        <div>
-            <label htmlFor='sort' style={{paddingRight : '0.5rem'}}>Sort by </label>{' '}
-            <select id='sort'>
-                <option value='high to low'>None</option>
-                <option value='high to low'>Price: High to low</option>
-                <option value='low to high'>Price: Low to high</option>
-            </select>
-        </div>
-    );
-
     return (
         <div className="productpage">
             {   
@@ -52,9 +41,6 @@ const ShopPage = (props) => {
                                     </InputGroup.Append>
                                 </InputGroup>
                             </Row>
-                            <Row className='sort-bar'>
-                                {SortBar}
-                            </Row>
                             <Row className="product-grid">
                                 <ProductGrid items = { props.shoesCollection }/>
                             </Row>
@@ -66,9 +52,6 @@ const ShopPage = (props) => {
                         <Row>
                             <Col md={12}><SideBar/></Col>
                             <Col md={12}>
-                                <span className='sort-bar-small'>
-                                    {SortBar}
-                                </span>
                                 <ProductGrid items = { props.shoesCollection }/>
                             </Col>
                         </Row>
