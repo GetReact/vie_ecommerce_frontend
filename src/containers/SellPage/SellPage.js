@@ -64,7 +64,7 @@ const SellPage = (props) => {
                 imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
             }
         }).then(response => {
-            const newShoes = response.data.shoesCollection;
+            // const newShoes = response.data.shoesCollection;
             alert("Success: Your shoes is submitted for review!");
             // console.log(newShoes);
             setLoading(false);
