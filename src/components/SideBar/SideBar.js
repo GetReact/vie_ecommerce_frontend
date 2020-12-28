@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
 import { selectSideBarFilters, selectSideBarDropped } from '../../redux/sidebar/sidebar-selectors';
-import { resetFilters, toggleSideBarDropped } from '../../redux/sidebar/sidebar-actions';
+import { setFilters, toggleSideBarDropped } from '../../redux/sidebar/sidebar-actions';
 
 import "./SideBar.css";
 
@@ -14,7 +14,7 @@ const SideBar = (props) => {
         dropped, 
         toggleSideBarDropped,
         filters,
-        resetFilters,
+        setFilters,
     } = props;
 
     const { 
@@ -29,8 +29,8 @@ const SideBar = (props) => {
 
     const [ priceVal, setPrice ] = useState([minPrice, maxPrice]);
     const [ sizeVal, setSize ] = useState([minSize, maxSize]);
-    const [ prodConditions, setConditions ] = useState(conditions);
-    const [ currentBrands, setCurrentBrands ] = useState(brands);
+    const [ selectedConditions, setSelectedConditions ] = useState(conditions);
+    const [ selectedBrands, setSelectedBrands ] = useState(brands);
     
 
     const handlePriceChange = (event, newPrice) => {
@@ -41,39 +41,35 @@ const SideBar = (props) => {
         setSize(newSize);
     };
 
-    const handleCatagoriesCheckboxClicked = event => {
-        const { value } = event.target;
-        const existed = currentBrands.find(brand => brand === value);
-        console.log(existed);
-        if (existed) {
-            const index = currentBrands.indexOf(existed);
-            currentBrands.splice(index, 1);
+    const handleBrandCheckboxClicked = (brand) => {
+        if (selectedBrands.includes(brand)) {
+            const currentBrands = [...selectedBrands];
+            currentBrands.splice(selectedBrands.indexOf(brand), 1);
+            setSelectedBrands(currentBrands);
         } else {
-            setCurrentBrands([ ...currentBrands, value ]);
+            setSelectedBrands([ ...selectedBrands, brand ]);
         }
     }
 
-    const handleConditionsCheckboxClicked = event => {
-        const { value } = event.target;
-        const existed = prodConditions.find(cond => cond === value);
-        console.log(existed);
-        if (existed) {
-            const index = prodConditions.indexOf(existed);
-            prodConditions.splice(index, 1);
+    const handleConditionsCheckboxClicked = (condition) => {
+        if (selectedConditions.includes(condition)) {
+            const currentConditions = [...selectedConditions];
+            currentConditions.splice(selectedConditions.indexOf(condition), 1);
+            setSelectedConditions(currentConditions);
         } else {
-            setConditions([ ...prodConditions, value ]);
+            setSelectedConditions([ ...selectedConditions, condition ]);
         }
     }
 
-    const handleSubmit = () => {
-        resetFilters(
+    const handleApply = () => {
+        setFilters(
             {
-                brands: currentBrands,
+                brands: selectedBrands,
                 minPrice: priceVal[0],
                 maxPrice: priceVal[1],
                 minSize: sizeVal[0],
                 maxSize: sizeVal[1],
-                conditions: prodConditions,
+                conditions: selectedConditions,
             }
         );
     };
@@ -94,7 +90,8 @@ const SideBar = (props) => {
                             type='checkbox' 
                             id='catagories'
                             value={ brand }
-                            onChange={ handleCatagoriesCheckboxClicked }/>
+                            defaultChecked={ selectedBrands.includes(brand) }
+                            onClick={ () => handleBrandCheckboxClicked(brand) }/>
                         <span>{ brand.toUpperCase() }</span>
                     </p>
                 )
@@ -135,7 +132,8 @@ const SideBar = (props) => {
                     type='checkbox' 
                     id='catagories'
                     value='new'
-                    onChange={ handleConditionsCheckboxClicked }/>
+                    defaultChecked={ selectedConditions.includes('new') }
+                    onClick={ () => handleConditionsCheckboxClicked('new') }/>
                 <span>NEW</span>
             </p>
             <p>
@@ -143,9 +141,10 @@ const SideBar = (props) => {
                     className='items-icon' 
                     type='checkbox' 
                     id='catagories'
-                    value='used'
-                    onChange={ handleConditionsCheckboxClicked }/>
-                <span>USED</span>
+                    value='old'
+                    defaultChecked={ selectedConditions.includes('old') }
+                    onClick={ () => handleConditionsCheckboxClicked('old') }/>
+                <span>OLD</span>
             </p>
         </div>
     );
@@ -186,7 +185,7 @@ const SideBar = (props) => {
                     className='sidebar-button'
                     variant="outline-dark"
                     type="submit"
-                    onClick={ handleSubmit }
+                    onClick={ handleApply }
                 >
                     Apply
                 </Button>
@@ -202,7 +201,7 @@ const mapStatetoProps = createStructuredSelector({
 });
 
 const mapDispatchtoProps = dispatch => ({
-    resetFilters: newValues => dispatch(resetFilters(newValues)),
+    setFilters: newValues => dispatch(setFilters(newValues)),
     toggleSideBarDropped: () => dispatch(toggleSideBarDropped()),
 });
 

@@ -8,7 +8,7 @@ const INITIAL_STATE = {
         maxPrice: 1000,
         minSize: 0,
         maxSize: 20,
-        conditions: ['new', 'used'],
+        conditions: [],
     },
     dropped: false,
 }

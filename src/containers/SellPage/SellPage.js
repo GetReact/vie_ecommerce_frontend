@@ -129,7 +129,7 @@ const SellPage = (props) => {
                     >
                         <option>Condition</option>
                         <option value="new">New</option>
-                        <option value="used">Used</option>
+                        <option value="old">Old</option>
                     </Form.Control>
                 </Col>
             </Row>

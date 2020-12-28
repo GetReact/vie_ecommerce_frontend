@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
 import { updateCollections } from './redux/shop/shop-actions';
-import { resetFilters } from './redux/sidebar/sidebar-actions';
+import { setFilters } from './redux/sidebar/sidebar-actions';
 
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
@@ -59,9 +59,8 @@ class App extends Component {
         );  
 
         this.props.updateCollections(shoesCollection);
-        this.props.resetFilters({ 
-          brands: brands,
-          staticBrands: brands,
+        this.props.setFilters({ 
+          staticBrands: [...brands],
         });
       }).catch(error => {
         // console.log(error.response.data.error)
@@ -102,7 +101,7 @@ const mapDispathtoProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
   setLoading: loadingState => dispatch(setLoading(loadingState)),
-  resetFilters: newValues => dispatch(resetFilters(newValues)),
+  setFilters: newValues => dispatch(setFilters(newValues)),
 });
 
 export default connect(mapStatetoProps, mapDispathtoProps)(App);

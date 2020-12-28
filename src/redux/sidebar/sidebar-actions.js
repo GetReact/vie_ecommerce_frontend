@@ -1,6 +1,6 @@
 import { SideBarActionTypes } from './sidebar-types';
 
-export const resetFilters = (newFilters) => ({
+export const setFilters = (newFilters) => ({
     type: SideBarActionTypes.RESET_SIDEBAR_FILTERS,
     payload: newFilters,
 });
