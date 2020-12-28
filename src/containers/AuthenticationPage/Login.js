@@ -36,27 +36,23 @@ class LoginForm extends Component {
             
             if (!validateForm()) return;
 
-            try {
-                await axios({
-                    url: '/signin',
-                    method: 'post',
-                    withCredentials: true,
-                    data: {
-                        email,
-                        password
-                    }
-                }).then(response => {
-                    const userAuth = response.data.message;
-                    // console.log(userAuth);
-                    setCurrentUser(userAuth);
-                    setLoading(false);
-                }).catch(error => {
-                    alert(error.response.data.error);
-                    setLoading(false);
-                });
-            } catch(e) {
-                console.log(e);
-            }
+            await axios({
+                url: '/signin',
+                method: 'post',
+                withCredentials: true,
+                data: {
+                    email,
+                    password
+                }
+            }).then(response => {
+                const userAuth = response.data.message;
+                // console.log(userAuth);
+                setCurrentUser(userAuth);
+                setLoading(false);
+            }).catch(error => {
+                alert(error.response.data.error);
+                setLoading(false);
+            });
         }
 
         const handleChange = (event) => {
