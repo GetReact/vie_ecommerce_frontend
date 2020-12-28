@@ -47,7 +47,7 @@ class LoginForm extends Component {
                     }
                 }).then(response => {
                     const userAuth = response.data.message;
-                    console.log(userAuth);
+                    // console.log(userAuth);
                     setCurrentUser(userAuth);
                     setLoading(false);
                 }).catch(error => {

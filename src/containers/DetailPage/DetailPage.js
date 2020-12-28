@@ -33,8 +33,8 @@ class DetailPage extends Component {
             }).then(response => {
                 return response.data.message;
             }).catch(error => {
-                console.log(error.response.data.error);
-                alert('something went wrong!');
+                // console.log(error.response.data.error);
+                alert(error.response.data.error);
                 return null;
             });
             // console.log(fetch_shoes);

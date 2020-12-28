@@ -16,7 +16,7 @@ const ProductGrid = ({ items, filters }) => {
                 (filters.conditions.includes(item.condition) || filters.conditions.length === 0)
         );
 
-        console.log(itemsToDisplay);
+        // console.log(itemsToDisplay);
         return itemsToDisplay;
     }
 

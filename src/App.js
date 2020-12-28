@@ -22,7 +22,7 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser, setLoading } = this.props;
-    console.log('component did mount');
+    // console.log('component did mount');
     setLoading(true);
     
     this.unsubscribeFromAuth = async () => {
@@ -33,9 +33,9 @@ class App extends Component {
         method: 'get',
         withCredentials: true,
       }).then(response => {
-        console.log(response.data.message)
+        // console.log(response.data.message)
         return response.data.message;
-      }).catch( error => {
+      }).catch(error => {
         // console.log(error.response.data.error)
         return null;
       });
@@ -51,7 +51,7 @@ class App extends Component {
         method: 'get',
         withCredentials: true,
       }).then(response => {
-        console.log(response.data.message)
+        // console.log(response.data.message)
         const shoesCollection = response.data.message;
         const brands = [];
         shoesCollection.map(

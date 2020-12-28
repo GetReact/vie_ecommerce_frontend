@@ -31,35 +31,31 @@ const SecurityPage = (props) => {
         event.preventDefault();
         const { newPassword } = state;
         setLoading(true);
-        try {
-            if (validateForm()) {
-                await axios({
-                    url: '/me',
-                    method: 'post',
-                    withCredentials: true,
-                    data: { newPassword },
-                }).then(response => {
-                    alert(response.data.message);
-                }).catch(error => {
-                    alert(error.response.data.error);
-                    setLoading(false);
-                });
-                await axios({
-                    url: '/signout',
-                    method: 'post',
-                    withCredentials: true,
-                }).then(response => {
-                    alert(response.data.message);
-                    setCurrentUser(null);
-                    setLoading(false);
-                    history.push('/signin');
-                }).catch(error => {
-                    alert(error.response.data.error);
-                    setLoading(false)
-                });
-            }
-        } catch (e) {
-            console.log(e);
+        if (validateForm()) {
+            await axios({
+                url: '/me',
+                method: 'post',
+                withCredentials: true,
+                data: { newPassword },
+            }).then(response => {
+                alert(response.data.message);
+            }).catch(error => {
+                alert(error.response.data.error);
+                setLoading(false);
+            });
+            await axios({
+                url: '/signout',
+                method: 'post',
+                withCredentials: true,
+            }).then(response => {
+                alert(response.data.message);
+                setCurrentUser(null);
+                setLoading(false);
+                history.push('/signin');
+            }).catch(error => {
+                alert(error.response.data.error);
+                setLoading(false)
+            });
         }
         setState({ 
             newPassword: '',

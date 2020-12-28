@@ -42,23 +42,19 @@ const NavBar = (props) => {
 
     const handleSignOut = async () => {
         setLoading(true);
-        try {
-            await axios({
-                url: '/signout',
-                method: 'post',
-                withCredentials: true,
-            }).then(response => {
-                alert(response.data.message);
-                setCurrentUser(null);
-                setLoading(false);
-                history.push('/signin');
-            }).catch(error => {
-                alert(error.response.data.error);
-                setLoading(false)
-            });
-        } catch (e) {
-            console.log(e);
-        }
+        await axios({
+            url: '/signout',
+            method: 'post',
+            withCredentials: true,
+        }).then(response => {
+            alert(response.data.message);
+            setCurrentUser(null);
+            setLoading(false);
+            history.push('/signin');
+        }).catch(error => {
+            alert(error.response.data.error);
+            setLoading(false)
+        });
     }
     
     const sellDropdown = (
