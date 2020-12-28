@@ -28,7 +28,7 @@ const StripeCheckoutButton = ({ price, currentUser, clearCart }) => {
                 clearCart();
                 history.push('/');
             }).catch(error => {
-                console.log(error.response.data.error);
+                // console.log(error.response.data.error);
                 alert('There was an issue. Please sure you use the provided credit card!');
             })
         ) : (
