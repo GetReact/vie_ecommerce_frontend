@@ -96,10 +96,6 @@
     .navbar {
         height: 70px;
     }
-
-    .nav-options #sell-with-us ul {
-        background: rgb(240, 240, 240);
-    }
     
     .nav-options #sell-with-us ul {
         position: absolute;
@@ -107,11 +103,14 @@
         display: none;
         opacity: 0;
         transition: all 0.5s ease;
-        border-top: 1px solid rgb(120, 120, 120);
         list-style: none;
         margin: 0;
         padding-left: 0;
         width: 6cm;
+        background: rgb(240, 240, 240);
+        border-top: 1px solid rgb(120, 120, 120);
+        transition: all 0.5s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,.15);
     }
     
     .nav-options #sell-with-us:hover > span,
@@ -147,7 +146,7 @@
     .nav-options #sell-with-us ul li:focus-within {
         cursor: pointer;
         color: rgb(120, 120, 120);
-        background: rgb(200, 200, 200);
+        background: rgb(220, 220, 220);
     }
 }
 
