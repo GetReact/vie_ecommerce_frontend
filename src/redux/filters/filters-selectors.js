@@ -7,6 +7,11 @@ export const selectSideBar = createSelector(
     (filters) => filters.sidebar
 );
 
+export const selectSearchBar = createSelector(
+    [selectFilters],
+    (filters) => filters.searchbar
+);
+
 export const selectSideBarFilters = createSelector(
     [selectSideBar],
     (sidebar) => sidebar.filters
@@ -15,4 +20,9 @@ export const selectSideBarFilters = createSelector(
 export const selectSideBarDropped = createSelector(
     [selectSideBar],
     (sidebar) => sidebar.dropped
+);
+
+export const selectSearchBarKeywords = createSelector(
+    [selectSearchBar],
+    (searchbar) => searchbar.keywords  
 );

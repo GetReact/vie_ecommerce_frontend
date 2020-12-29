@@ -13,16 +13,15 @@ const INITIAL_STATE = {
         },
         dropped: false,
     },
-    seachbar: {
-        keywords: [],
+    searchbar: {
+        keywords: '',
     }
 }
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FiltersActionTypes.SET_SIDEBAR_FILTERS:
-            console.log(action.payload);
-            return {
+        return {
                 ...state,
                 sidebar: {
                     ...state.sidebar,
@@ -33,13 +32,20 @@ const filtersReducer = (state = INITIAL_STATE, action) => {
                 },
             }
         case FiltersActionTypes.TOGGLE_SIDEBAR_DROPPED:
-            console.log(state.sidebar);
             return {
                 ...state,
                 sidebar: {
                     ...state.sidebar,
                     dropped: !state.sidebar.dropped,
                 },
+            }
+        case FiltersActionTypes.SET_SEARCHBAR_FILTERS:
+            return {
+                ...state,
+                searchbar: {
+                    ...state.searchbar,
+                    keywords: action.payload
+                }
             }
         default:
             return state;

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
+import { selectShoesCollection } from '../../redux/shop/shop-selectors';
+
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
-import { selectShoesCollection } from '../../redux/shop/shop-selectors';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
 import "./ShopPage.css";
 
 const ShopPage = (props) => {
@@ -30,16 +35,7 @@ const ShopPage = (props) => {
                         </Col>
                         <Col lg={8} md={12} className="products">
                             <Row className="search-bar">
-                                <InputGroup>
-                                    <FormControl
-                                        placeholder="Search"
-                                        aria-label="Search"
-                                        aria-describedby="basic-addon2"
-                                    />
-                                    <InputGroup.Append>
-                                        <Button variant="outline-secondary">Search</Button>
-                                    </InputGroup.Append>
-                                </InputGroup>
+                                <SearchBar/>
                             </Row>
                             <Row className="product-grid">
                                 <ProductGrid items = { props.shoesCollection }/>
