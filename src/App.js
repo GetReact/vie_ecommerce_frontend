@@ -55,7 +55,7 @@ class App extends Component {
           staticBrands: [...brands],
         });
       }).catch(error => {
-        console.log(error.response.data.error)
+        console.log(error)
         return null;
       });
     }

@@ -9,7 +9,6 @@ import { toggleCartHidden } from '../../redux/cart/cart-action';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
-import { setCurrentUser } from '../../redux/user/user-action';
 
 import { fireBaseMediaURL } from '../../config';
 import { auth } from '../../firebase/firebase';
@@ -28,7 +27,6 @@ const NavBar = (props) => {
         toggleCartHidden,
         hidden,
         setLoading,
-        setCurrentUser 
     } = props;
 
     const changeBackground = () => {
@@ -153,7 +151,6 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchtoProps = (dispatch) => ({
     toggleCartHidden: () => dispatch(toggleCartHidden()),
     setLoading: loadingState => dispatch(setLoading(loadingState)),
-    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
 });
 
 

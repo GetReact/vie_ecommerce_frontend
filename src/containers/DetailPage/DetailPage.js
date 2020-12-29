@@ -25,7 +25,6 @@ class DetailPage extends Component {
         this._isMounted = true;
         setLoading(true);
         this.fetchShoes = async () => {
-            // console.log(match.params.id)
             const fetch_shoes = await axios({
                 url: `/shoes/${match.params.id}`,
                 method: 'get',

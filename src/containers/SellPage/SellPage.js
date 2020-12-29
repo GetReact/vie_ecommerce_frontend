@@ -5,16 +5,21 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { axios_instance as axios, fireBaseMediaURL } from '../../config';
+import { auth, storage } from '../../firebase/firebase';
+
+import { updateCollections } from '../../redux/shop/shop-actions';
+import { selectShoesCollection } from '../../redux/shop/shop-selectors';
 import { selectCurrentUser } from '../../redux/user/user-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 
 import './SellPage.css';
 import FormInput from '../../components/FormInput/FormInput';
 
-const SellPage = (props) => {
+const SellPage = ({ shoesCollection, updateCollections }) => {
     const file = useRef(null);
     const history = useHistory();
 
+    const [ fileAdded, setFileAdded ] = useState(file.current != null);
     const [ name, setName ] = useState("");
     const [ seller, setSeller ] = useState("");
     const [ size, setSize ] = useState("");
@@ -25,7 +30,7 @@ const SellPage = (props) => {
     const buttonIsValid = () => {
         const regex=/^[0-9]+$/;
         return (
-            checked &&
+            fileAdded && checked &&
             name.length > 0 &&
             seller.length > 0 &&
             price.match(regex) &&
@@ -36,45 +41,65 @@ const SellPage = (props) => {
 
     const handleFileChange = (event) => {
         file.current = event.target.files[0];
+        setFileAdded(file.current != null);
     }
 
     const handleChecked = (event) => {
         setChecked(event.target.checked);
     }
 
+    const createImage = async (jwtToken, imageUrl) => {
+        axios({
+            url: '/shoes',
+            method: 'post',
+            headers: {
+                'Authorization': jwtToken
+            },
+            data: {
+                name,
+                seller,
+                price: parseFloat(price),
+                size: parseInt(size),
+                condition: conditions,
+                imageUrl: imageUrl,
+            }
+        }).then(response => {
+            const newShoes = response.data.shoes;
+            alert("Success: Your shoes is submitted for review!");
+            console.log(newShoes);
+            updateCollections([
+                newShoes,
+                ...shoesCollection
+            ]);
+            setLoading(false);
+            history.push('/')
+        }).catch(error => {
+            alert(error.response.data.error);
+        });
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-
         
-        
-        // if (!props.currentUser) {
-        //     alert('You have to log in first!')
-        //     return;
-        // }
+        if (!auth.currentUser) {
+            alert('You have to log in first!')
+            return;
+        }
 
-        // await axios({
-        //     url: '/shoes',
-        //     method: 'post',
-        //     withCredentials: true,
-        //     data: {
-        //         name,
-        //         seller,
-        //         price: parseFloat(price),
-        //         size: parseInt(size),
-        //         condition: conditions,
-        //         imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
-        //     }
-        // }).then(response => {
-        //     const newShoes = response.data.shoesCollection;
-        //     alert("Success: Your shoes is submitted for review!");
-        //     console.log(newShoes);
-        //     setLoading(false);
-        //     history.push('/')
-        // }).catch(error => {
-        //     alert(error.response.data.error);
-        //     setLoading(false);
-        // });
+        const storageRef = storage.ref(`collection/${file.current.name}`);
+
+        storageRef.put(file.current)
+                .then(async () => {
+                    const imageUrl = await storageRef.getDownloadURL();
+                    console.log(imageUrl);
+
+                    const jwtToken = await auth.currentUser.getIdToken();
+
+                    await createImage(jwtToken, imageUrl);
+                }).catch(error => console.log(error));
+
+        setLoading(false);
     }
 
     let formInfo = (
@@ -115,7 +140,12 @@ const SellPage = (props) => {
                     </Form.Control>
                 </Col>
                 <Col lg={4} md={4}>
-                    <input onChange={ handleFileChange } type="file" id="myFile" name="filename"/>
+                    <input 
+                        onChange={ handleFileChange } 
+                        type="file" 
+                        id="myFile" 
+                        name="filename"
+                        accept='image/*'/>
                 </Col>
                 <Col lg={4} md={4}>
                     <Form.Control
@@ -182,10 +212,12 @@ const SellPage = (props) => {
 
 const mapStatetoProps = createStructuredSelector({
     currentUser: selectCurrentUser,
+    shoesCollection: selectShoesCollection,
 });
 
 const mapDispatchtoProps = dispatch => ({
     setLoading: loadingState => dispatch(setLoading(loadingState)),
+    updateCollections: collection => dispatch(updateCollections(collection)),
 })
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(SellPage);
