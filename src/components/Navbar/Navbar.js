@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { withRouter, useHistory } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
@@ -28,14 +28,35 @@ const NavBar = (props) => {
         setLoading,
     } = props;
 
-    const changeBackground = () => {
-        if (window.scrollY >= 70) {
-            setNavbar(true);
-        } else {
-            setNavbar(false);
+    const [ dimensions, setDimensions ] = React.useState({ 
+        height: window.innerHeight,
+        width: window.innerWidth
+    })
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth
+            });
         }
-    }
-    window.addEventListener('scroll', changeBackground);
+
+        const changeNavBackground = () => {
+            if (window.scrollY >= 70) {
+                setNavbar(true);
+            } else {
+                setNavbar(false);
+            }
+        }
+
+        window.addEventListener('scroll', changeNavBackground);
+        window.addEventListener('resize', handleResize)
+    
+        return _ => {
+            window.removeEventListener('scroll', changeNavBackground);
+            window.removeEventListener('resize', handleResize);
+        }
+    });
 
     const handleSignOut = async () => {
         setLoading(true);
@@ -71,17 +92,22 @@ const NavBar = (props) => {
                     </Nav.Item>
                     <Nav.Item id='sell-with-us' className="nav-text" >
                         SELL WITH US 
-                        <span 
-                            role='img' 
-                            aria-labelledby='dropdown-icon' 
-                            className='nav-item-dropdown-arrow-down'>
-                                &#10095;
-                        </span>
-                        <ul className='nav-item-dropdown'>
-                            <li onClick={() => history.push('/sell-now')}>Sell Now!</li>
-                            <li onClick={() => history.push('/how-to-sell')}>How To Sell?</li>
-                            <li onClick={() => history.push('/how-to-ship')}>How It Works?</li>
-                        </ul>
+                        {   
+                            dimensions.width >= 992 &&
+                            <>
+                            <span 
+                                role='img' 
+                                aria-labelledby='dropdown-icon' 
+                                className='nav-item-dropdown-arrow-down'>
+                                    &#10095;
+                            </span>
+                            <ul className='nav-item-dropdown'>
+                                <li onClick={() => history.push('/sell-now')}>Sell Now!</li>
+                                <li onClick={() => history.push('/how-to-sell')}>How To Sell?</li>
+                                <li onClick={() => history.push('/how-to-ship')}>How It Works?</li>
+                            </ul>
+                            </>
+                        }
                     </Nav.Item>
                     <Nav.Item 
                         id='contact-us' 

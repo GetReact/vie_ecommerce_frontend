@@ -33,8 +33,12 @@
     min-height: 100vh;
 }
 
+header {
+    height: 70px;
+}
+
 main #content-wrap {
-    margin-top: 70px;
+    /* margin-top: 70px; */
     background-color: transparent!important;
     font-family: 'Spartan', sans-serif;
     font-weight: 500;
