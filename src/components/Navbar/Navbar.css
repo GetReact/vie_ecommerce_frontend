@@ -1,13 +1,16 @@
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
-    background: rgb(240, 240, 240);
+    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(130, 130, 130, 0.7) 100%);
+    /* background: rgb(106, 106, 106); */
     padding-left: 1.5cm;
     padding-right: 1.5cm;
 }
 
 .navbar.active {
-    background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(130, 130, 130, 0.7) 100%);
+    background: rgb(240, 240, 240);
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+    z-index: 1200;
 }
 
 .navbar-brand {
@@ -19,74 +22,26 @@
     cursor: pointer;
 }
 
-.mx-auto {
-    font-family: 'Spartan', sans-serif;
+.nav-options {
+    margin-left: 10%;
+    margin-right: auto;
     align-items: center;
-    font-size: 100%
+    height: 70px;
 }
 
-.navbar .navbar-nav .nav-text {
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 0.5cm;
-    padding-right: 0.5cm;
+.nav-options #sell-with-us {
+    width: 133px;
+}
+
+.nav-options .nav-text {
+    margin-left: 0.5cm;
+    margin-right: 0.5cm;
     background-color: transparent;
     cursor: pointer;
-    color: black;
-}
-
-.nav-text .nav-item-dropdown-icon {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-.nav-text .nav-item-dropdown-icon.active {
-    transform: rotate(90deg)!important;
-}
-
-.navbar.active .navbar-nav .nav-text {
     color: white;
-}
-
-.navbar .navbar-nav .nav-text:hover {
-    color: rgb(120, 120, 120);
-    border-bottom: 1px solid rgb(120, 120, 120);
-}
-
-.navbar.active .navbar-nav .nav-text:hover {
-    color: rgb(190, 190, 190);
-    border-bottom: 1px solid rgb(190, 190, 190);
-}
-
-.navbar .nav-item-dropdown,
-.navbar.active .nav-item-dropdown {
-    background: rgb(240, 240, 240);
-}
-
-.nav-item-dropdown {
-    position: absolute;
-    height: 1cm;
-    display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-top: 1px solid rgb(120, 120, 120);
-    font-family: 'Spartan', sans-serif;
-    text-align: center;
-    align-items: center;
-}
-
-.nav-item-dropdown .dropdown-item {
-    width: 33%;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: black;
-}
-
-.nav-item-dropdown .dropdown-item:hover {
-    color: rgb(120, 120, 120);
-    background: transparent;
-    cursor: pointer;
-    border-bottom: 1px solid rgb(120, 120, 120);
+    height: 100%;
+    vertical-align: middle;
+    line-height: 70px;
 }
 
 .nav-icons {
@@ -94,18 +49,103 @@
     align-items: center;
     flex-direction: row;
     justify-content: center;
+    margin-left: auto;
+    margin-right: 0;
 }
 
-.nav-icon:hover,
-.navbar.active .navbar-nav .nav-icon:active,
-.navbar.active .navbar-nav .nav-icon.active {
+.nav-icons .nav-text {
+    background-color: transparent;
     cursor: pointer;
+    color: white;
+    height: 100%;
+    vertical-align: middle;
+    line-height: 70px;
 }
 
-.navbar.active .navbar-nav .nav-icon:hover {
-    cursor: pointer;
-    background-color: rgb(154, 145, 145);
+.nav-text .nav-item-dropdown-arrow-down {
+    display: inline-block;
+    margin-left: 10px;
+    transform: rotate(90deg)!important;
 }
+
+.navbar.active .navbar-nav .nav-text {
+    color: black;
+}
+
+.navbar.active .navbar-collapse .navbar-nav .nav-text:hover {
+    color: rgb(120, 120, 120);
+    /* border-bottom: 1px solid rgb(120, 120, 120); */
+}
+
+.navbar.active .navbar-nav .nav-icon svg:hover {
+    cursor: pointer;
+    fill: rgb(120, 120, 120);
+}
+
+.navbar .navbar-nav .nav-text:hover {
+    color: rgb(190, 190, 190);
+    /* border-bottom: 1px solid rgb(190, 190, 190); */
+}
+
+.navbar .navbar-nav .nav-icon svg:hover {
+    cursor: pointer;
+    fill: rgb(190, 190, 190);
+}
+
+.navbar .nav-item-dropdown,
+.navbar.active .nav-item-dropdown {
+    background: rgb(240, 240, 240);
+}
+
+.nav-options #sell-with-us ul {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+    border-top: 1px solid rgb(120, 120, 120);
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    width: 6cm;
+}
+
+.nav-options #sell-with-us:hover > span,
+.nav-options #sell-with-us:focus-within > span {
+    transform: rotate(-90deg)!important;
+}
+
+.nav-options #sell-with-us:hover > ul,
+.nav-options #sell-with-us:focus-within > ul,
+.nav-options #sell-with-us ul:hover,
+.nav-options #sell-with-us ul:focus {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.nav-options #sell-with-us ul li {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    clear: both;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    text-decoration: none;
+    transition-duration: 0.5s;
+    color: black;
+    line-height: 0.8cm;
+}
+
+.nav-options #sell-with-us ul li:hover,
+.nav-options #sell-with-us ul li:focus-within {
+    cursor: pointer;
+    color: rgb(120, 120, 120);
+    background: rgb(200, 200, 200);
+}
+
 
 @media(min-width: 992px) {
     .navbar {
@@ -113,22 +153,22 @@
     }
 
     .nav-item-dropdown {
-        top: 70px;
-        width: 70%;
+        /* margin-top: 70px; */
+        /* width: 70%;
         left: 15%;
-        right: 15%;
+        right: 15%; */
     }
 }
 
 @media(max-width: 992px) {
     .nav-item-dropdown {
         top: 350px;
-        width: 100%;
+        /* width: 100%;
         left: 0%;
-        right: 0%;
+        right: 0%; */
     }
 
     .nav-icons {
-        flex-direction: column-reverse;
+        flex-direction: row;
     }
 }
