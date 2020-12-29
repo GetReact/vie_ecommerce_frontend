@@ -9,6 +9,7 @@ import { selectShoesCollection } from '../../redux/shop/shop-selectors';
 import SideBar from '../../components/SideBar/SideBar';
 import ProductGrid from '../../components/ProductGrid/ProductGrid';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import SortBar from '../../components/SortBar/SortBar';
 
 import "./ShopPage.css";
 
@@ -37,6 +38,9 @@ const ShopPage = (props) => {
                             <Row className="search-bar">
                                 <SearchBar/>
                             </Row>
+                            <Row className='sort-bar'>
+                                <SortBar/>
+                            </Row>
                             <Row className="product-grid">
                                 <ProductGrid items = { props.shoesCollection }/>
                             </Row>
@@ -47,6 +51,9 @@ const ShopPage = (props) => {
                     <>
                         <Row>
                             <Col md={12}><SideBar/></Col>
+                            <Col md={12}>
+                                <span className='sort-bar-small'><SortBar/></span>
+                            </Col>
                             <Col md={12}>
                                 <ProductGrid items = { props.shoesCollection }/>
                             </Col>

@@ -12,6 +12,11 @@ export const selectSearchBar = createSelector(
     (filters) => filters.searchbar
 );
 
+export const selectSortBar = createSelector(
+    [selectFilters],
+    (filters) => filters.sortbar
+);
+
 export const selectSideBarFilters = createSelector(
     [selectSideBar],
     (sidebar) => sidebar.filters

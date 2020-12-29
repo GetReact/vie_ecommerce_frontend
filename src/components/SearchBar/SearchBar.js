@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl } from 'react-bootstrap';
 
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -14,28 +14,17 @@ const SearchBar = ({ keywords, setSearchBarFilters }) => {
 
     const handleInput = (event) => {
         setCurrentKeywords(event.target.value);
-    }
-
-    const handleSearch = () => {
-        console.log(currentKeywords);
-        setSearchBarFilters(currentKeywords);
+        setSearchBarFilters(event.target.value);
     }
 
     return (
         <InputGroup>
             <FormControl
-                placeholder="Search..."
+                placeholder="Search ..."
                 aria-label="Search"
                 aria-describedby="basic-addon2"
                 value={ currentKeywords }
                 onChange={ handleInput }/>
-            <InputGroup.Append>
-                <Button 
-                    variant="outline-secondary"
-                    onClick={ handleSearch }>
-                        Search
-                </Button>
-            </InputGroup.Append>
         </InputGroup>
     );
 };

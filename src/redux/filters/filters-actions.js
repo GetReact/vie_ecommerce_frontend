@@ -13,3 +13,8 @@ export const setSearchBarFilters = (keywords) => ({
     type: FiltersActionTypes.SET_SEARCHBAR_FILTERS,
     payload: keywords,
 });
+
+export const setSortBarValue = (value) => ({
+    type: FiltersActionTypes.SET_SORTBAR_VALUE,
+    payload: value,
+});

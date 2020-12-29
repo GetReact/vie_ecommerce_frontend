@@ -15,7 +15,8 @@ const INITIAL_STATE = {
     },
     searchbar: {
         keywords: '',
-    }
+    },
+    sortbar: 'none',
 }
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
@@ -46,6 +47,11 @@ const filtersReducer = (state = INITIAL_STATE, action) => {
                     ...state.searchbar,
                     keywords: action.payload
                 }
+            }
+        case FiltersActionTypes.SET_SORTBAR_VALUE:
+            return {
+                ...state,
+                sortbar: action.payload
             }
         default:
             return state;
