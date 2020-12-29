@@ -11,12 +11,12 @@ const ProductGrid = ({ items, filters }) => {
         const itemsToDisplay = items.filter(
             item =>
                 parseFloat(filters.minPrice) < parseFloat(item.price) && parseFloat(item.price) <= parseFloat(filters.maxPrice) && 
-                parseFloat(filters.minSize) <= parseFloat(item.size) && parseFloat(item.size) <= parseFloat(filters.maxSize) &&
+                parseInt(filters.minSize) <= parseInt(item.size) && parseInt(item.size) <= parseInt(filters.maxSize) &&
                 (filters.brands.includes(item.seller.toLowerCase()) || filters.brands.length === 0) && 
                 (filters.conditions.includes(item.condition) || filters.conditions.length === 0)
         );
 
-        // console.log(itemsToDisplay);
+        console.log(itemsToDisplay);
         return itemsToDisplay;
     }
 

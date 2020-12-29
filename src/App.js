@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { auth } from './firebase/firebase';
+
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
 import { updateCollections } from './redux/shop/shop-actions';
@@ -22,37 +24,27 @@ class App extends Component {
 
   componentDidMount() {
     const { setCurrentUser, setLoading } = this.props;
-    // console.log('component did mount');
     setLoading(true);
     
     this.unsubscribeFromAuth = async () => {
-      
-      let userAuth = null;
-      userAuth = await axios({
-        url: '/me',
-        method: 'get',
-        withCredentials: true,
-      }).then(response => {
-        // console.log(response.data.message)
-        return response.data.message;
-      }).catch(error => {
-        // console.log(error.response.data.error)
-        return null;
+      auth.onAuthStateChanged(async userCredentials => {
+        if (userCredentials) {
+          console.log(userCredentials);
+          const { uid, displayName, email } = userCredentials;
+          setCurrentUser({
+            id: uid,
+            displayName,
+            email
+          });
+        } else { setCurrentUser(null) }
       });
-
-      if (userAuth) {
-        setCurrentUser(userAuth, () => {
-          this.props.history.push('/')
-        })
-      } else setCurrentUser(userAuth);
 
       await axios({
         url: '/shoes',
         method: 'get',
-        withCredentials: true,
       }).then(response => {
-        // console.log(response.data.message)
-        const shoesCollection = response.data.message;
+        console.log(response.data.collection)
+        const shoesCollection = response.data.collection;
         const brands = [];
         shoesCollection.map(
           item => brands.includes(item.seller.toLowerCase()) ? null : brands.push(item.seller.toLowerCase())
@@ -63,12 +55,12 @@ class App extends Component {
           staticBrands: [...brands],
         });
       }).catch(error => {
-        // console.log(error.response.data.error)
+        console.log(error.response.data.error)
         return null;
       });
-      setLoading(false);
     }
 
+    setLoading(false);
     this.unsubscribeFromAuth();
   }
 

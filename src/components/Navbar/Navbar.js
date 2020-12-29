@@ -11,7 +11,8 @@ import { selectCartHidden } from '../../redux/cart/cart-selectors';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
 
-import { axios_instance as axios, fireBaseMediaURL } from '../../config';
+import { fireBaseMediaURL } from '../../config';
+import { auth } from '../../firebase/firebase';
 
 import CartDropDown from '../../components/CartDropDown/CartDropDown';
 import './Navbar.css';
@@ -42,19 +43,14 @@ const NavBar = (props) => {
 
     const handleSignOut = async () => {
         setLoading(true);
-        await axios({
-            url: '/signout',
-            method: 'post',
-            withCredentials: true,
-        }).then(response => {
-            alert(response.data.message);
-            setCurrentUser(null);
+        try {
+            await auth.signOut();
             setLoading(false);
             history.push('/signin');
-        }).catch(error => {
-            alert(error.response.data.error);
-            setLoading(false)
-        });
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
     }
     
     const sellDropdown = (

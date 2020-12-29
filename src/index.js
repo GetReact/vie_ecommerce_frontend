@@ -7,6 +7,11 @@ import { store, persistor } from './redux/store';
 import './index.css';
 import App from './App';
 
+
+if (process.env.NODE_ENV.trim() !== 'development') {
+  console.log = () => {};
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

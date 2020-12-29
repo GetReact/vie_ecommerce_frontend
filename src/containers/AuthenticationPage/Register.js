@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { axios_instance as axios } from '../../config';
+import { auth } from '../../firebase/firebase';
 
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
@@ -28,7 +29,7 @@ class RegisterForm extends Component {
             );
         }
 
-        const { setLoading, setCurrentUser } = this.props;
+        const { setLoading } = this.props;
 
         const handleSubmit = async (event) => {
             event.preventDefault();
@@ -36,26 +37,29 @@ class RegisterForm extends Component {
             if (validateForm()) {
                 try {
                     const { displayName, email, password } = this.state;
+                    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                    await user.updateProfile({
+                        displayName: displayName
+                    });
+
+                    const jwtToken = await user.getIdToken();
+
                     await axios({
                         url: '/users',
                         method: 'post',
-                        data: {
-                            displayName,
-                            email,
-                            password
-                        },
-                        withCredentials: true
+                        headers: {
+                            'Authorization': jwtToken
+                        }
                     }).then(response => {
-                        // alert(response.data.message);
-                        alert('Please sign in now!');
-                        setCurrentUser(null);
-                        setLoading(false);
+                        console.log(response.data.user);
                     }).catch(error => {
-                        alert(error.response.data.error);
-                        setLoading(false);
-                    });
-                } catch (e) {
-                    console.error(e);
+                        console.log(error.response.data.error);
+                    }); 
+
+                    setLoading(false);
+                } catch (error) {
+                    console.log(error.code);
+                    setLoading(false);
                 }
             }
         }

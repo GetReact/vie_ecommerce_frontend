@@ -31,17 +31,16 @@ class DetailPage extends Component {
                 method: 'get',
                 withCredentials: true,
             }).then(response => {
-                return response.data.message;
+                return response.data.shoes;
             }).catch(error => {
-                // console.log(error.response.data.error);
-                alert(error.response.data.error);
+                console.log(error.response.data.error);
+                // alert(error.response.data.error);
                 return null;
             });
-            // console.log(fetch_shoes);
+            console.log(fetch_shoes);
             if (this._isMounted) {
                 this.setState({ shoes: fetch_shoes });
             }
-            // console.log(this.state.shoes);
             setLoading(false);
         }
         
@@ -54,10 +53,7 @@ class DetailPage extends Component {
     }
 
     render() {
-
         const { shoes } = this.state;
-        // console.log(shoes);
-
         return (
             <Container className="detail-page">
                 <LinkContainer to="/shop">
@@ -74,9 +70,7 @@ class DetailPage extends Component {
                     <Col className="column2" lg={6}>
                         <h1>{ shoes ? shoes.name : 'nothing' }</h1>
                         <Row className="shoes-info"><h5>Brand:</h5><h5 className="info">{ shoes ? shoes.seller : 'nothing' }</h5></Row>
-                        {/* <Row className="shoes-info"><h5>Seller:</h5><h5 className="info">Seller Name</h5></Row> */}
                         <Row className="shoes-info"><h5>Price:</h5><h5 className="info">${ shoes ? shoes.price : 'nothing' }</h5></Row>
-                        {/* <Row className="shoes-info"><h5>Availability:</h5><h5 className="info">43</h5></Row> */}
                         <Row className="shoes-info"><h5>Size:</h5><h5 className="info">{ shoes ? shoes.size : 'nothing' }</h5></Row>
                         <Row className="shoes-info"><h5>Condition:</h5><h5 className="info">{ shoes ? shoes.condition.toUpperCase() : 'nothing' }</h5></Row>
                         <Row className="shoes-info"><h5>Descriptions:</h5></Row>

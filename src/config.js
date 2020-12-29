@@ -6,8 +6,8 @@ const firebaseMediaQuery = '?alt=media';
 
 
 export const axios_instance = axios.create({
-    // baseURL: 'http://localhost:5000',
-    baseURL: 'https://viggs-backend.herokuapp.com',
+    baseURL: 'http://localhost:5000',
+    // baseURL: 'https://viggs-backend.herokuapp.com',
 });
 
 export const fireBaseMediaURL = (imageName) => {

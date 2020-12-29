@@ -45,34 +45,36 @@ const SellPage = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        
-        if (!props.currentUser) {
-            alert('You have to log in first!')
-            return;
-        }
 
-        await axios({
-            url: '/shoes',
-            method: 'post',
-            withCredentials: true,
-            data: {
-                name,
-                seller,
-                price: parseInt(price),
-                size: parseInt(size),
-                condition: conditions,
-                imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
-            }
-        }).then(response => {
-            // const newShoes = response.data.shoesCollection;
-            alert("Success: Your shoes is submitted for review!");
-            // console.log(newShoes);
-            setLoading(false);
-            history.push('/')
-        }).catch(error => {
-            alert(error.response.data.error);
-            setLoading(false);
-        });
+        
+        
+        // if (!props.currentUser) {
+        //     alert('You have to log in first!')
+        //     return;
+        // }
+
+        // await axios({
+        //     url: '/shoes',
+        //     method: 'post',
+        //     withCredentials: true,
+        //     data: {
+        //         name,
+        //         seller,
+        //         price: parseFloat(price),
+        //         size: parseInt(size),
+        //         condition: conditions,
+        //         imageUrl:"https://firebasestorage.googleapis.com/v0/b/viecommerce.appspot.com/o/Nike%2FLebron-18.jpg?alt=media",
+        //     }
+        // }).then(response => {
+        //     const newShoes = response.data.shoesCollection;
+        //     alert("Success: Your shoes is submitted for review!");
+        //     console.log(newShoes);
+        //     setLoading(false);
+        //     history.push('/')
+        // }).catch(error => {
+        //     alert(error.response.data.error);
+        //     setLoading(false);
+        // });
     }
 
     let formInfo = (

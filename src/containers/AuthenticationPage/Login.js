@@ -3,9 +3,8 @@ import { Button, Col, Row } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { axios_instance as axios } from '../../config';
+import { auth, signInWithGoogle } from '../../firebase/firebase';
 
-import { signInWithGoogle } from '../../firebase/firebase';
 import { setLoading } from '../../redux/spinner/spinner-actions';
 import { setCurrentUser } from '../../redux/user/user-action';
 
@@ -26,7 +25,7 @@ class LoginForm extends Component {
             );
         }
 
-        const { setLoading, setCurrentUser } = this.props;
+        const { setLoading } = this.props;
 
         const handleSubmit = async (event) => {
             event.preventDefault();
@@ -36,23 +35,14 @@ class LoginForm extends Component {
             
             if (!validateForm()) return;
 
-            await axios({
-                url: '/signin',
-                method: 'post',
-                withCredentials: true,
-                data: {
-                    email,
-                    password
-                }
-            }).then(response => {
-                const userAuth = response.data.message;
-                // console.log(userAuth);
-                setCurrentUser(userAuth);
+            try {
+                const user = await auth.signInWithEmailAndPassword(email, password);
+                console.log(user);
                 setLoading(false);
-            }).catch(error => {
-                alert(error.response.data.error);
+            } catch(e) {
+                console.log(e);
                 setLoading(false);
-            });
+            }
         }
 
         const handleChange = (event) => {
