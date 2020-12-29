@@ -4,8 +4,8 @@ import { Slider } from '@material-ui/core';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
-import { selectSideBarFilters, selectSideBarDropped } from '../../redux/sidebar/sidebar-selectors';
-import { setFilters, toggleSideBarDropped } from '../../redux/sidebar/sidebar-actions';
+import { selectSideBarFilters, selectSideBarDropped } from '../../redux/filters/filters-selectors';
+import { setSideBarFilters, toggleSideBarDropped } from '../../redux/filters/filters-actions';
 
 import "./SideBar.css";
 
@@ -14,7 +14,7 @@ const SideBar = (props) => {
         dropped, 
         toggleSideBarDropped,
         filters,
-        setFilters,
+        setSideBarFilters,
     } = props;
 
     const { 
@@ -62,7 +62,7 @@ const SideBar = (props) => {
     }
 
     const handleApply = () => {
-        setFilters(
+        setSideBarFilters(
             {
                 brands: selectedBrands,
                 minPrice: priceVal[0],
@@ -201,7 +201,7 @@ const mapStatetoProps = createStructuredSelector({
 });
 
 const mapDispatchtoProps = dispatch => ({
-    setFilters: newValues => dispatch(setFilters(newValues)),
+    setSideBarFilters: newValues => dispatch(setSideBarFilters(newValues)),
     toggleSideBarDropped: () => dispatch(toggleSideBarDropped()),
 });
 

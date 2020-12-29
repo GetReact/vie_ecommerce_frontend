@@ -2,15 +2,14 @@
     padding-top: 0;
     padding-bottom: 0;
     background: linear-gradient(90deg, rgb(29, 29, 29) 0%, rgba(130, 130, 130, 0.7) 100%);
-    /* background: rgb(106, 106, 106); */
     padding-left: 1.5cm;
     padding-right: 1.5cm;
+    z-index: 1200;
 }
 
 .navbar.active {
     background: rgb(240, 240, 240);
     box-shadow: 0 2px 4px rgba(0,0,0,.15);
-    z-index: 1200;
 }
 
 .navbar-brand {
@@ -107,6 +106,7 @@
         margin: 0;
         padding-left: 0;
         width: 6cm;
+        z-index: 1200;
         background: rgb(240, 240, 240);
         border-top: 1px solid rgb(120, 120, 120);
         transition: all 0.5s ease;

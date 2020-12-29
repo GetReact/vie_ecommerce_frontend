@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectSideBarFilters } from '../../redux/sidebar/sidebar-selectors';
+import { selectSideBarFilters } from '../../redux/filters/filters-selectors';
 import Card from '../Card/Card';
 import './ProductGrid.css';
 
