@@ -11,12 +11,13 @@ const INITIAL_STATE = {
             maxSize: 20,
             conditions: [],
         },
-        dropped: false,
+        dropped: 10,
     },
     searchbar: {
         keywords: '',
     },
     sortbar: 'none',
+    viewbar: 1,
 }
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
@@ -52,6 +53,12 @@ const filtersReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 sortbar: action.payload
+            }
+
+        case FiltersActionTypes.SET_VIEWBAR_VALUE:
+            return {
+                ...state,
+                viewbar: action.payload
             }
         default:
             return state;

@@ -17,6 +17,11 @@ export const selectSortBar = createSelector(
     (filters) => filters.sortbar
 );
 
+export const selectViewBar = createSelector(
+    [selectFilters],
+    (filters) => filters.viewbar
+);
+
 export const selectSideBarFilters = createSelector(
     [selectSideBar],
     (sidebar) => sidebar.filters

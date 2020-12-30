@@ -18,3 +18,8 @@ export const setSortBarValue = (value) => ({
     type: FiltersActionTypes.SET_SORTBAR_VALUE,
     payload: value,
 });
+
+export const setViewBarValue = (value) => ({
+    type: FiltersActionTypes.SET_VIEWBAR_VALUE,
+    payload: value,
+});

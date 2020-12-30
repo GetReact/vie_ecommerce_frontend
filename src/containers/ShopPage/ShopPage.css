@@ -14,19 +14,39 @@
     height: 1cm;
 }
 
-.productpage .products .sort-bar,
-.productpage .sort-bar-small {
+.productpage .products .select-bar {
     margin-right: 10%;
+    margin-left: 10%;
     margin-top: 0.5cm;
-    margin-left: 0.5cm;
+    margin-bottom: 0.5cm;
+}
+
+.productpage .products .select-bar .view-bar {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.productpage .products .select-bar .sort-bar {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.productpage .select-bar-small {
+    padding-right: 10%;
+    margin-top: 0.5cm;
+    margin-left: auto;
     margin-bottom: 0.5cm;
     text-align: right;
-    display: block!important;
 }
 
 .productpage .products .product-grid {
     margin-right: 1cm;
     margin-left: 1cm;
-    /* padding-top: 2cm; */
 }
 
+.pagination-bar {
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: auto;
+    margin-right: auto;
+}

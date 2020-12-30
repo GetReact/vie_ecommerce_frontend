@@ -7,7 +7,7 @@ import { auth } from './firebase/firebase';
 import { setCurrentUser } from './redux/user/user-action';
 import { setLoading } from './redux/spinner/spinner-actions';
 import { updateCollections } from './redux/shop/shop-actions';
-import { setSideBarFilters } from './redux/filters/filters-actions';
+import { setSideBarFilters, setViewBarValue } from './redux/filters/filters-actions';
 
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { selectCollections } from './redux/shop/shop-selectors';
@@ -23,10 +23,9 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser, setLoading } = this.props;
-    setLoading(true);
-    
+    const { setCurrentUser, setLoading } = this.props;    
     this.unsubscribeFromAuth = async () => {
+      setLoading(true);
       auth.onAuthStateChanged(async userCredentials => {
         if (userCredentials) {
           console.log(userCredentials);
@@ -54,13 +53,14 @@ class App extends Component {
         this.props.setSideBarFilters({ 
           staticBrands: [...brands],
         });
+        if (shoesCollection.length > 10) this.props.setViewBarValue(5);
+        else this.props.setViewBarValue(shoesCollection.length)
       }).catch(error => {
         console.log(error)
         return null;
       });
+      setLoading(false);
     }
-
-    setLoading(false);
     this.unsubscribeFromAuth();
   }
 
@@ -93,6 +93,7 @@ const mapDispathtoProps = (dispatch) => ({
   updateCollections: collectionsMap => dispatch(updateCollections(collectionsMap)),
   setLoading: loadingState => dispatch(setLoading(loadingState)),
   setSideBarFilters: newValues => dispatch(setSideBarFilters(newValues)),
+  setViewBarValue: value => dispatch(setViewBarValue(value))
 });
 
 export default connect(mapStatetoProps, mapDispathtoProps)(App);

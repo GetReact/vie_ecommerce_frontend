@@ -66,7 +66,7 @@ const ProductGrid = ({ items, filters, keywords, sortbar }) => {
 const mapStatetoProps = createStructuredSelector({
     filters: selectSideBarFilters,
     keywords: selectSearchBarKeywords,
-    sortbar: selectSortBar
+    sortbar: selectSortBar,
 });
 
 export default connect(mapStatetoProps)(ProductGrid);

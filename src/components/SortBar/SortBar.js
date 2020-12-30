@@ -8,7 +8,7 @@ import './SortBar.css';
 
 const SortBar = ({ setSortBarValue }) => {
     return (
-        <div>
+        <div className='sort-bar'>
             <label htmlFor='sort' style={{paddingRight : '0.5rem'}}>Sort by price:</label>{' '}
             <select id='sort' onChange={ (event) => {
                 console.log(event.target.value);
