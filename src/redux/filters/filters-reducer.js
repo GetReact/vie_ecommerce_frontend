@@ -11,7 +11,7 @@ const INITIAL_STATE = {
             maxSize: 20,
             conditions: [],
         },
-        dropped: 10,
+        dropped: false,
     },
     searchbar: {
         keywords: '',
