@@ -92,7 +92,7 @@ const ShopPage = ({ shoesCollection, viewbar }) => {
                                 <span className='select-bar-small'><SortBar/></span>
                             </Col>
                             <Col md={12}>
-                                <ProductGrid items = { shoesCollection }/>
+                                <ProductGrid items = { paginateItems(shoesCollection) }/>
                             </Col>
                             <Col md={12}>
                                 <Pagination

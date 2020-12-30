@@ -1,5 +1,8 @@
 .productpage {
     display: flex;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .productpage .products .search-bar {
