@@ -1,16 +1,18 @@
 .authentication-page {
     width: 80%;
-    margin: auto;
     display: flex;
-    padding-bottom: 4cm;
+    margin-top: 3cm;
+    margin-bottom: 3cm;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.authentication-page .register {
+.authentication-page .form-container {
     width: 90%;
     margin: auto;
 }
 
-.authentication-page .register_form{
+.authentication-page .form-content {
     justify-content: center;
     padding-top: 1cm;
 }
@@ -19,17 +21,15 @@
     text-align: center;
 }
 
-.authentication-page .register_form_box{
+.authentication-page .form-button {
     width: 100%;
 }
 
-.authentication-page .register_title {
-    margin-top: 1cm;
+.authentication-page .form-title {
     font-size: 1cm;
     font-family: 'Alegreya Sans', sans-serif;
     font-weight: 700;
     font-style: italic;
-    margin-bottom: 0;
     text-align: center;
 }
 

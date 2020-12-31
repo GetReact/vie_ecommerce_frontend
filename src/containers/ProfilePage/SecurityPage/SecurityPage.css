@@ -1,20 +1,20 @@
 .security-page {
-    margin-top: 3cm;
-    width: 10cm;
+    margin-top: 2cm;
+    margin-bottom: 2cm;
     margin-left: auto;
     margin-right: auto;
+    width: 10cm;
 }
 
-.security-page .security-page-title {
+.security-page .form-container .form-title {
     margin-top: 1cm;
     font-size: 1cm;
     font-family: 'Alegreya Sans', sans-serif;
     font-weight: 700;
     font-style: italic;
-    margin-bottom: 0;
     text-align: center;
 }
 
-.security-page button:disabled{
+.security-page .reset-password-form button:disabled{
     cursor: no-drop;
 }

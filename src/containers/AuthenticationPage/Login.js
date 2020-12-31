@@ -32,17 +32,12 @@ class LoginForm extends Component {
             setLoading(true);
             
             const { email, password } = this.state;
-            
-            if (!validateForm()) return;
 
-            try {
-                const user = await auth.signInWithEmailAndPassword(email, password);
-                console.log(user);
-                setLoading(false);
-            } catch(e) {
-                console.log(e);
-                setLoading(false);
-            }
+            await auth.signInWithEmailAndPassword(email, password)
+                .then(response => console.log(response.user))
+                .catch(error => alert(error.message));
+        
+            setLoading(false);
         }
 
         const handleChange = (event) => {
@@ -50,66 +45,51 @@ class LoginForm extends Component {
             this.setState({ [name] : value });
         }
 
-        const renderForm = () => {
-            return (
-                <div>
-                    <h3 className="register_title mb-3">
-                        LOGIN HERE
-                    </h3>
-                    <h6>Already registered? Login in here!</h6>
-                    <form onSubmit={handleSubmit} className="register_form" >
-                        <FormInput 
-                            label='Email'
-                            name='email'
-                            type='email'
-                            value={this.state.email}
-                            handleChange={handleChange}
-                            required
-                        />
-                        <FormInput 
-                            label='Password'
-                            name='password'
-                            type='password'
-                            value={this.state.password}
-                            handleChange={handleChange}
-                            required
-                        />
-                        <Row className="login-btn-group">
-                            <Col lg={4} md={4} sm={4}>
-                                <Button
-                                    className="register_form_box mb-3"
-                                    block
-                                    type="submit"
-                                    variant="outline-dark"
-                                    bssize="large"
-                                    disabled={!validateForm()}
-                                >
-                                    Login
-                                </Button>
-                            </Col>
-                            <Col lg={8} md={8} sm={8}>
-                                <Button
-                                    className="register_form_box mb-3"
-                                    block
-                                    variant="outline-primary"
-                                    bssize="large"
-                                    disabled
-                                    onClick={signInWithGoogle}
-                                >
-                                    Login with Google
-                                </Button>
-                            </Col>
-                        </Row>
-                    </form>
-                </div>
-                
-            );
-        }
-
         return (
-            <div className="register">
-                { renderForm() }
-            </div>
+            <form onSubmit={handleSubmit} className="form-content" >
+                <FormInput 
+                    label='Email'
+                    name='email'
+                    type='email'
+                    value={this.state.email}
+                    handleChange={handleChange}
+                    required
+                />
+                <FormInput 
+                    label='Password'
+                    name='password'
+                    type='password'
+                    value={this.state.password}
+                    handleChange={handleChange}
+                    required
+                />
+                <Row className="login-btn-group">
+                    <Col lg={4} md={4} sm={4}>
+                        <Button
+                            className="form-button mb-3"
+                            block
+                            type="submit"
+                            variant="outline-dark"
+                            bssize="large"
+                            disabled={ !validateForm() }
+                        >
+                            Login
+                        </Button>
+                    </Col>
+                    <Col lg={8} md={8} sm={8}>
+                        <Button
+                            className="form-button mb-3"
+                            block
+                            variant="outline-primary"
+                            bssize="large"
+                            disabled
+                            onClick={signInWithGoogle}
+                        >
+                            Login with Google
+                        </Button>
+                    </Col>
+                </Row>
+            </form>
         );           
     }
 }

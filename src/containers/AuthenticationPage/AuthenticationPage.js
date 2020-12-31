@@ -23,19 +23,43 @@ const AuthenticationPage = (props) => {
                 width > 992 ? (
                     <>
                         <Col lg={6}>
-                            <LoginForm/>
+                            <div className='register'>
+                                <h3 className="form-title mb-3">
+                                    LOGIN HERE
+                                </h3>
+                                <h6>Already registered? Login in here!</h6>
+                                <LoginForm/>
+                            </div>
                         </Col>
-                        <Col lg={6}> 
-                            <RegisterForm/>
+                        <Col lg={6}>
+                            <div className='register'>
+                                <h3 className="form-title mb-3">
+                                    REGISTER HERE
+                                </h3>
+                                <h6>Have not registered? Sign up here!</h6>
+                                <RegisterForm/>
+                            </div>
                         </Col>
                     </>
                 ) : (
                     <div className="small-page">
                         <Row>
-                            <LoginForm />
+                            <div className='form-container'>
+                                <h3 className="form-title mb-3">
+                                    LOGIN HERE
+                                </h3>
+                                <h6>Already registered? Login in here!</h6>
+                                <LoginForm/>
+                            </div>
                         </Row>
                         <Row>
-                            <RegisterForm />
+                            <div className='form-container'>
+                                <h3 className="form-title mb-3">
+                                    REGISTER HERE
+                                </h3>
+                                <h6>Have not registered? Sign up here!</h6>
+                                <RegisterForm/>
+                            </div>
                         </Row>
                     </div>
                 )

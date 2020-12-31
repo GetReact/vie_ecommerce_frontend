@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import firebase from 'firebase/app';
 
-import { axios_instance as axios } from '../../../config';
+import { auth } from '../../../firebase/firebase';
 
-import { setCurrentUser } from '../../../redux/user/user-action';
 import { setLoading } from '../../../redux/spinner/spinner-actions';
 
 import FormInput from '../../../components/FormInput/FormInput';
@@ -13,114 +13,155 @@ import './SecurityPage.css';
 
 const SecurityPage = (props) => {
     const history = useHistory();
-    const [ state, setState ] = useState({
+
+    const [ fields, setFields ] = useState({
+        currentPassword: '',
         newPassword: '',
-        confirmPassword: '', 
+        confirmNewPassword: '',
     });
 
-    const { setCurrentUser, setLoading } = props;
+    const { setLoading } = props;
 
-    const validateForm = () => {
+    const validateResetPasswordForm = () => {
         return (
-            state.newPassword.length > 0 &&
-            state.newPassword.length === state.confirmPassword.length
+            fields.newPassword.length > 0 &&
+            fields.newPassword.length === fields.confirmNewPassword.length
         );
     }
 
-    const handleSubmit = async (event) => {
+    const handleResetPassword = async (event) => {
         event.preventDefault();
-        const { newPassword } = state;
         setLoading(true);
-        if (validateForm()) {
-            await axios({
-                url: '/me',
-                method: 'post',
-                withCredentials: true,
-                data: { newPassword },
-            }).then(response => {
-                alert(response.data.message);
-            }).catch(error => {
-                alert(error.response.data.error);
-                setLoading(false);
-            });
-            await axios({
-                url: '/signout',
-                method: 'post',
-                withCredentials: true,
-            }).then(response => {
-                alert(response.data.message);
-                setCurrentUser(null);
-                setLoading(false);
-                history.push('/signin');
-            }).catch(error => {
-                alert(error.response.data.error);
-                setLoading(false)
-            });
+
+
+        const user = auth.currentUser;
+        const { currentPassword, newPassword, confirmNewPassword } = fields;
+
+        if (!user) {
+            alert('You are not authenticated!');
+            auth.signOut();
+            setLoading(false);
+            history.push('/signin');
         }
-        setState({ 
+        
+        // Validate New Password
+        if (newPassword === currentPassword) {
+            alert('New Password cannot be the same as the Current Password!')
+            return;
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            alert('The password confirmation does not match!');
+            return;
+        }
+
+        // Re-authenticate user
+        const credential = firebase.auth.EmailAuthProvider.credential(
+            user.email,
+            currentPassword
+        );
+
+        await user.reauthenticateWithCredential(credential)
+            .then(message => {
+                console.log(message);
+                alert('User is reauthenticated!');
+            })
+            .catch(error => {
+                console.log(error.message);
+                alert(error.message);
+                return;
+            });
+
+        // Update Password
+        await user.updatePassword(newPassword)
+            .then(message => {
+                console.log(message);
+                alert('Update password successfully!');
+            })
+            .catch(error => {
+                console.log(error);
+                alert(error.message);
+                return;
+            });
+
+        setLoading(false);
+        
+        setFields({
+            currentPassword: '',
             newPassword: '',
-            confirmPassword: '', 
+            confirmNewPassword: '', 
         })
+
+        history.push('/profile');
     }
 
     const handleChange = (event) => {
         const { value, name } = event.target
-        setState({
-            ...state,
+        setFields({
+            ...fields,
             [name] : value,
         })
     }
 
     return (
         <div className='security-page'>
-            <h3 className="security-page-title mb-3">
-                RESET PASSWORD
-            </h3>
-            <form onSubmit={handleSubmit}>
-                <FormInput 
-                    label='New Password'
-                    name='newPassword'
-                    type='password'
-                    value={state.newPassword}
-                    handleChange={handleChange}
-                    required
-                />
-                <FormInput 
-                    label='Confirm Password'
-                    name='confirmPassword'
-                    type='password'
-                    value={state.confirmPassword}
-                    handleChange={handleChange}
-                    required
-                />
-                <Button
-                    className="mb-3"
-                    block
-                    type="submit"
-                    variant="outline-dark"
-                    bssize="large"
-                    disabled={!validateForm()}
-                >
-                    Submit
-                </Button>
-                <Button
-                    className="mb-3"
-                    block
-                    type="submit"
-                    variant="outline-primary"
-                    bssize="large"
-                    onClick={() => history.push('/profile')}
-                >
-                    Cancel
-                </Button>
-            </form>
+            <div className='form-container'>
+                <h3 className="form-title mb-3">
+                    RESET PASSWORD
+                </h3>
+                <form onSubmit={ handleResetPassword }>
+                    <FormInput 
+                        label='Current Password'
+                        name='currentPassword'
+                        type='password'
+                        value={ fields.currentPassword }
+                        handleChange={ handleChange }
+                        required
+                    />
+                    <FormInput 
+                        label='New Password'
+                        name='newPassword'
+                        type='password'
+                        value={ fields.newPassword }
+                        handleChange={ handleChange }
+                        required
+                    />
+                    <FormInput 
+                        label='Confirm Password'
+                        name='confirmNewPassword'
+                        type='password'
+                        value={ fields.confirmNewPassword }
+                        handleChange={ handleChange }
+                        required
+                    />
+                    <Button
+                        className="mb-3"
+                        block
+                        type="submit"
+                        variant="outline-dark"
+                        bssize="large"
+                        disabled={ !validateResetPasswordForm() }
+                    >
+                        Submit
+                    </Button>
+                    <Button
+                        className="mb-3"
+                        block
+                        type="submit"
+                        variant="outline-primary"
+                        bssize="large"
+                        onClick={() => history.push('/profile')}
+                    >
+                        Cancel
+                    </Button>
+                </form>
+            </div>
         </div>
     );
 }
 
 const mapDispatchtoProps = dispatch => ({
     setLoading: loadingState => dispatch(setLoading(loadingState)),
-    setCurrentUser: userAuth => dispatch(setCurrentUser(userAuth)),
 });
 
 export default connect(null, mapDispatchtoProps)(SecurityPage);
