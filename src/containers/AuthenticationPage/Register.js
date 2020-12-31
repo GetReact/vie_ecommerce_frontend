@@ -41,7 +41,8 @@ class RegisterForm extends Component {
             setLoading(true);
             try {
                 const { displayName, email, password } = this.state;
-                const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                const user = await auth.createUserWithEmailAndPassword(email, password);
+                    
                 await user.updateProfile({
                     displayName: displayName
                 });
@@ -63,6 +64,7 @@ class RegisterForm extends Component {
                 setLoading(false);
             } catch (error) {
                 console.log(error.code);
+                alert(error.message);
                 setLoading(false);
             }
         }

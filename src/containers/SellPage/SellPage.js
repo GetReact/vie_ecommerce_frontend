@@ -97,7 +97,10 @@ const SellPage = ({ shoesCollection, updateCollections }) => {
                     const jwtToken = await auth.currentUser.getIdToken();
 
                     await createImage(jwtToken, imageUrl);
-                }).catch(error => console.log(error));
+                }).catch(error => {
+                    console.log(error);
+                    alert('An error happened!')
+                });
 
         setLoading(false);
     }
